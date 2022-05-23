@@ -61,8 +61,28 @@ print("Результат: гипотенуза = " + String(format: "%.2f", gip
 
 print("\n")
 
+// Рассчитать сумму вклада через N лет
 
+print("Задание 3 \"Пользователь вводит сумму вклада в банке и годовой процент. Найти сумму вклада через N лет\"")
 
+//первоначальная сумма вклада
+let startSum : Double = 40000
+//годовая процентная ставка
+let percentOfYear: Double = 12
+//кол-во лет на которые нужно рассчитать вклад
+let yearsCount : Double = 1
 
+//кол-во дней в году
+let daysinYear : Double = 365
+
+//сумма процентов в конце срока
+var finalSumProcent : Double?
+
+if (startSum > 0 && percentOfYear > 0 && yearsCount > 0) {
+    finalSumProcent = ((startSum * percentOfYear * yearsCount * daysinYear) / daysinYear) / 100
+    print("Результат: Сумма вклада в размере " + String(startSum) + " сроком на " + String(yearsCount) + " год/лет с процентной ставкой равной " + String(percentOfYear) + "% в конце срока составит " + String(startSum + (finalSumProcent ?? 0)) + " условных единиц")
+} else {
+    print("Любой из параметров должен быть больше 0")
+}
 
 
