@@ -35,7 +35,7 @@ struct PistolClip<T : PistolClipProtocol> {
         bullets.append(bullet)
     }
     
-    mutating func shot(_ index : Int? = nil) -> T? {
+    mutating func shot(_ index : Int? = nil) -> T?{
         guard (bullets.count > 0) else {
             print("\n❌ Обойма пустая, добавить патронов")
             return nil
@@ -74,15 +74,20 @@ struct PistolClip<T : PistolClipProtocol> {
 extension PistolClip {
     
     subscript(index: Int) -> Void {
-        guard index >= 0 && index < bullets.count else { return } // здесь можно было возврашать и nil, но тогда в чем игра)))
-        
-        if (bullets[index].type == BulletType.Boevoi)
-        {
-            print("\n☠️ В \(index) ячейке находится \(bullets[index].type.rawValue) патрон")
-        }
-        else
-        {
-            print("\n😎 В \(index) ячейке находится \(bullets[index].type.rawValue) патрон")
+        mutating get {
+            guard index >= 0 && index < bullets.count else { return } // здесь можно было возврашать и nil, но тогда в чем игра)))
+            
+            if (bullets[index].type == BulletType.Boevoi)
+            {
+                print("\n☠️ В \(index) ячейке находится \(bullets[index].type.rawValue) патрон")
+                shot(index)
+            }
+            else
+            {
+
+                print("\n😎 В \(index) ячейке находится \(bullets[index].type.rawValue) патрон")
+                shot(index)
+            }
         }
     }
     
@@ -133,34 +138,12 @@ ttGame.count()
 
 //просто пострелять
 ttGame.shot()
-
-//сама игра
-ttGame[0]
-
-ttGame[1]
-
 ttGame[2,4,5]
 
-//просто пострелять
-ttGame.shot(3)
-ttGame.shot(6)
-
-ttGame.filterBulletType(type: BulletType.Boevoi)
-ttGame.filterBulletType(type: BulletType.Holostoi)
-
-//просто пострелять
-ttGame.shot(4)
-ttGame.shot(0)
-
 ttGame.filterBulletType(type: BulletType.Boevoi)
 ttGame.filterBulletType(type: BulletType.Holostoi)
 
 //сама игра
 ttGame[0]
-ttGame[1]
-ttGame[2]
+ttGame[0]
 ttGame[3]
-ttGame[4]
-
-//как вызывать shot в subscript?
-//error: cannot use mutating member on immutable value: 'self' is immutable self.shot(1)
