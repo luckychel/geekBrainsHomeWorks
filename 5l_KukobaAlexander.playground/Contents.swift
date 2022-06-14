@@ -1,123 +1,89 @@
 import Foundation
 import PlaygroundSupport
 
-//1. Описать класс Car c общими свойствами автомобилей и пустым методом действия по аналогии с прошлым заданием.
-//2. Описать пару его наследников trunkCar и sportСar. Подумать, какими отличительными свойствами обладают эти автомобили. Описать в каждом наследнике специфичные для него свойства.
-//3. Взять из прошлого урока enum с действиями над автомобилем. Подумать, какие особенные действия имеет trunkCar, а какие – sportCar. Добавить эти действия в перечисление.
-//4. В каждом подклассе переопределить метод действия с автомобилем в соответствии с его классом.
+//1. Создать протокол «Car» и описать свойства, общие для автомобилей, а также метод действия.
+//2. Создать расширения для протокола «Car» и реализовать в них методы конкретных действий с автомобилем: открыть/закрыть окно, запустить/заглушить двигатель и т.д. (по одному методу на действие, реализовывать следует только те действия, реализация которых общая для всех автомобилей).
+//3. Создать два класса, имплементирующих протокол «Car» - trunkCar и sportСar. Описать в них свойства, отличающиеся для спортивного автомобиля и цистерны.
+//4. Для каждого класса написать расширение, имплементирующее протокол CustomStringConvertible.
 //5. Создать несколько объектов каждого класса. Применить к ним различные действия.
-//6. Вывести значения свойств экземпляров в консоль.
+//6. Вывести сами объекты в консоль.
 
-class Car {
-    
-    enum startStopStatus: String {
-        case start = "включен"
-        case stop = "выключен"
-    }
+enum startStopStatus: String {
+    case start = "включен"
+    case stop = "выключен"
+}
 
-    enum openCloseStatus : String {
-        case open = "открыто"
-        case close = "закрыто"
-    }
+enum openCloseStatus : String {
+    case open = "открыто"
+    case close = "закрыто"
+}
 
-    enum CarTransmission : String {
-        case auto = "Автоматическая"
-        case manual = "Ручная"
-        case robot = "Робот"
-    }
+enum CarTransmission : String {
+    case auto = "Автоматическая"
+    case manual = "Ручная"
+    case robot = "Робот"
+}
+
+enum TypeEngine: String {
+    case petrol = "бензиновый"
+    case diesel = "дизельный"
+    case electrical = "электрический"
+    case gas = "газовый"
+}
+
+protocol Car {
     
-    enum TypeEngine: String {
-        case petrol = "бензиновый"
-        case diesel = "дизельный"
-        case electrical = "электрический"
-        case gas = "газовый"
-    }
+    var brand : String { get  }
+    var year: Int { get }
+    var transmission: CarTransmission { get }
+    var engine: TypeEngine { get }
     
-    static var countCar: Int = 0
-    static func printCountCar() {
-        print("✅ Всего активных машин: \(Car.countCar).\n")
-    }
+    var mileage: Double { get set }
+    var currentVolumeTrunk: Double { get set }
+    var maxVolumeTrunk: Double { get set }
+    var engineStatus: startStopStatus? { get set }
+    var windowStatus: openCloseStatus? { get set }
     
-    var brand: String
-    var year: Int
-    var transmission: CarTransmission
-    var engine: TypeEngine
-    var mileage: Double
+    var freeVolume : Double { get }
+    static var countCar: Int {get set}
     
-    var currentVolumeTrunk: Double = 0
-    let maxVolumeTrunk: Double
-    var engineStatus: startStopStatus? = .stop
-    var windowStatus: openCloseStatus? = .close
-    
-    var freeVolume: Double {
-        get {
-            return maxVolumeTrunk - currentVolumeTrunk
-        }
-    }
-    
-    func setEngine(status: startStopStatus) -> Bool {
+}
+
+extension Car {
+    mutating func setEngine(status: startStopStatus) -> Bool {
         guard self.engineStatus != status else {
-            self.description()
+            //self.description()
             print("⚠️ Статус двигателя не поменялся - \(status.rawValue)\n")
             return false
         }
         self.engineStatus = status
-        self.description()
+        //self.description()
         print("✅ Двигатель - \(status.rawValue)\n")
         return true
     }
     
-    func setWindow(status: openCloseStatus) -> Bool {
+    mutating func setWindow(status: openCloseStatus) -> Bool {
         guard self.windowStatus != status else {
-            self.description()
+            //self.description()
             print("⚠️ Статус окна водителя не поменялся - \(status.rawValue)\n")
             return false
         }
         self.windowStatus = status
-        self.description()
+        //self.description()
         print("✅ Окно водителя - \(status.rawValue)\n")
         return true
     }
+    
+    mutating func driveCertainDistance(distance: Double) -> Double {
+        guard distance > 0 else {
+            print("⚠️ Автомобиль не поехал, т.к. он не может проехать нулевую или отрицательную дистанцию.\n")
+            return self.mileage
+        }
+        self.mileage += distance
+        print("✅ Автомобиль проехал \(distance) км., в данный момент пробег состовляет \(self.mileage) км.\n")
+        return self.mileage
+    }
  
-    func description(){
-        print("- Автомобиль марки \(self.brand)\n- \(self.year) года выпуска\n- Коробка передач \(self.transmission.rawValue)\n- Двигатель \(self.engine.rawValue) ")
-    }
-    
-    init(brand : String, year: Int, transmission: CarTransmission, engine: TypeEngine, mileage: Double, currentVolumeTrunk: Double, maxVolumeTrunk: Double, engineStatus: startStopStatus, windowStatus: openCloseStatus){
-        guard currentVolumeTrunk >= 0 else {
-            fatalError("❌ Текущее значение объема багажника не может быть меньше 0\n")
-        }
-        guard maxVolumeTrunk > 0 else {
-            fatalError("❌ Максимальный объем багажника не может быть меньше или равно 0\n")
-        }
-        guard currentVolumeTrunk <= maxVolumeTrunk else {
-            fatalError("❌ Текущий объем багажника не может быть больше максимального объема багажника\n")
-        }
-        guard mileage >= 0 else {
-            fatalError("❌ Пробег не может быть меньше 0\n")
-        }
-        self.brand = brand
-        self.year = year
-        self.transmission = transmission
-        self.engine = engine
-        self.mileage = mileage
-        self.currentVolumeTrunk = currentVolumeTrunk
-        self.maxVolumeTrunk = maxVolumeTrunk
-        self.engineStatus = engineStatus
-        self.windowStatus = windowStatus
-        
-        print("🛞 Инициализация \(self.brand)")
-        Car.countCar += 1
-        Car.printCountCar()
-    }
-    
-    deinit {
-        print("🗑 Деинициализация \(self.brand)")
-        Car.countCar -= 1
-        Car.printCountCar()
-    }
-    
-       
 }
 
 class SportCar : Car {
@@ -129,18 +95,44 @@ class SportCar : Car {
         case krosover = "кросовер"
         case offroad = "внедорожник"
     }
+    
+    var brand: String
+    
+    var year: Int
+    
+    var transmission: CarTransmission
+    
+    var engine: TypeEngine
+    
+    var mileage: Double
+    
+    var currentVolumeTrunk: Double
+    
+    var maxVolumeTrunk: Double
+    
+    var engineStatus: startStopStatus?
+    
+    var windowStatus: openCloseStatus?
+    
+    var freeVolume: Double {
+        get {
+            return maxVolumeTrunk - currentVolumeTrunk
+        }
+    }
 
     var type: TypeOfPassengerCar
     private var isTunning: Bool
 
+    static var countCar: Int = 0
+    
     func changeTunning() {
         self.isTunning = self.isTunning ? false : true
         print(self.isTunning ? "✅ На машину добавлен тюнинг.\n" : "✅ С машины убран тюнинг\n")
-        self.description()
+        //self.description()
     }
 
     func setVolume(value: Double) -> Bool {
-        self.description()
+        //self.description()
         guard self.currentVolumeTrunk + value <= self.maxVolumeTrunk else {
             print("❌ Допустимый объем багажника - \(self.maxVolumeTrunk) кг, перегруз составляет \((self.currentVolumeTrunk + value) - self.maxVolumeTrunk) кг\n")
             return false
@@ -151,15 +143,37 @@ class SportCar : Car {
     }
     
     init(brand: String, type: TypeOfPassengerCar, isTunning: Bool, year: Int, transmission: CarTransmission, engine: TypeEngine, mileage: Double, currentVolumeTrunk: Double, maxVolumeTrunk: Double, engineStatus: startStopStatus, windowStatus: openCloseStatus) {
-            self.type = type
-            self.isTunning = isTunning
-        super.init(brand: brand, year: year, transmission: transmission, engine: engine, mileage: mileage, currentVolumeTrunk: currentVolumeTrunk, maxVolumeTrunk: maxVolumeTrunk, engineStatus: engineStatus, windowStatus: windowStatus)
-        }
+        self.brand = brand
+        self.year = year
+        self.transmission = transmission
+        self.engine = engine
+        self.mileage = mileage
+        self.currentVolumeTrunk = currentVolumeTrunk
+        self.maxVolumeTrunk = maxVolumeTrunk
+        self.engineStatus = engineStatus
+        self.windowStatus = windowStatus
+        
+        self.type = type
+        self.isTunning = isTunning
+    
+        print("🛞 Инициализация \(self.brand)")
+        SportCar.countCar += 1
+        //Car.printCountCar()
+    }
+    
+    deinit {
+        print("🗑 Деинициализация \(self.brand)")
+        SportCar.countCar -= 1
+        //Car.printCountCar()
+    }
 
-    override func description() {
+}
+
+extension SportCar: CustomStringConvertible {
+    var description: String {
         print("🚙 Легковая машина")
-        super.description()
         print("- Тип \(self.type.rawValue)\n- Подвергалась тюнингу \(self.isTunning ? "Да" : "Нет")\n")
+        return ""
     }
 }
 
@@ -180,12 +194,38 @@ class TrunkCar: Car {
     enum ActionWithTheTrunk {
         case put, remove
     }
+    
+    var brand: String
+    
+    var year: Int
+    
+    var transmission: CarTransmission
+    
+    var engine: TypeEngine
+    
+    var mileage: Double
+    
+    var currentVolumeTrunk: Double
+    
+    var maxVolumeTrunk: Double
+    
+    var engineStatus: startStopStatus?
+    
+    var windowStatus: openCloseStatus?
+    
+    var freeVolume: Double {
+        get {
+            return maxVolumeTrunk - currentVolumeTrunk
+        }
+    }
+    
+    static var countCar: Int = 0
        
     var type: TypeOfTrunkCar
     var numAxies: NumberOfAxies
     
     func loadingAndUnloading(action: ActionWithTheTrunk, value: Double) {
-        description()
+        //description()
         switch action {
         case .put:
             switch value {
@@ -225,18 +265,39 @@ class TrunkCar: Car {
     }
     
     init(brand: String, type: TypeOfTrunkCar, numAxies: NumberOfAxies, year: Int, transmission: CarTransmission, engine: TypeEngine, mileage: Double, currentVolumeTrunk: Double, maxVolumeTrunk: Double, engineStatus: startStopStatus, windowStatus: openCloseStatus) {
-            self.type = type
+        self.brand = brand
+        self.year = year
+        self.transmission = transmission
+        self.engine = engine
+        self.mileage = mileage
+        self.currentVolumeTrunk = currentVolumeTrunk
+        self.maxVolumeTrunk = maxVolumeTrunk
+        self.engineStatus = engineStatus
+        self.windowStatus = windowStatus
+        
+        self.type = type
             self.numAxies = numAxies
-        super.init(brand: brand, year: year, transmission: transmission, engine: engine, mileage: mileage, currentVolumeTrunk: currentVolumeTrunk, maxVolumeTrunk: maxVolumeTrunk, engineStatus: engineStatus, windowStatus: windowStatus)
-        }
-
-    override func description() {
-        print("🚚 грузовая машина")
-        super.description()
-        print("- Тип \(self.type.rawValue)\n- Кол-во осей \(self.numAxies.rawValue)\n")
+        
+        print("🛞 Инициализация \(self.brand)")
+        TrunkCar.countCar += 1
+        //Car.printCountCar()
     }
+    
+    deinit {
+        print("🗑 Деинициализация \(self.brand)")
+        TrunkCar.countCar -= 1
+        //Car.printCountCar()
+    }
+
 }
 
+extension TrunkCar: CustomStringConvertible {
+    var description: String {
+        print("🚚 грузовая машина")
+        print("- Тип \(self.type.rawValue)\n- Кол-во осей \(self.numAxies.rawValue)\n")
+        return ""
+    }
+}
 
 var volvoXC90 : SportCar? = SportCar(brand: "Volvo", type: .offroad, isTunning: false, year: 2020, transmission: .auto, engine: .petrol, mileage:200, currentVolumeTrunk: 0, maxVolumeTrunk: 600, engineStatus: .stop, windowStatus: .close)
 if (volvoXC90 != nil) {
@@ -259,3 +320,5 @@ if (manTruck != nil) {
 
 volvoXC90 = nil
 manTruck = nil
+
+
