@@ -22,14 +22,15 @@ class GameViewController: UIViewController {
         skView.showsFPS = true
         skView.showsNodeCount = true
         skView.ignoresSiblingOrder = true
-        
+
         scene.scaleMode = .resizeFill
         
-        skView.layer.borderWidth = 1
-        skView.layer.borderColor = UIColor(red:222/255, green:225/255, blue:227/255, alpha: 1).cgColor
-        
-        //skView.frame =  CGRect(x: offset - 20, y: offset - 20, width:skView.frame.size.width, height:skView.frame.size.height)
-        //skView.backgroundColor = .blue
+//        let offset = 20.0
+//
+//        skView.layer.borderWidth = offset
+//        skView.layer.borderColor = UIColor(red:222/255, green:225/255, blue:227/255, alpha: 1).cgColor
+//        skView.frame =  CGRect(x: offset, y: offset, width:skView.frame.size.width - offset, height:skView.frame.size.height - offset)
+
         skView.presentScene(scene)
  
     }
