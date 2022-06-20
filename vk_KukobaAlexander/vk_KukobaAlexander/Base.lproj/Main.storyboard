@@ -84,15 +84,15 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" misplaced="YES" restorationIdentifier="vkLogo" image="vk" highlightedImage="vk" translatesAutoresizingMaskIntoConstraints="NO" id="iL6-mq-to5">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" restorationIdentifier="vkLogo" image="vk" highlightedImage="vk" translatesAutoresizingMaskIntoConstraints="NO" id="iL6-mq-to5">
                                         <rect key="frame" x="118" y="31" width="200" height="200"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="iL6-mq-to5" secondAttribute="trailing" constant="118.66666666666674" id="2Km-lG-SW8"/>
-                                    <constraint firstItem="iL6-mq-to5" firstAttribute="leading" secondItem="TKI-MZ-hTe" secondAttribute="leading" constant="118" id="5tm-Ra-zPc"/>
-                                    <constraint firstAttribute="bottom" secondItem="iL6-mq-to5" secondAttribute="bottom" constant="617" id="A4d-2T-QBt"/>
-                                    <constraint firstItem="iL6-mq-to5" firstAttribute="top" secondItem="TKI-MZ-hTe" secondAttribute="top" constant="20" symbolic="YES" id="IXt-Ob-qLF"/>
+                                    <constraint firstItem="RNp-Ut-sPw" firstAttribute="trailing" secondItem="iL6-mq-to5" secondAttribute="trailing" constant="118.66666666666674" id="2Km-lG-SW8"/>
+                                    <constraint firstItem="iL6-mq-to5" firstAttribute="leading" secondItem="RNp-Ut-sPw" secondAttribute="leading" constant="118" id="5tm-Ra-zPc"/>
+                                    <constraint firstItem="RNp-Ut-sPw" firstAttribute="bottom" secondItem="iL6-mq-to5" secondAttribute="bottom" constant="617" id="A4d-2T-QBt"/>
+                                    <constraint firstItem="iL6-mq-to5" firstAttribute="top" secondItem="RNp-Ut-sPw" secondAttribute="top" constant="31" id="IXt-Ob-qLF"/>
                                     <constraint firstItem="u5u-lS-QtZ" firstAttribute="centerX" secondItem="TKI-MZ-hTe" secondAttribute="centerX" id="jrj-ZN-rRN"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="RNp-Ut-sPw"/>
