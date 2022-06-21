@@ -17,12 +17,23 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        
     }
 
 
     @IBAction func tapLoginBtn(_ sender: Any) {
-        print(#function)
+        guard let loginTxt = textLogin.text,
+              let passwordTxt = textPassword.text,
+              loginTxt == "",
+              passwordTxt == "" else {
+            self.show(message: "Поля должны быть пустыми")
+            return
+        }
+    
+        performSegue(withIdentifier: "LoginSega", sender: nil)
     }
 }
 
