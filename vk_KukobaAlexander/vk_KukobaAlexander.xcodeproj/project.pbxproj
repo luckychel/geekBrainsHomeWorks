@@ -15,6 +15,10 @@
 		8116C500285A788500ECB796 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8116C4FE285A788500ECB796 /* LaunchScreen.storyboard */; };
 		81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE030D286275FB009C1856 /* UiViewController+extension.swift */; };
 		81DE031428627E00009C1856 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE031328627E00009C1856 /* TabbarViewController.swift */; };
+		81DE03162868A755009C1856 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03152868A755009C1856 /* FriendsTableViewController.swift */; };
+		81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03172868A811009C1856 /* GroupsTableViewController.swift */; };
+		81DE031A2868AD0F009C1856 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03192868AD0F009C1856 /* FriendCell.swift */; };
+		81DE031C2868B31F009C1856 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE031B2868B31F009C1856 /* Friend.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		8116C501285A788500ECB796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81DE030D286275FB009C1856 /* UiViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+extension.swift"; sourceTree = "<group>"; };
 		81DE031328627E00009C1856 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
+		81DE03152868A755009C1856 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
+		81DE03172868A811009C1856 /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
+		81DE03192868AD0F009C1856 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		81DE031B2868B31F009C1856 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,16 +69,28 @@
 			isa = PBXGroup;
 			children = (
 				8116C4F3285A788300ECB796 /* AppDelegate.swift */,
+				81DE031D2868D2AE009C1856 /* Model */,
 				8116C4F5285A788300ECB796 /* SceneDelegate.swift */,
 				8116C4F7285A788300ECB796 /* ViewController.swift */,
 				81DE030D286275FB009C1856 /* UiViewController+extension.swift */,
 				8116C4F9285A788300ECB796 /* Main.storyboard */,
+				81DE03192868AD0F009C1856 /* FriendCell.swift */,
+				81DE03172868A811009C1856 /* GroupsTableViewController.swift */,
 				81DE031328627E00009C1856 /* TabbarViewController.swift */,
+				81DE03152868A755009C1856 /* FriendsTableViewController.swift */,
 				8116C4FC285A788500ECB796 /* Assets.xcassets */,
 				8116C4FE285A788500ECB796 /* LaunchScreen.storyboard */,
 				8116C501285A788500ECB796 /* Info.plist */,
 			);
 			path = vk_KukobaAlexander;
+			sourceTree = "<group>";
+		};
+		81DE031D2868D2AE009C1856 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				81DE031B2868B31F009C1856 /* Friend.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +166,13 @@
 			files = (
 				8116C4F8285A788300ECB796 /* ViewController.swift in Sources */,
 				8116C4F4285A788300ECB796 /* AppDelegate.swift in Sources */,
+				81DE03162868A755009C1856 /* FriendsTableViewController.swift in Sources */,
 				8116C4F6285A788300ECB796 /* SceneDelegate.swift in Sources */,
+				81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */,
 				81DE031428627E00009C1856 /* TabbarViewController.swift in Sources */,
+				81DE031C2868B31F009C1856 /* Friend.swift in Sources */,
 				81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */,
+				81DE031A2868AD0F009C1856 /* FriendCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
