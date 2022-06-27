@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ejl-ym-WIC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -120,7 +120,7 @@
                         <outlet property="LoginBtn" destination="u5u-lS-QtZ" id="scc-l5-Mgp"/>
                         <outlet property="textLogin" destination="9Zc-vx-XuA" id="lze-nv-z1M"/>
                         <outlet property="textPassword" destination="hXT-KC-Zya" id="hbk-rn-cLD"/>
-                        <segue destination="reK-XA-XxX" kind="show" identifier="LoginSega" id="iVA-FX-N1h"/>
+                        <segue destination="reK-XA-XxX" kind="presentation" identifier="LoginSega" modalPresentationStyle="fullScreen" id="iVA-FX-N1h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -312,27 +312,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5rr-30-8Zd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4265.8878504672894" y="-111.44708423326135"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Xh7-1I-7e5">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ejl-ym-WIC" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DN4-85-ybL">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="v2B-wv-rwI">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rWB-If-vie"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8tQ-rP-zaM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="18.22429906542056" y="97.192224622030238"/>
         </scene>
         <!--Друзья-->
         <scene sceneID="g4w-y9-aIY">

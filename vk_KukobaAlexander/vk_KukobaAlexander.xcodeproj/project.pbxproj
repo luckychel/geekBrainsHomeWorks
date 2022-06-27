@@ -13,6 +13,7 @@
 		8116C4FB285A788300ECB796 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8116C4F9285A788300ECB796 /* Main.storyboard */; };
 		8116C4FD285A788500ECB796 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8116C4FC285A788500ECB796 /* Assets.xcassets */; };
 		8116C500285A788500ECB796 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8116C4FE285A788500ECB796 /* LaunchScreen.storyboard */; };
+		815315F2286A55CB0030537D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F1286A55CB0030537D /* Group.swift */; };
 		81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE030D286275FB009C1856 /* UiViewController+extension.swift */; };
 		81DE031428627E00009C1856 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE031328627E00009C1856 /* TabbarViewController.swift */; };
 		81DE03162868A755009C1856 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03152868A755009C1856 /* FriendsTableViewController.swift */; };
@@ -30,6 +31,7 @@
 		8116C4FC285A788500ECB796 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8116C4FF285A788500ECB796 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8116C501285A788500ECB796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		815315F1286A55CB0030537D /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		81DE030D286275FB009C1856 /* UiViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+extension.swift"; sourceTree = "<group>"; };
 		81DE031328627E00009C1856 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		81DE03152868A755009C1856 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
@@ -68,27 +70,52 @@
 		8116C4F2285A788300ECB796 /* vk_KukobaAlexander */ = {
 			isa = PBXGroup;
 			children = (
-				8116C4F3285A788300ECB796 /* AppDelegate.swift */,
 				81DE031D2868D2AE009C1856 /* Model */,
-				8116C4F5285A788300ECB796 /* SceneDelegate.swift */,
-				8116C4F7285A788300ECB796 /* ViewController.swift */,
-				81DE030D286275FB009C1856 /* UiViewController+extension.swift */,
-				8116C4F9285A788300ECB796 /* Main.storyboard */,
-				81DE03192868AD0F009C1856 /* FriendCell.swift */,
-				81DE03172868A811009C1856 /* GroupsTableViewController.swift */,
-				81DE031328627E00009C1856 /* TabbarViewController.swift */,
-				81DE03152868A755009C1856 /* FriendsTableViewController.swift */,
+				8179784A286A54FB00D14B27 /* Controller */,
+				8179784C286A551100D14B27 /* Extension */,
+				8179784B286A550A00D14B27 /* View */,
 				8116C4FC285A788500ECB796 /* Assets.xcassets */,
+				8116C4F9285A788300ECB796 /* Main.storyboard */,
 				8116C4FE285A788500ECB796 /* LaunchScreen.storyboard */,
+				8116C4F5285A788300ECB796 /* SceneDelegate.swift */,
+				8116C4F3285A788300ECB796 /* AppDelegate.swift */,
 				8116C501285A788500ECB796 /* Info.plist */,
 			);
 			path = vk_KukobaAlexander;
+			sourceTree = "<group>";
+		};
+		8179784A286A54FB00D14B27 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8116C4F7285A788300ECB796 /* ViewController.swift */,
+				81DE03172868A811009C1856 /* GroupsTableViewController.swift */,
+				81DE031328627E00009C1856 /* TabbarViewController.swift */,
+				81DE03152868A755009C1856 /* FriendsTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8179784B286A550A00D14B27 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				81DE03192868AD0F009C1856 /* FriendCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8179784C286A551100D14B27 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				81DE030D286275FB009C1856 /* UiViewController+extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		81DE031D2868D2AE009C1856 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				81DE031B2868B31F009C1856 /* Friend.swift */,
+				815315F1286A55CB0030537D /* Group.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -167,6 +194,7 @@
 				8116C4F8285A788300ECB796 /* ViewController.swift in Sources */,
 				8116C4F4285A788300ECB796 /* AppDelegate.swift in Sources */,
 				81DE03162868A755009C1856 /* FriendsTableViewController.swift in Sources */,
+				815315F2286A55CB0030537D /* Group.swift in Sources */,
 				8116C4F6285A788300ECB796 /* SceneDelegate.swift in Sources */,
 				81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */,
 				81DE031428627E00009C1856 /* TabbarViewController.swift in Sources */,
