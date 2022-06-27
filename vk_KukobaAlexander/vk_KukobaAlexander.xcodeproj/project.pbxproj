@@ -74,14 +74,22 @@
 				8179784A286A54FB00D14B27 /* Controller */,
 				8179784C286A551100D14B27 /* Extension */,
 				8179784B286A550A00D14B27 /* View */,
-				8116C4FC285A788500ECB796 /* Assets.xcassets */,
-				8116C4F9285A788300ECB796 /* Main.storyboard */,
-				8116C4FE285A788500ECB796 /* LaunchScreen.storyboard */,
+				815315F3286A56730030537D /* Resourse */,
 				8116C4F5285A788300ECB796 /* SceneDelegate.swift */,
 				8116C4F3285A788300ECB796 /* AppDelegate.swift */,
 				8116C501285A788500ECB796 /* Info.plist */,
 			);
 			path = vk_KukobaAlexander;
+			sourceTree = "<group>";
+		};
+		815315F3286A56730030537D /* Resourse */ = {
+			isa = PBXGroup;
+			children = (
+				8116C4FC285A788500ECB796 /* Assets.xcassets */,
+				8116C4F9285A788300ECB796 /* Main.storyboard */,
+				8116C4FE285A788500ECB796 /* LaunchScreen.storyboard */,
+			);
+			path = Resourse;
 			sourceTree = "<group>";
 		};
 		8179784A286A54FB00D14B27 /* Controller */ = {

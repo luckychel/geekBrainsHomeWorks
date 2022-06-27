@@ -170,7 +170,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="JeA-le-Sth">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="xX7-Ou-rsO">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="folder.badge.plus" catalog="system" id="xX7-Ou-rsO">
                             <connections>
                                 <segue destination="XVN-bA-jEp" kind="show" id="Jef-eJ-ugJ"/>
                             </connections>
@@ -267,7 +267,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Ie0-HL-dVl">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="menucard.fill" catalog="system" id="rex-Pq-wXX">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="person.badge.plus" catalog="system" id="rex-Pq-wXX">
                             <connections>
                                 <segue destination="Nm7-T7-7lZ" kind="show" id="Qpp-Ho-lzq"/>
                             </connections>
@@ -353,7 +353,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="folder.badge.plus" catalog="system" width="32" height="32"/>
         <image name="menucard.fill" catalog="system" width="32" height="32"/>
+        <image name="person.badge.plus" catalog="system" width="32" height="32"/>
         <image name="person.circle.fill" catalog="system" width="32" height="32"/>
         <image name="vk" width="200" height="200"/>
         <systemColor name="systemBackgroundColor">
