@@ -14,6 +14,8 @@
 		8116C4FD285A788500ECB796 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8116C4FC285A788500ECB796 /* Assets.xcassets */; };
 		8116C500285A788500ECB796 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8116C4FE285A788500ECB796 /* LaunchScreen.storyboard */; };
 		815315F2286A55CB0030537D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F1286A55CB0030537D /* Group.swift */; };
+		815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */; };
+		815315F7286A5EDA0030537D /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */; };
 		81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE030D286275FB009C1856 /* UiViewController+extension.swift */; };
 		81DE031428627E00009C1856 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE031328627E00009C1856 /* TabbarViewController.swift */; };
 		81DE03162868A755009C1856 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03152868A755009C1856 /* FriendsTableViewController.swift */; };
@@ -32,6 +34,8 @@
 		8116C4FF285A788500ECB796 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8116C501285A788500ECB796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		815315F1286A55CB0030537D /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewController.swift; sourceTree = "<group>"; };
+		815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
 		81DE030D286275FB009C1856 /* UiViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+extension.swift"; sourceTree = "<group>"; };
 		81DE031328627E00009C1856 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		81DE03152868A755009C1856 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
@@ -92,13 +96,39 @@
 			path = Resourse;
 			sourceTree = "<group>";
 		};
+		815315F8286A5EE50030537D /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				815315F9286A605A0030537D /* TableView */,
+				815315FA286A60690030537D /* CollectionView */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		815315F9286A605A0030537D /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				81DE03152868A755009C1856 /* FriendsTableViewController.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		815315FA286A60690030537D /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */,
+				815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
 		8179784A286A54FB00D14B27 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				8116C4F7285A788300ECB796 /* ViewController.swift */,
 				81DE03172868A811009C1856 /* GroupsTableViewController.swift */,
 				81DE031328627E00009C1856 /* TabbarViewController.swift */,
-				81DE03152868A755009C1856 /* FriendsTableViewController.swift */,
+				815315F8286A5EE50030537D /* Friends */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -199,8 +229,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				815315F7286A5EDA0030537D /* FriendCollectionViewCell.swift in Sources */,
 				8116C4F8285A788300ECB796 /* ViewController.swift in Sources */,
 				8116C4F4285A788300ECB796 /* AppDelegate.swift in Sources */,
+				815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */,
 				81DE03162868A755009C1856 /* FriendsTableViewController.swift in Sources */,
 				815315F2286A55CB0030537D /* Group.swift in Sources */,
 				8116C4F6285A788300ECB796 /* SceneDelegate.swift in Sources */,

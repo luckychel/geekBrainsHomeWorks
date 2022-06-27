@@ -258,6 +258,7 @@
                                 <connections>
                                     <outlet property="imageFriend" destination="Qqr-aS-O4H" id="ZOV-nW-Yxa"/>
                                     <outlet property="nameFriend" destination="leE-LE-63a" id="ecL-K1-SNH"/>
+                                    <segue destination="Nm7-T7-7lZ" kind="show" id="qMt-uc-gEn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -267,39 +268,61 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Ie0-HL-dVl">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="person.badge.plus" catalog="system" id="rex-Pq-wXX">
-                            <connections>
-                                <segue destination="Nm7-T7-7lZ" kind="show" id="Qpp-Ho-lzq"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="person.badge.plus" catalog="system" id="rex-Pq-wXX"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="65H-fa-1Q9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3386.9158878504672" y="-111.44708423326135"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Friends Collection View Controller-->
         <scene sceneID="SK4-w6-Tfr">
             <objects>
-                <collectionViewController id="Nm7-T7-7lZ" sceneMemberID="viewController">
+                <collectionViewController id="Nm7-T7-7lZ" customClass="FriendsCollectionViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Pug-gH-Dcw">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.66633485130000003" green="0.68367215100000001" blue="0.88150376080000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bhn-UG-56o">
-                            <size key="itemSize" width="128" height="128"/>
+                            <size key="itemSize" width="374" height="274"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wU2-ci-CLs">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wU2-ci-CLs" customClass="FriendCollectionViewCell" customModule="vk_KukobaAlexander" customModuleProvider="target">
+                                <rect key="frame" x="27" y="0.0" width="374" height="274"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Tnq-se-FDz">
-                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="274"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kiQ-j3-yzH">
+                                            <rect key="frame" x="10" y="10" width="354" height="223.66666666666666"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="kiQ-j3-yzH" secondAttribute="height" multiplier="1:1" id="hXd-U5-nMx"/>
+                                                <constraint firstAttribute="height" constant="120" id="lVg-nB-D02"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAW-q7-VXe">
+                                            <rect key="frame" x="10" y="243.66666666666666" width="354" height="20.333333333333343"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="XAW-q7-VXe" secondAttribute="bottom" constant="10" id="323-cZ-DuT"/>
+                                        <constraint firstItem="XAW-q7-VXe" firstAttribute="top" secondItem="kiQ-j3-yzH" secondAttribute="bottom" constant="10" id="Ico-Pm-pXP"/>
+                                        <constraint firstItem="kiQ-j3-yzH" firstAttribute="centerX" secondItem="Tnq-se-FDz" secondAttribute="centerX" id="LBw-r5-Gku"/>
+                                        <constraint firstItem="kiQ-j3-yzH" firstAttribute="leading" secondItem="Tnq-se-FDz" secondAttribute="leading" constant="10" id="NoM-56-wht"/>
+                                        <constraint firstAttribute="trailing" secondItem="XAW-q7-VXe" secondAttribute="trailing" constant="10" id="SMH-Ab-71P"/>
+                                        <constraint firstItem="XAW-q7-VXe" firstAttribute="leading" secondItem="Tnq-se-FDz" secondAttribute="leading" constant="10" id="b7f-7k-9g9"/>
+                                        <constraint firstAttribute="trailing" secondItem="kiQ-j3-yzH" secondAttribute="trailing" constant="10" id="r2v-3p-UP4"/>
+                                        <constraint firstItem="kiQ-j3-yzH" firstAttribute="top" secondItem="Tnq-se-FDz" secondAttribute="top" constant="10" id="zSg-mF-YNv"/>
+                                    </constraints>
                                 </collectionViewCellContentView>
+                                <size key="customSize" width="374" height="274"/>
                             </collectionViewCell>
                         </cells>
                         <connections>
