@@ -258,7 +258,7 @@
                                 <connections>
                                     <outlet property="imageFriend" destination="Qqr-aS-O4H" id="ZOV-nW-Yxa"/>
                                     <outlet property="nameFriend" destination="leE-LE-63a" id="ecL-K1-SNH"/>
-                                    <segue destination="Nm7-T7-7lZ" kind="show" id="qMt-uc-gEn"/>
+                                    <segue destination="Nm7-T7-7lZ" kind="show" identifier="CollectionFriends" id="qMt-uc-gEn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -290,7 +290,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wU2-ci-CLs" customClass="FriendCollectionViewCell" customModule="vk_KukobaAlexander" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionFriends" id="wU2-ci-CLs" customClass="FriendCollectionViewCell" customModule="vk_KukobaAlexander" customModuleProvider="target">
                                 <rect key="frame" x="27" y="0.0" width="374" height="274"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Tnq-se-FDz">
@@ -323,6 +323,10 @@
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="374" height="274"/>
+                                <connections>
+                                    <outlet property="imageFriend" destination="kiQ-j3-yzH" id="E8u-Be-VQl"/>
+                                    <outlet property="nameFriend" destination="XAW-q7-VXe" id="iFW-2O-Ytq"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -376,10 +380,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="folder.badge.plus" catalog="system" width="32" height="32"/>
-        <image name="menucard.fill" catalog="system" width="32" height="32"/>
-        <image name="person.badge.plus" catalog="system" width="32" height="32"/>
-        <image name="person.circle.fill" catalog="system" width="32" height="32"/>
+        <image name="folder.badge.plus" catalog="system" width="128" height="91"/>
+        <image name="menucard.fill" catalog="system" width="106" height="128"/>
+        <image name="person.badge.plus" catalog="system" width="128" height="124"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="vk" width="200" height="200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

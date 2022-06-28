@@ -9,4 +9,10 @@ import UIKit
 
 class FriendCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet var imageFriend: UIImageView!
+    
+    @IBOutlet var nameFriend: UILabel!
+    
+    
+    
 }

@@ -10,14 +10,22 @@ import UIKit
 class FriendsTableViewController: UITableViewController {
 
     var friends = [
-        Friend(name: "Кирилл", avatar: UIImage(named:  "kirill")),
-        Friend(name: "Валерия", avatar: UIImage(named:  "valeria")),
-        Friend(name: "Ирина", avatar: UIImage(named:  "irina")),
-        Friend(name: "Всеволод", avatar: UIImage(named:  "seva")),
-        Friend(name: "Александр", avatar: UIImage(named:  "alexander")),
-        Friend(name: "Жанна", avatar: UIImage(named:  "ganna")),
-        Friend(name: "Сергей", avatar: UIImage(named:  "sergey")),
-        Friend(name: "Георгий", avatar: UIImage(named:  "gosha")),
+        Friend(name: "Кирилл", avatar: UIImage(named:  "kirill"), allFriends: [Friend(name: "Валерия", avatar: UIImage(named:  "valeria")), Friend(name: "Ирина", avatar: UIImage(named:  "irina"))]),
+        
+        Friend(name: "Валерия", avatar: UIImage(named:  "valeria"), allFriends: [Friend(name: "Георгий", avatar: UIImage(named:  "gosha")), Friend(name: "Роман", avatar: UIImage(named:  "roma")), Friend(name: "Всеволод", avatar: UIImage(named:  "seva"))]),
+        
+        Friend(name: "Ирина", avatar: UIImage(named:  "irina"), allFriends: [Friend(name: "Сергей", avatar: UIImage(named:  "sergey")), Friend(name: "Кирилл", avatar: UIImage(named:  "kirill"))]),
+                                                                             
+        Friend(name: "Всеволод", avatar: UIImage(named:  "seva"), allFriends: [Friend(name: "Александр", avatar: UIImage(named:  "alexander"))]),
+        
+        Friend(name: "Александр", avatar: UIImage(named:  "alexander"), allFriends: [Friend(name: "Всеволод", avatar: UIImage(named:  "seva"))]),
+        
+        Friend(name: "Жанна", avatar: UIImage(named:  "ganna"), allFriends: [Friend(name: "Валерия", avatar: UIImage(named:  "valeria")), Friend(name: "Ирина", avatar: UIImage(named:  "irina"))]),
+        
+        Friend(name: "Сергей", avatar: UIImage(named:  "sergey"), allFriends: [Friend(name: "Кирилл", avatar: UIImage(named:  "kirill")), Friend(name: "Александр", avatar: UIImage(named:  "alexander")), Friend(name: "Жанна", avatar: UIImage(named:  "ganna"))]),
+        
+        Friend(name: "Георгий", avatar: UIImage(named:  "gosha"), allFriends: [Friend(name: "Всеволод", avatar: UIImage(named:  "seva")), Friend(name: "Сергей", avatar: UIImage(named:  "sergey"))]),
+        
         Friend(name: "Роман", avatar: UIImage(named:  "roma")),
     ]
     
@@ -59,6 +67,15 @@ class FriendsTableViewController: UITableViewController {
         return cell
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CollectionFriends",
+           let destination = segue.destination as? FriendsCollectionViewController,
+           let indexPath = tableView.indexPathForSelectedRow {
+            destination.title = friends[indexPath.row].name
+            destination.arrayFriends = friends[indexPath.row].allFriends
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
