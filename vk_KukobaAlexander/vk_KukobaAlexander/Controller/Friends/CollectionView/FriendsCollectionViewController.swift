@@ -46,20 +46,28 @@ class FriendsCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return arrayFriends?.count ?? 0
+        return arrayFriends?.count ?? 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard arrayFriends?.count ?? 0 > 0 else { preconditionFailure("Error casting FriendCollectionViewCell") }
+        //guard arrayFriends?.count ?? 0 > 0 else { preconditionFailure("Error casting FriendCollectionViewCell") }
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionFriends", for: indexPath) as? FriendCollectionViewCell
         else {
             preconditionFailure("Error casting FriendCollectionViewCell")
         }
         
-        cell.nameFriend.text = arrayFriends?[indexPath.row].name
-        cell.imageFriend.image = arrayFriends?[indexPath.row].avatar
+        if arrayFriends?.count ?? 0 > 0 {
+            cell.nameFriend.text = arrayFriends?[indexPath.row].name
+            cell.imageFriend.image = arrayFriends?[indexPath.row].avatar
+        }
+        else
+        {
+            cell.nameFriend.text = arrayFriends?[indexPath.row].name
+            cell.nameFriend.text = "No friends"
+        }
+       
 
         return cell
     
