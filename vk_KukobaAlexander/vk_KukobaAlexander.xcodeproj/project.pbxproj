@@ -13,6 +13,8 @@
 		8116C4FB285A788300ECB796 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8116C4F9285A788300ECB796 /* Main.storyboard */; };
 		8116C4FD285A788500ECB796 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8116C4FC285A788500ECB796 /* Assets.xcassets */; };
 		8116C500285A788500ECB796 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8116C4FE285A788500ECB796 /* LaunchScreen.storyboard */; };
+		81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE030D286275FB009C1856 /* UiViewController+extension.swift */; };
+		81DE031428627E00009C1856 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE031328627E00009C1856 /* TabbarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		8116C4FC285A788500ECB796 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8116C4FF285A788500ECB796 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8116C501285A788500ECB796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81DE030D286275FB009C1856 /* UiViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+extension.swift"; sourceTree = "<group>"; };
+		81DE031328627E00009C1856 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +63,9 @@
 				8116C4F3285A788300ECB796 /* AppDelegate.swift */,
 				8116C4F5285A788300ECB796 /* SceneDelegate.swift */,
 				8116C4F7285A788300ECB796 /* ViewController.swift */,
+				81DE030D286275FB009C1856 /* UiViewController+extension.swift */,
 				8116C4F9285A788300ECB796 /* Main.storyboard */,
+				81DE031328627E00009C1856 /* TabbarViewController.swift */,
 				8116C4FC285A788500ECB796 /* Assets.xcassets */,
 				8116C4FE285A788500ECB796 /* LaunchScreen.storyboard */,
 				8116C501285A788500ECB796 /* Info.plist */,
@@ -141,6 +147,8 @@
 				8116C4F8285A788300ECB796 /* ViewController.swift in Sources */,
 				8116C4F4285A788300ECB796 /* AppDelegate.swift in Sources */,
 				8116C4F6285A788300ECB796 /* SceneDelegate.swift in Sources */,
+				81DE031428627E00009C1856 /* TabbarViewController.swift in Sources */,
+				81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
