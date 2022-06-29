@@ -7,6 +7,7 @@
 
 import UIKit
 
+//@IBDesignable
 class AvatarUIView: UIView {
 
     @IBOutlet var avatarImageView: UIImageView!

@@ -17,6 +17,7 @@
 		8117C064286B7D6000649B1E /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C063286B7D6000649B1E /* GroupCell.swift */; };
 		8117C066286CDC0400649B1E /* AvatarUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C065286CDC0400649B1E /* AvatarUIView.swift */; };
 		8117C068286CEA6500649B1E /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C067286CEA6500649B1E /* LikeControl.swift */; };
+		8117C06C286CF50F00649B1E /* UIView + IBInspectable extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C06B286CF50F00649B1E /* UIView + IBInspectable extension.swift */; };
 		815315F2286A55CB0030537D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F1286A55CB0030537D /* Group.swift */; };
 		815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */; };
 		815315F7286A5EDA0030537D /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */; };
@@ -41,6 +42,7 @@
 		8117C063286B7D6000649B1E /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		8117C065286CDC0400649B1E /* AvatarUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarUIView.swift; sourceTree = "<group>"; };
 		8117C067286CEA6500649B1E /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
+		8117C06B286CF50F00649B1E /* UIView + IBInspectable extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + IBInspectable extension.swift"; sourceTree = "<group>"; };
 		815315F1286A55CB0030537D /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewController.swift; sourceTree = "<group>"; };
 		815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				81DE030D286275FB009C1856 /* UiViewController+extension.swift */,
+				8117C06B286CF50F00649B1E /* UIView + IBInspectable extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				8116C4F8285A788300ECB796 /* ViewController.swift in Sources */,
 				8117C068286CEA6500649B1E /* LikeControl.swift in Sources */,
 				8116C4F4285A788300ECB796 /* AppDelegate.swift in Sources */,
+				8117C06C286CF50F00649B1E /* UIView + IBInspectable extension.swift in Sources */,
 				815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */,
 				81DE03162868A755009C1856 /* FriendsTableViewController.swift in Sources */,
 				8117C062286B792A00649B1E /* GroupsViewController.swift in Sources */,
