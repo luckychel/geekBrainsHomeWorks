@@ -277,77 +277,9 @@
             </objects>
             <point key="canvasLocation" x="4243" y="568"/>
         </scene>
-        <!--My Friends View Controller-->
-        <scene sceneID="Yl4-Qo-HlI">
-            <objects>
-                <viewController id="ZQZ-cw-Bad" customClass="MyFriendsViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kP7-bE-Iax">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ifD-qL-XPZ">
-                                <rect key="frame" x="0.0" y="44" width="428" height="848"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyFriendTableViewCell" rowHeight="150" id="EVq-NE-MVA" customClass="MyFriendTableViewCell" customModule="vk_KukobaAlexander" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="428" height="150"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EVq-NE-MVA" id="ip4-ll-LBk">
-                                            <rect key="frame" x="0.0" y="0.0" width="428" height="150"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zbo-Tc-Cg7">
-                                                    <rect key="frame" x="25" y="16" width="150" height="118"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="Zbo-Tc-Cg7" secondAttribute="height" multiplier="1:1" id="j8z-hG-tJ2"/>
-                                                        <constraint firstAttribute="width" constant="150" id="vnA-qD-UwG"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcW-gb-SJ0">
-                                                    <rect key="frame" x="185" y="64.666666666666671" width="233" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Zbo-Tc-Cg7" firstAttribute="leading" secondItem="ip4-ll-LBk" secondAttribute="leadingMargin" constant="5" id="8fA-px-9wi"/>
-                                                <constraint firstItem="Zbo-Tc-Cg7" firstAttribute="top" secondItem="ip4-ll-LBk" secondAttribute="topMargin" constant="5" id="LWS-2P-GQd"/>
-                                                <constraint firstItem="jcW-gb-SJ0" firstAttribute="centerY" secondItem="ip4-ll-LBk" secondAttribute="centerY" id="MsA-iE-xy1"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Zbo-Tc-Cg7" secondAttribute="bottom" constant="5" id="Qzk-co-y4Q"/>
-                                                <constraint firstItem="jcW-gb-SJ0" firstAttribute="leading" secondItem="Zbo-Tc-Cg7" secondAttribute="trailing" constant="10" id="vR8-Vm-fah"/>
-                                                <constraint firstAttribute="trailing" secondItem="jcW-gb-SJ0" secondAttribute="trailing" constant="10" id="w7n-XF-mfJ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="imageFriend" destination="Zbo-Tc-Cg7" id="dUZ-DS-8KA"/>
-                                            <outlet property="nameFriend" destination="jcW-gb-SJ0" id="2mo-lv-VZ5"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="oHN-B4-7ad"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="oHN-B4-7ad" firstAttribute="bottom" secondItem="ifD-qL-XPZ" secondAttribute="bottom" id="BKd-12-hhD"/>
-                            <constraint firstItem="oHN-B4-7ad" firstAttribute="trailing" secondItem="ifD-qL-XPZ" secondAttribute="trailing" id="OTd-3b-zXD"/>
-                            <constraint firstItem="ifD-qL-XPZ" firstAttribute="leading" secondItem="oHN-B4-7ad" secondAttribute="leading" id="ZqE-SL-sRI"/>
-                            <constraint firstItem="ifD-qL-XPZ" firstAttribute="top" secondItem="oHN-B4-7ad" secondAttribute="top" id="f0g-YY-SMR"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="myFriendsTableView" destination="ifD-qL-XPZ" id="393-t1-553"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bph-GD-bvu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3356.0747663551401" y="-785.31317494600432"/>
-        </scene>
         <!--Friends View Controller-->
         <scene sceneID="Pfi-kA-4JJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Raj-u9-m6B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="OUX-yu-8Q7" customClass="FriendsViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p5d-dX-TDV">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
@@ -390,6 +322,7 @@
                                         <connections>
                                             <outlet property="imageFriend" destination="nWy-I8-cEn" id="0nq-BD-UcJ"/>
                                             <outlet property="nameFriend" destination="zll-xf-ygs" id="QnK-vG-Hwl"/>
+                                            <segue destination="Nm7-T7-7lZ" kind="show" identifier="CollectionFriends" id="OvI-RW-D4K"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -407,9 +340,9 @@
                     <navigationItem key="navigationItem" id="DLj-Rp-Tdh"/>
                     <connections>
                         <outlet property="myFriends" destination="dF4-CK-77P" id="G58-GJ-hIs"/>
-                        <segue destination="Nm7-T7-7lZ" kind="show" identifier="CollectionFriends" id="ZDh-tS-Jmu"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Raj-u9-m6B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3375.700934579439" y="-108.20734341252701"/>
         </scene>
