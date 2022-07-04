@@ -48,18 +48,18 @@ class FriendCollectionViewCell: UICollectionViewCell {
             
         }
     
-    @objc func handleTap(_: UITapGestureRecognizer) {
-        likeControl.islike.toggle()
-        
-        if likeControl.islike {
-            likeControl.likePicture.tintColor = .red
-            likeControl.likePicture.image = UIImage(systemName: "suit.heart.fill")
+        @objc func handleTap(_: UITapGestureRecognizer) {
+            likeControl.islike.toggle()
+            
+            if likeControl.islike {
+                likeControl.likePicture.tintColor = .red
+                likeControl.likePicture.image = UIImage(systemName: "suit.heart.fill")
+            }
+            else {
+                likeControl.likePicture.tintColor = .gray
+                likeControl.likePicture.image = UIImage(systemName: "suit.heart")
+            }
         }
-        else {
-            likeControl.likePicture.tintColor = .gray
-            likeControl.likePicture.image = UIImage(systemName: "suit.heart")
-        }
-    }
         
         override func layoutSubviews() {
             super.layoutSubviews()
