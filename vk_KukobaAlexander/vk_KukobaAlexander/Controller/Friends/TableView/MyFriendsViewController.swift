@@ -1,14 +1,20 @@
 //
-//  FriendsTableViewController.swift
+//  MyFriendsViewController.swift
 //  vk_KukobaAlexander
 //
-//  Created by Александр Кукоба on 26.06.2022.
+//  Created by Александр Кукоба on 04.07.2022.
 //
 
 import UIKit
 
-class FriendsViewController: UIViewController {
+class MyFriendsViewController: UIViewController {
 
+    @IBOutlet var myFriendsTableView: UITableView! {
+        didSet {
+            myFriendsTableView.dataSource = self
+        }
+    }
+    
     var friends = [
         Friend(name: "Кирилл", avatar: UIImage(named:  "kirill"), allFriends: [Friend(name: "Валерия", avatar: UIImage(named:  "valeria")), Friend(name: "Ирина", avatar: UIImage(named:  "irina"))]),
         
@@ -29,41 +35,37 @@ class FriendsViewController: UIViewController {
         Friend(name: "Роман", avatar: UIImage(named:  "roma")),
     ]
     
-    
-    
-    @IBOutlet var myFriends: UITableView! {
-        didSet {
-            myFriends.dataSource = self
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.title = "Друзья"
-
     }
+    
 
+    /*
+    // MARK: - Navigation
 
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }
-
-
-
-extension FriendsViewController: UITableViewDataSource {
+extension MyFriendsViewController: UITableViewDataSource {
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as? FriendCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyFriendTableViewCell", for: indexPath) as? MyFriendTableViewCell else
+        {
             preconditionFailure("Error")
         }
-        
         cell.imageFriend.image = friends[indexPath.row].avatar
         cell.nameFriend.text = friends[indexPath.row].name
-        
        
         return cell
     }
