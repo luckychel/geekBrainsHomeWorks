@@ -24,7 +24,7 @@
 		815315F7286A5EDA0030537D /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */; };
 		81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE030D286275FB009C1856 /* UiViewController+extension.swift */; };
 		81DE031428627E00009C1856 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE031328627E00009C1856 /* TabbarViewController.swift */; };
-		81DE03162868A755009C1856 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03152868A755009C1856 /* FriendsTableViewController.swift */; };
+		81DE03162868A755009C1856 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03152868A755009C1856 /* FriendsViewController.swift */; };
 		81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03172868A811009C1856 /* GroupsTableViewController.swift */; };
 		81DE031A2868AD0F009C1856 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03192868AD0F009C1856 /* FriendCell.swift */; };
 		81DE031C2868B31F009C1856 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE031B2868B31F009C1856 /* Friend.swift */; };
@@ -50,7 +50,7 @@
 		815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
 		81DE030D286275FB009C1856 /* UiViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+extension.swift"; sourceTree = "<group>"; };
 		81DE031328627E00009C1856 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
-		81DE03152868A755009C1856 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
+		81DE03152868A755009C1856 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		81DE03172868A811009C1856 /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 		81DE03192868AD0F009C1856 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		81DE031B2868B31F009C1856 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				8117C065286CDC0400649B1E /* AvatarUIView.swift */,
-				81DE03152868A755009C1856 /* FriendsTableViewController.swift */,
+				81DE03152868A755009C1856 /* FriendsViewController.swift */,
 				81DE03192868AD0F009C1856 /* FriendCell.swift */,
 				8117C067286CEA6500649B1E /* LikeControl.swift */,
 			);
@@ -270,7 +270,7 @@
 				8117C06C286CF50F00649B1E /* UIView + IBInspectable extension.swift in Sources */,
 				815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */,
 				8117C07028731E9300649B1E /* LoginUIView.swift in Sources */,
-				81DE03162868A755009C1856 /* FriendsTableViewController.swift in Sources */,
+				81DE03162868A755009C1856 /* FriendsViewController.swift in Sources */,
 				8117C062286B792A00649B1E /* GroupsViewController.swift in Sources */,
 				815315F2286A55CB0030537D /* Group.swift in Sources */,
 				8117C064286B7D6000649B1E /* GroupCell.swift in Sources */,

@@ -59,8 +59,8 @@ extension GroupsViewController: UITableViewDataSource {
     
     
 }
-extension ViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("нажата строка № \(indexPath.row) в секции \(indexPath.section)")
-    }
-}
+//extension ViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        print("нажата строка № \(indexPath.row) в секции \(indexPath.section)")
+//    }
+//}
