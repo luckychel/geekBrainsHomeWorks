@@ -13,8 +13,6 @@ class FriendCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var nameFriend: UILabel!
     
-    
-    
     @IBOutlet var likeControl: LikeControl!
     @IBOutlet var container: UIView!
     

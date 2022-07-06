@@ -60,6 +60,8 @@ class FriendsViewController: UIViewController {
         
         self.title = "Друзья"
         
+        myFriends.register(UINib(nibName: "FriendXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendXIB")
+        
         self.sortedFriends = sort(friends: friends)
 
     }
@@ -104,7 +106,13 @@ extension FriendsViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as? FriendCell else {
+        
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as? FriendCell else {
+//            preconditionFailure("Error")
+//        }
+        
+        //MARK: перешл на XIB
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendXIB", for: indexPath) as? FriendXIBTableViewCell else {
             preconditionFailure("Error")
         }
         
@@ -114,10 +122,13 @@ extension FriendsViewController: UITableViewDataSource {
         
         let friend: Friend = friends[indexPath.row]
         
-        cell.imageFriend.image = friend.avatar
-        cell.nameFriend.text = friend.name
+//        cell.imageFriend.image = friend.avatar
+//        cell.nameFriend.text = friend.name
         
-       
+        //MARK: перешл на XIB
+        cell.imageFriendXIB.image = friend.avatar
+        cell.nameFriendXIB.text = friend.name
+
         return cell
     }
     
