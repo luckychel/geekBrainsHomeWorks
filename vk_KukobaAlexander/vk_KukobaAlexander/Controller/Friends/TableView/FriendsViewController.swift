@@ -29,7 +29,25 @@ class FriendsViewController: UIViewController {
         Friend(name: "Роман", avatar: UIImage(named:  "roma")),
     ]
     
+    var sortedFriends = [Character: [Friend]]()
     
+    private func sort(friends: [Friend]) -> [Character: [Friend]] {
+        var friendsDict = [Character: [Friend]]()
+        
+        friends.forEach() { friend in
+            guard let firstChar = friend.name.first else {return}
+            
+            if var thisFriend = friendsDict[firstChar] {
+                thisFriend.append(friend)
+                friendsDict[firstChar] = thisFriend
+            } else {
+                friendsDict[firstChar] = [friend]
+            }
+                    
+        }
+        
+        return friendsDict
+    }
     
     @IBOutlet var myFriends: UITableView! {
         didSet {
@@ -41,6 +59,8 @@ class FriendsViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Друзья"
+        
+        self.sortedFriends = sort(friends: friends)
 
     }
 
@@ -49,34 +69,62 @@ class FriendsViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     if segue.identifier == "CollectionFriends",
-        let destination = segue.destination as? FriendsCollectionViewController,
-        let indexPath = myFriends.indexPathForSelectedRow {
-         destination.title = friends[indexPath.row].name
-         destination.arrayFriends = friends[indexPath.row].allFriends
-     }
+         if segue.identifier == "CollectionFriends",
+            let destination = segue.destination as? FriendsCollectionViewController,
+            let indexPath = myFriends.indexPathForSelectedRow {
+             destination.title = friends[indexPath.row].name
+             destination.arrayFriends = friends[indexPath.row].allFriends
+         }
     }
+
+    
 }
 
 
 
 extension FriendsViewController: UITableViewDataSource {
-        
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends.count
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.sortedFriends.keys.count
     }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        let keysSorted = sortedFriends.keys.sorted()
+        
+        let friends = sortedFriends[keysSorted[section]]?.count ?? 0
+        
+        return friends
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return String(sortedFriends.keys.sorted()[section])
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as? FriendCell else {
             preconditionFailure("Error")
         }
         
-        cell.imageFriend.image = friends[indexPath.row].avatar
-        cell.nameFriend.text = friends[indexPath.row].name
+        let firstChar = sortedFriends.keys.sorted()[indexPath.section]
+        
+        let friends = sortedFriends[firstChar]!
+        
+        let friend: Friend = friends[indexPath.row]
+        
+        cell.imageFriend.image = friend.avatar
+        cell.nameFriend.text = friend.name
         
        
         return cell
     }
     
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+
+        return sortedFriends.keys.sorted().map({String($0)})
+
+    }
     
 }
