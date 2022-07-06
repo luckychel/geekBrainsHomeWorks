@@ -30,6 +30,8 @@
 		81DE031C2868B31F009C1856 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE031B2868B31F009C1856 /* Friend.swift */; };
 		81ED6321287637B300B81225 /* FriendXIBTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ED631F287637B300B81225 /* FriendXIBTableViewCell.swift */; };
 		81ED6322287637B300B81225 /* FriendXIBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81ED6320287637B300B81225 /* FriendXIBTableViewCell.xib */; };
+		81ED63262876442D00B81225 /* GroupXIBTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ED63242876442D00B81225 /* GroupXIBTableViewCell.swift */; };
+		81ED63272876442D00B81225 /* GroupXIBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81ED63252876442D00B81225 /* GroupXIBTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		81DE031B2868B31F009C1856 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		81ED631F287637B300B81225 /* FriendXIBTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendXIBTableViewCell.swift; sourceTree = "<group>"; };
 		81ED6320287637B300B81225 /* FriendXIBTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendXIBTableViewCell.xib; sourceTree = "<group>"; };
+		81ED63242876442D00B81225 /* GroupXIBTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupXIBTableViewCell.swift; sourceTree = "<group>"; };
+		81ED63252876442D00B81225 /* GroupXIBTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupXIBTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 			children = (
 				81DE03172868A811009C1856 /* GroupsTableViewController.swift */,
 				8117C061286B792A00649B1E /* GroupsViewController.swift */,
+				81ED63282876443900B81225 /* GroupXIB */,
 				8117C063286B7D6000649B1E /* GroupCell.swift */,
 			);
 			path = TableView;
@@ -206,6 +211,15 @@
 			path = FriendXIB;
 			sourceTree = "<group>";
 		};
+		81ED63282876443900B81225 /* GroupXIB */ = {
+			isa = PBXGroup;
+			children = (
+				81ED63242876442D00B81225 /* GroupXIBTableViewCell.swift */,
+				81ED63252876442D00B81225 /* GroupXIBTableViewCell.xib */,
+			);
+			path = GroupXIB;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -264,6 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81ED63272876442D00B81225 /* GroupXIBTableViewCell.xib in Resources */,
 				8116C500285A788500ECB796 /* LaunchScreen.storyboard in Resources */,
 				81ED6322287637B300B81225 /* FriendXIBTableViewCell.xib in Resources */,
 				8116C4FD285A788500ECB796 /* Assets.xcassets in Resources */,
@@ -279,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81ED6321287637B300B81225 /* FriendXIBTableViewCell.swift in Sources */,
+				81ED63262876442D00B81225 /* GroupXIBTableViewCell.swift in Sources */,
 				815315F7286A5EDA0030537D /* FriendCollectionViewCell.swift in Sources */,
 				8116C4F8285A788300ECB796 /* ViewController.swift in Sources */,
 				8117C068286CEA6500649B1E /* LikeControl.swift in Sources */,

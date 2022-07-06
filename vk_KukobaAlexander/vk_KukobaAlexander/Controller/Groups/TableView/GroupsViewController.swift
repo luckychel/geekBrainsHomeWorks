@@ -27,7 +27,7 @@ class GroupsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        allGroups.register(UINib(nibName: "GroupXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "GroupXIB")
     }
     
 
@@ -49,10 +49,20 @@ extension GroupsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AllGroups", for: indexPath)
-        var content = cell.defaultContentConfiguration()
-        content.text = groups[indexPath.row].name// + "(" + groups[indexPath.row].description + ")"
-        cell.contentConfiguration = content
+        
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "AllGroups", for: indexPath)
+        
+        //MARK: перешли на XIB
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupXIB", for: indexPath) as! GroupXIBTableViewCell
+        
+        //var content = cell.defaultContentConfiguration()
+        
+        let content = cell
+        
+        content.groupNameXIB.text = groups[indexPath.row].name
+        content.groupDescriptionXIB.text = groups[indexPath.row].description
+        
+        cell.contentConfiguration = content as? UIContentConfiguration
        
         return cell
     }

@@ -21,6 +21,8 @@ class GroupsTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.title = "Группы"
+        
+        tableView.register(UINib(nibName: "GroupXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "GroupXIB")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -42,19 +44,25 @@ class GroupsTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupCell else {
+        
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupCell else {
+//            preconditionFailure("Error")
+//        }
+
+        //MARK: перешли на XIB
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupXIB", for: indexPath) as? GroupXIBTableViewCell else {
             preconditionFailure("Error")
         }
-
-        cell.groupName.text = groups[indexPath.row].name
-        cell.groupDescription.text = groups[indexPath.row].description
+        
+        cell.groupNameXIB.text = groups[indexPath.row].name
+        cell.groupDescriptionXIB.text = groups[indexPath.row].description
 
         return cell
     }
     
     
     //возврат по клику на группу при добавлении на следующем экране
-    @IBAction func addSelectGroup(segue: UIStoryboardSegue) {
+    @IBAction func addSelectGroupWithSegue(segue: UIStoryboardSegue) {
         if (segue.identifier == "addGroupToAll") {
             guard let allGroupsController = segue.source as? GroupsViewController else { return }
             
