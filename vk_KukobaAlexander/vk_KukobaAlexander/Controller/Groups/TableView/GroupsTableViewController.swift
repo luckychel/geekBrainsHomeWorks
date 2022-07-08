@@ -9,6 +9,14 @@ import UIKit
 
 class GroupsTableViewController: UITableViewController {
 
+    @IBOutlet var searchBarGroups: UISearchBar! {
+        didSet {
+            searchBarGroups.delegate = self
+        }
+    }
+    
+    var filteredGroups = [Group]()
+    
     var groups = [
         Group(name: "Программисты C#", description: "Эта группа создана для ищущих себя в великолепном языке программирования от компании Microsoft"),
         Group(name: "Отдых на реке с палатками", description: "Встречи, посиделки у костра, рыбалка, уха, коллективное кормление комаров, палаточный отдых, душевные беседы"),
@@ -23,11 +31,8 @@ class GroupsTableViewController: UITableViewController {
         self.title = "Группы"
         
         tableView.register(UINib(nibName: "GroupXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "GroupXIB")
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        filteredGroups = groups
     }
 
     // MARK: - Table view data source
@@ -39,7 +44,7 @@ class GroupsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return groups.count
+        return filteredGroups.count
     }
 
     
@@ -54,8 +59,8 @@ class GroupsTableViewController: UITableViewController {
             preconditionFailure("Error")
         }
         
-        cell.groupNameXIB.text = groups[indexPath.row].name
-        cell.groupDescriptionXIB.text = groups[indexPath.row].description
+        cell.groupNameXIB.text = filteredGroups[indexPath.row].name
+        cell.groupDescriptionXIB.text = filteredGroups[indexPath.row].description
 
         return cell
     }
@@ -70,7 +75,8 @@ class GroupsTableViewController: UITableViewController {
             if let indexPath = allGroupsController.allGroups.indexPathForSelectedRow {
                 let group = allGroupsController.groups[indexPath.row]
                 
-                if (!groups.contains(where: {$0.name == group.name})) {
+                if (!filteredGroups.contains(where: {$0.name == group.name})) {
+                    filteredGroups.append(group)
                     groups.append(group)
                     
                     tableView.reloadData()
@@ -98,7 +104,7 @@ class GroupsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            groups.remove(at: indexPath.row)
+            filteredGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -131,4 +137,17 @@ class GroupsTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension GroupsTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if !searchText.isEmpty {
+            filteredGroups = groups.filter{$0.name.lowercased().contains(searchText.lowercased())}
+        }
+        else
+        {
+            filteredGroups = groups
+        }
+        tableView.reloadData()
+    }
 }

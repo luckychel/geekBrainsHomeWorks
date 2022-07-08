@@ -48,7 +48,7 @@
                 <outlet property="groupDescriptionXIB" destination="zVN-AI-MTq" id="8R9-hs-25P"/>
                 <outlet property="groupNameXIB" destination="IjB-nb-Hre" id="GrB-LM-KPc"/>
             </connections>
-            <point key="canvasLocation" x="169.56521739130437" y="100.44642857142857"/>
+            <point key="canvasLocation" x="341" y="56"/>
         </tableViewCell>
     </objects>
 </document>
