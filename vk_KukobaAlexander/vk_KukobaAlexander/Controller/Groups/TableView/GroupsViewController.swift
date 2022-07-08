@@ -21,6 +21,8 @@ class GroupsViewController: UIViewController {
     @IBOutlet var allGroups: UITableView! {
         didSet {
             allGroups.dataSource = self
+            allGroups.delegate = self
+
         }
     }
     
@@ -30,7 +32,6 @@ class GroupsViewController: UIViewController {
         allGroups.register(UINib(nibName: "GroupXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "GroupXIB")
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -69,8 +70,10 @@ extension GroupsViewController: UITableViewDataSource {
     
     
 }
-//extension ViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("нажата строка № \(indexPath.row) в секции \(indexPath.section)")
-//    }
-//}
+extension GroupsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //print("нажата строка № \(indexPath.row) в секции \(indexPath.section)")
+        performSegue(withIdentifier: "addGroupToAll", sender: nil)
+
+    }
+}

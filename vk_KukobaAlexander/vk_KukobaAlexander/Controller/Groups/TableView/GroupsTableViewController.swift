@@ -62,7 +62,8 @@ class GroupsTableViewController: UITableViewController {
     
     
     //возврат по клику на группу при добавлении на следующем экране
-    @IBAction func addSelectGroupWithSegue(segue: UIStoryboardSegue) {
+    @IBAction func addSelectGroup(segue: UIStoryboardSegue) {
+        //print("unwined")
         if (segue.identifier == "addGroupToAll") {
             guard let allGroupsController = segue.source as? GroupsViewController else { return }
             

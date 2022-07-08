@@ -252,7 +252,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="hOL-ok-uTK" kind="unwind" identifier="addGroupToAll" unwindAction="addSelectGroupWithSegue:" id="STz-Qj-724"/>
+                                            <segue destination="hOL-ok-uTK" kind="unwind" identifier="addGroupToAll" unwindAction="addSelectGroupWithSegue:" id="doZ-21-5xf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

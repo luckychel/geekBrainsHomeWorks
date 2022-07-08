@@ -52,6 +52,7 @@ class FriendsViewController: UIViewController {
     @IBOutlet var myFriends: UITableView! {
         didSet {
             myFriends.dataSource = self
+            myFriends.delegate = self
         }
     }
     
@@ -71,18 +72,18 @@ class FriendsViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         if segue.identifier == "CollectionFriends",
-            let destination = segue.destination as? FriendsCollectionViewController,
-            let indexPath = myFriends.indexPathForSelectedRow {
-             destination.title = friends[indexPath.row].name
-             destination.arrayFriends = friends[indexPath.row].allFriends
-         }
+        
+        guard let indexPath = sender as? IndexPath else { return }
+
+        let friend = getFriendByIndexPath(indexPath)
+
+        if segue.identifier == "CollectionFriends",
+           let destination = segue.destination as? FriendsCollectionViewController {
+            destination.title = friend.name
+            destination.arrayFriends = friend.allFriends
+        }
     }
-
-    
 }
-
-
 
 extension FriendsViewController: UITableViewDataSource {
 
@@ -116,11 +117,7 @@ extension FriendsViewController: UITableViewDataSource {
             preconditionFailure("Error")
         }
         
-        let firstChar = sortedFriends.keys.sorted()[indexPath.section]
-        
-        let friends = sortedFriends[firstChar]!
-        
-        let friend: Friend = friends[indexPath.row]
+        let friend = getFriendByIndexPath(indexPath)
         
 //        cell.imageFriend.image = friend.avatar
 //        cell.nameFriend.text = friend.name
@@ -138,4 +135,24 @@ extension FriendsViewController: UITableViewDataSource {
 
     }
     
+    
+    func getFriendByIndexPath(_ indexPath: IndexPath) -> Friend {
+        var friend: Friend
+        
+        let firstChar = sortedFriends.keys.sorted()[indexPath.section]
+        
+        let friends = sortedFriends[firstChar]!
+        
+        friend = friends[indexPath.row]
+        
+        return friend
+    }
+}
+
+extension FriendsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("нажата строка № \(indexPath.row) в секции \(indexPath.section)")
+        performSegue(withIdentifier: "CollectionFriends", sender: indexPath)
+
+    }
 }
