@@ -150,4 +150,8 @@ extension GroupsTableViewController: UISearchBarDelegate {
         }
         tableView.reloadData()
     }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        self.searchBar(searchBar, textDidChange: "")
+    }
 }
