@@ -142,12 +142,14 @@ extension FriendsViewController: UITableViewDataSource {
         
         let animation = CASpringAnimation(keyPath: "position.x")
         animation.fromValue = cell.imageFriendXIB.layer.position.x + 50
-        animation.toValue = cell.imageFriendXIB.layer.position.x + 13
-        animation.stiffness = 300
+        animation.toValue = cell.imageFriendXIB.layer.position.x
+        animation.stiffness = 200
         animation.mass = 1
-        animation.duration = 2
+        //animation.duration = 1
+        animation.autoreverses = false
+        animation.repeatCount = 1
         animation.beginTime = CACurrentMediaTime()
-        animation.fillMode = CAMediaTimingFillMode.backwards
+        //animation.fillMode = CAMediaTimingFillMode.backwards
         cell.imageFriendXIB.layer.add(animation, forKey: nil)
    
         //MARK: перешел на XIB

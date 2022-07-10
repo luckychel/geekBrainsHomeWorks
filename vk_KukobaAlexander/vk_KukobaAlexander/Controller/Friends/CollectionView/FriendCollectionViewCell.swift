@@ -73,8 +73,11 @@ class FriendCollectionViewCell: UICollectionViewCell {
                 likeControl.likePicture.layer.add(fadeOut, forKey: nil)
             }
             else {
+                
+                
                 likeControl.likePicture.tintColor = .gray
                 likeControl.likePicture.image = UIImage(systemName: "suit.heart")
+                
             }
             
 
