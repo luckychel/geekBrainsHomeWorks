@@ -27,6 +27,24 @@ class FriendsViewController: UIViewController {
         Friend(name: "Георгий", avatar: UIImage(named:  "gosha"), allFriends: [Friend(name: "Всеволод", avatar: UIImage(named:  "seva")), Friend(name: "Сергей", avatar: UIImage(named:  "sergey"))]),
         
         Friend(name: "Роман", avatar: UIImage(named:  "roma")),
+        Friend(name: "Кирилл", avatar: UIImage(named:  "kirill"), allFriends: [Friend(name: "Валерия", avatar: UIImage(named:  "valeria")), Friend(name: "Ирина", avatar: UIImage(named:  "irina"))]),
+        
+        Friend(name: "Валерия", avatar: UIImage(named:  "valeria"), allFriends: [Friend(name: "Георгий", avatar: UIImage(named:  "gosha")), Friend(name: "Роман", avatar: UIImage(named:  "roma")), Friend(name: "Всеволод", avatar: UIImage(named:  "seva"))]),
+        
+        Friend(name: "Ирина", avatar: UIImage(named:  "irina"), allFriends: [Friend(name: "Сергей", avatar: UIImage(named:  "sergey")), Friend(name: "Кирилл", avatar: UIImage(named:  "kirill"))]),
+                                                                             
+        Friend(name: "Всеволод", avatar: UIImage(named:  "seva"), allFriends: [Friend(name: "Александр", avatar: UIImage(named:  "alexander"))]),
+        
+        Friend(name: "Александр", avatar: UIImage(named:  "alexander"), allFriends: [Friend(name: "Всеволод", avatar: UIImage(named:  "seva"))]),
+        
+        Friend(name: "Жанна", avatar: UIImage(named:  "ganna"), allFriends: [Friend(name: "Валерия", avatar: UIImage(named:  "valeria")), Friend(name: "Ирина", avatar: UIImage(named:  "irina"))]),
+        
+        Friend(name: "Сергей", avatar: UIImage(named:  "sergey"), allFriends: [Friend(name: "Кирилл", avatar: UIImage(named:  "kirill")), Friend(name: "Александр", avatar: UIImage(named:  "alexander")), Friend(name: "Жанна", avatar: UIImage(named:  "ganna"))]),
+        
+        Friend(name: "Георгий", avatar: UIImage(named:  "gosha"), allFriends: [Friend(name: "Всеволод", avatar: UIImage(named:  "seva")), Friend(name: "Сергей", avatar: UIImage(named:  "sergey"))]),
+        
+        Friend(name: "Роман", avatar: UIImage(named:  "roma")),
+        
     ]
     
     var sortedFriends = [Character: [Friend]]()
@@ -122,6 +140,16 @@ extension FriendsViewController: UITableViewDataSource {
 //        cell.imageFriend.image = friend.avatar
 //        cell.nameFriend.text = friend.name
         
+        let animation = CASpringAnimation(keyPath: "position.x")
+        animation.fromValue = cell.imageFriendXIB.layer.position.x + 50
+        animation.toValue = cell.imageFriendXIB.layer.position.x + 13
+        animation.stiffness = 300
+        animation.mass = 1
+        animation.duration = 2
+        animation.beginTime = CACurrentMediaTime()
+        animation.fillMode = CAMediaTimingFillMode.backwards
+        cell.imageFriendXIB.layer.add(animation, forKey: nil)
+   
         //MARK: перешел на XIB
         cell.imageFriendXIB.image = friend.avatar
         cell.nameFriendXIB.text = friend.name

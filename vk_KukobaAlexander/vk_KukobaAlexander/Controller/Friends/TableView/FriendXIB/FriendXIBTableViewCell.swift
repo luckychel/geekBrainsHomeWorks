@@ -13,6 +13,8 @@ class FriendXIBTableViewCell: UITableViewCell {
     
     @IBOutlet var nameFriendXIB: UILabel!
     
+    @IBOutlet var container: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

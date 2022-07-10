@@ -52,11 +52,32 @@ class FriendCollectionViewCell: UICollectionViewCell {
             if likeControl.islike {
                 likeControl.likePicture.tintColor = .red
                 likeControl.likePicture.image = UIImage(systemName: "suit.heart.fill")
+                
+                let transformScale = CASpringAnimation(keyPath: "transform.scale")
+                let fadeOut = CABasicAnimation(keyPath: "opacity")
+                
+                transformScale.fromValue = 0.5
+                transformScale.toValue = 1
+                
+                fadeOut.fromValue = 0
+                fadeOut.toValue = 1
+                
+                transformScale.stiffness = 20
+                transformScale.mass = 2
+                transformScale.duration = 1
+                transformScale.beginTime = CACurrentMediaTime()
+                transformScale.fillMode = CAMediaTimingFillMode.both
+                likeControl.likePicture.layer.add(transformScale, forKey: nil)
+                
+                fadeOut.duration = 1
+                likeControl.likePicture.layer.add(fadeOut, forKey: nil)
             }
             else {
                 likeControl.likePicture.tintColor = .gray
                 likeControl.likePicture.image = UIImage(systemName: "suit.heart")
             }
+            
+
         }
         
         override func layoutSubviews() {
