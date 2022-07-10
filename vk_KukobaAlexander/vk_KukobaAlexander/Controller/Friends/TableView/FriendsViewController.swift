@@ -112,7 +112,7 @@ extension FriendsViewController: UITableViewDataSource {
 //            preconditionFailure("Error")
 //        }
         
-        //MARK: перешл на XIB
+        //MARK: перешел на XIB
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendXIB", for: indexPath) as? FriendXIBTableViewCell else {
             preconditionFailure("Error")
         }
@@ -122,7 +122,7 @@ extension FriendsViewController: UITableViewDataSource {
 //        cell.imageFriend.image = friend.avatar
 //        cell.nameFriend.text = friend.name
         
-        //MARK: перешл на XIB
+        //MARK: перешел на XIB
         cell.imageFriendXIB.image = friend.avatar
         cell.nameFriendXIB.text = friend.name
 
@@ -151,7 +151,7 @@ extension FriendsViewController: UITableViewDataSource {
 
 extension FriendsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("нажата строка № \(indexPath.row) в секции \(indexPath.section)")
+        print("Friends нажата строка № \(indexPath.row) в секции \(indexPath.section)")
         performSegue(withIdentifier: "CollectionFriends", sender: indexPath)
 
     }
