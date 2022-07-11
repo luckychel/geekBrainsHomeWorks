@@ -85,9 +85,9 @@ class FriendCollectionViewCell: UICollectionViewCell {
                 let scaleDown = CABasicAnimation(keyPath: "transform.scale")
                 scaleDown.fromValue = 2.0
                 scaleDown.toValue = 1.0
-                let fade = CABasicAnimation(keyPath: "tintColor")
-                fade.fromValue = UIColor.gray
-                fade.toValue = UIColor.red
+                let fade = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
+                fade.fromValue = 0
+                fade.toValue = 1
 
                 groupAnimation.animations = [scaleDown,fade]
                 likeControl.likePicture.layer.add(groupAnimation, forKey: nil)
