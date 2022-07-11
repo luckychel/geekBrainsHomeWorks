@@ -77,7 +77,20 @@ class FriendCollectionViewCell: UICollectionViewCell {
                 
                 likeControl.likePicture.tintColor = .gray
                 likeControl.likePicture.image = UIImage(systemName: "suit.heart")
-                
+
+                let groupAnimation = CAAnimationGroup()
+                groupAnimation.beginTime = CACurrentMediaTime()
+                groupAnimation.duration = 0.5
+
+                let scaleDown = CABasicAnimation(keyPath: "transform.scale")
+                scaleDown.fromValue = 2.0
+                scaleDown.toValue = 1.0
+                let fade = CABasicAnimation(keyPath: "tintColor")
+                fade.fromValue = UIColor.gray
+                fade.toValue = UIColor.red
+
+                groupAnimation.animations = [scaleDown,fade]
+                likeControl.likePicture.layer.add(groupAnimation, forKey: nil)
             }
             
 
