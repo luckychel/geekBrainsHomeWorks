@@ -14,6 +14,7 @@ class FriendCollectionViewCell: UICollectionViewCell {
     @IBOutlet var nameFriend: UILabel!
     
     @IBOutlet var likeControl: LikeControl!
+    
     @IBOutlet var container: UIView!
     
     var cornerRadius: CGFloat = 5.0
@@ -38,15 +39,15 @@ class FriendCollectionViewCell: UICollectionViewCell {
             
             imageFriend.layer.cornerRadius = imageFriend.bounds.width / 6
             
-            
-            let tap = UITapGestureRecognizer(
-                target: self, action: #selector(handleTap))
-            tap.numberOfTapsRequired = 2
-            container.addGestureRecognizer(tap)
+            let tapLike = UITapGestureRecognizer(
+                target: self.likeControl, action: #selector(handleTapLike))
+            tapLike.numberOfTapsRequired = 2
+            container.addGestureRecognizer(tapLike)
             
         }
     
-        @objc func handleTap(_: UITapGestureRecognizer) {
+        @objc func handleTapLike(sender: UITapGestureRecognizer) {
+            
             likeControl.islike.toggle()
             
             if likeControl.islike {

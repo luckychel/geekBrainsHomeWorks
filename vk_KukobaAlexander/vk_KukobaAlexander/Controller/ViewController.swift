@@ -32,7 +32,12 @@ class ViewController: UIViewController {
             self.show(message: "Поля должны быть пустыми")
             return
         }
-
+        
+//        let pointLayer = CAShapeLayer()
+//        pointLayer.backgroundColor = UIColor.green.cgColor
+//        pointLayer.bounds = CGRect(x: 0, y: 0, width: 50, height: 50)
+//        LoadingUIView.layer.addSublayer(pointLayer)
+        
         var loadingPoints = [UIView]()
 
         for _ in 0...2{
