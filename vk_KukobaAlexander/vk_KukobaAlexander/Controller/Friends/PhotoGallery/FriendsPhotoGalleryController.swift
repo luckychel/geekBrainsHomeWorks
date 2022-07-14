@@ -64,6 +64,5 @@ extension FriendsPhotoGalleryController:UICollectionViewDataSource, UICollection
 //        return CGSize(width: widthCell, height: heigthCell)
 //
 //    }
-//
     
 }
