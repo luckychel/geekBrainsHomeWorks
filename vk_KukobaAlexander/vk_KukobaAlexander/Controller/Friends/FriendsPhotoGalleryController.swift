@@ -48,7 +48,7 @@ extension FriendsPhotoGalleryController:UICollectionViewDataSource, UICollection
         let widthCell = frameVC.width / CGFloat(countCells)
         let heigthCell = widthCell
         return CGSize(width: widthCell, height: heigthCell)
-        
+            
     }
  
     
