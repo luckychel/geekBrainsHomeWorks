@@ -72,23 +72,23 @@ class FriendsCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard arrayFriends != nil else {
+            return
+        }
+        
         let vc = storyboard?.instantiateViewController(withIdentifier: "FriendsPhotoGalleryController") as! FriendsPhotoGalleryController
-        
-            guard arrayFriends != nil else {
-                return
+
+        var images = [UIImage]()
+        for fr in arrayFriends! {
+            if fr.avatar != nil {
+                images.append(fr.avatar!)
             }
-        
-            var images = [UIImage]()
-            for fr in arrayFriends! {
-                if fr.avatar != nil {
-                    images.append(fr.avatar!)
-                }
-            }
-        
-            //vc.modalPresentationStyle = .currentContext
-            vc.images = images
-            vc.indexPath = indexPath
-            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    
+        //vc.modalPresentationStyle = .currentContext
+        vc.images = images
+        vc.myIndexPath = indexPath
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

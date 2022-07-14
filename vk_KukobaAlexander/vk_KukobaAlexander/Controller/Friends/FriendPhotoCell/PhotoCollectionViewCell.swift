@@ -14,6 +14,11 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+//        photoImage.translatesAutoresizingMaskIntoConstraints = false
+//        photoImage.clipsToBounds = true
+//        photoImage.contentMode = .scaleAspectFit
+//        photoImage.isUserInteractionEnabled = true
     }
 
 }

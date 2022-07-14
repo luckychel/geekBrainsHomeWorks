@@ -12,12 +12,11 @@ class FriendsPhotoGalleryController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
     
     var images = [UIImage]()
-    var indexPath: IndexPath!
+    var myIndexPath: IndexPath!
     
     private let reuseIdentifier = "FriendPhotoCell"
     
     let countCells = 1
-    let offset:CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +24,10 @@ class FriendsPhotoGalleryController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "PhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+       
+        collectionView.performBatchUpdates(nil) { (result) in
+            self.collectionView.scrollToItem(at: self.myIndexPath, at: .centeredHorizontally, animated: false)
+        }
     }
     
 }
@@ -39,15 +42,14 @@ extension FriendsPhotoGalleryController:UICollectionViewDataSource, UICollection
         cell.photoImage.image = images[indexPath.item]
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let frameVC = collectionView.frame
         let widthCell = frameVC.width / CGFloat(countCells)
         let heigthCell = widthCell
-        let spacing = CGFloat(countCells + 1) * offset / CGFloat(countCells)
-        return CGSize(width: widthCell - spacing, height: heigthCell - spacing)
+        return CGSize(width: widthCell, height: heigthCell)
         
     }
-
-    
+ 
     
 }

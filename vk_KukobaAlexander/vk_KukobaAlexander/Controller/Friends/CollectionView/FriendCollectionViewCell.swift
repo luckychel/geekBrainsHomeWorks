@@ -40,7 +40,7 @@ class FriendCollectionViewCell: UICollectionViewCell {
             imageFriend.layer.cornerRadius = imageFriend.bounds.width / 6
             
             let tapLike = UITapGestureRecognizer(
-                target: self.likeControl, action: #selector(handleTapLike))
+                target: self, action: #selector(handleTapLike))
             tapLike.numberOfTapsRequired = 2
             container.addGestureRecognizer(tapLike)
             
