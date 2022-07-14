@@ -15,6 +15,7 @@
 		811697CC287F7C3500CE1765 /* FriendsPhotoGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811697CB287F7C3500CE1765 /* FriendsPhotoGalleryController.swift */; };
 		811697CF288035B700CE1765 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811697CD288035B700CE1765 /* PhotoCollectionViewCell.swift */; };
 		811697D0288035B700CE1765 /* PhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 811697CE288035B700CE1765 /* PhotoCollectionViewCell.xib */; };
+		811697DA2880DBED00CE1765 /* SJCenterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811697D92880DBED00CE1765 /* SJCenterFlowLayout.swift */; };
 		8116C4F4285A788300ECB796 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8116C4F3285A788300ECB796 /* AppDelegate.swift */; };
 		8116C4F6285A788300ECB796 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8116C4F5285A788300ECB796 /* SceneDelegate.swift */; };
 		8116C4FB285A788300ECB796 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8116C4F9285A788300ECB796 /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 		811697CB287F7C3500CE1765 /* FriendsPhotoGalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotoGalleryController.swift; sourceTree = "<group>"; };
 		811697CD288035B700CE1765 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		811697CE288035B700CE1765 /* PhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCollectionViewCell.xib; sourceTree = "<group>"; };
+		811697D92880DBED00CE1765 /* SJCenterFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SJCenterFlowLayout.swift; sourceTree = "<group>"; };
 		8116C4F0285A788300ECB796 /* vk_KukobaAlexander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vk_KukobaAlexander.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8116C4F3285A788300ECB796 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8116C4F5285A788300ECB796 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,23 @@
 			path = FriendPhotoCell;
 			sourceTree = "<group>";
 		};
+		811697D22880DAC100CE1765 /* PhotoGallery */ = {
+			isa = PBXGroup;
+			children = (
+				811697CB287F7C3500CE1765 /* FriendsPhotoGalleryController.swift */,
+				811697D1288035BE00CE1765 /* FriendPhotoCell */,
+			);
+			path = PhotoGallery;
+			sourceTree = "<group>";
+		};
+		811697DB2880DD0500CE1765 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				811697D92880DBED00CE1765 /* SJCenterFlowLayout.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8116C4E7285A788300ECB796 = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +158,7 @@
 				81DE031D2868D2AE009C1856 /* Model */,
 				8179784A286A54FB00D14B27 /* Controller */,
 				8179784C286A551100D14B27 /* Extension */,
+				811697DB2880DD0500CE1765 /* Helpers */,
 				815315F3286A56730030537D /* Resourse */,
 				8116C4F5285A788300ECB796 /* SceneDelegate.swift */,
 				8116C4F3285A788300ECB796 /* AppDelegate.swift */,
@@ -181,8 +201,7 @@
 			children = (
 				815315F9286A605A0030537D /* TableView */,
 				815315FA286A60690030537D /* CollectionView */,
-				811697CB287F7C3500CE1765 /* FriendsPhotoGalleryController.swift */,
-				811697D1288035BE00CE1765 /* FriendPhotoCell */,
+				811697D22880DAC100CE1765 /* PhotoGallery */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -348,6 +367,7 @@
 				815315F2286A55CB0030537D /* Group.swift in Sources */,
 				8117C064286B7D6000649B1E /* GroupCell.swift in Sources */,
 				8116C4F6285A788300ECB796 /* SceneDelegate.swift in Sources */,
+				811697DA2880DBED00CE1765 /* SJCenterFlowLayout.swift in Sources */,
 				81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */,
 				81DE031428627E00009C1856 /* TabbarViewController.swift in Sources */,
 				811697C42879005300CE1765 /* NewsViewController.swift in Sources */,

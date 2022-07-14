@@ -18,9 +18,16 @@ class FriendsPhotoGalleryController: UIViewController {
     
     let countCells = 1
     
+    var centerFlowLayout: SJCenterFlowLayout {
+        return collectionView.collectionViewLayout as! SJCenterFlowLayout
+    }
+    //var scrollToEdgeEnabled: Bool = true
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "PhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
@@ -28,6 +35,13 @@ class FriendsPhotoGalleryController: UIViewController {
         collectionView.performBatchUpdates(nil) { (result) in
             self.collectionView.scrollToItem(at: self.myIndexPath, at: .centeredHorizontally, animated: false)
         }
+        
+        centerFlowLayout.itemSize = CGSize(
+            width: view.bounds.width * 0.8,
+            height:  view.bounds.height * 0.4
+        )
+        
+        centerFlowLayout.animationMode = SJCenterFlowLayoutAnimation.scale(sideItemScale: 0.7, sideItemAlpha: 0.7, sideItemShift: 0.0)
     }
     
 }
@@ -43,13 +57,13 @@ extension FriendsPhotoGalleryController:UICollectionViewDataSource, UICollection
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let frameVC = collectionView.frame
-        let widthCell = frameVC.width / CGFloat(countCells)
-        let heigthCell = widthCell
-        return CGSize(width: widthCell, height: heigthCell)
-            
-    }
- 
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let frameVC = collectionView.frame
+//        let widthCell = frameVC.width / CGFloat(countCells)
+//        let heigthCell = widthCell
+//        return CGSize(width: widthCell, height: heigthCell)
+//
+//    }
+//
     
 }
