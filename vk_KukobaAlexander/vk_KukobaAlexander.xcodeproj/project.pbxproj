@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8107E485288768EA00891999 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8107E484288768EA00891999 /* TabBarViewController.swift */; };
 		811697C02878FB8C00CE1765 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811697BF2878FB8C00CE1765 /* News.swift */; };
-		811697C22878FF8300CE1765 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811697C12878FF8300CE1765 /* ViewController.swift */; };
+		811697C22878FF8300CE1765 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811697C12878FF8300CE1765 /* LoginViewController.swift */; };
 		811697C42879005300CE1765 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811697C32879005300CE1765 /* NewsViewController.swift */; };
 		811697C82879079300CE1765 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811697C62879079300CE1765 /* NewsTableViewCell.swift */; };
 		811697C92879079300CE1765 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 811697C72879079300CE1765 /* NewsTableViewCell.xib */; };
@@ -35,7 +36,6 @@
 		815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */; };
 		815315F7286A5EDA0030537D /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */; };
 		81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE030D286275FB009C1856 /* UiViewController+extension.swift */; };
-		81DE031428627E00009C1856 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE031328627E00009C1856 /* TabbarViewController.swift */; };
 		81DE03162868A755009C1856 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03152868A755009C1856 /* FriendsViewController.swift */; };
 		81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03172868A811009C1856 /* GroupsTableViewController.swift */; };
 		81DE031A2868AD0F009C1856 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03192868AD0F009C1856 /* FriendCell.swift */; };
@@ -47,8 +47,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8107E484288768EA00891999 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		811697BF2878FB8C00CE1765 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
-		811697C12878FF8300CE1765 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		811697C12878FF8300CE1765 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		811697C32879005300CE1765 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		811697C62879079300CE1765 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		811697C72879079300CE1765 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
@@ -77,7 +78,6 @@
 		815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewController.swift; sourceTree = "<group>"; };
 		815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
 		81DE030D286275FB009C1856 /* UiViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+extension.swift"; sourceTree = "<group>"; };
-		81DE031328627E00009C1856 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		81DE03152868A755009C1856 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		81DE03172868A811009C1856 /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 		81DE03192868AD0F009C1856 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
@@ -242,8 +242,8 @@
 		8179784A286A54FB00D14B27 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				811697C12878FF8300CE1765 /* ViewController.swift */,
-				81DE031328627E00009C1856 /* TabbarViewController.swift */,
+				811697C12878FF8300CE1765 /* LoginViewController.swift */,
+				8107E484288768EA00891999 /* TabBarViewController.swift */,
 				8117C05F286B707300649B1E /* Groups */,
 				815315F8286A5EE50030537D /* Friends */,
 				811697C52879007800CE1765 /* News */,
@@ -385,13 +385,13 @@
 				8116C4F6285A788300ECB796 /* SceneDelegate.swift in Sources */,
 				811697DA2880DBED00CE1765 /* SJCenterFlowLayout.swift in Sources */,
 				81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */,
-				81DE031428627E00009C1856 /* TabbarViewController.swift in Sources */,
 				811697C42879005300CE1765 /* NewsViewController.swift in Sources */,
 				81DE031C2868B31F009C1856 /* Friend.swift in Sources */,
 				8117C066286CDC0400649B1E /* AvatarUIView.swift in Sources */,
 				811697C02878FB8C00CE1765 /* News.swift in Sources */,
-				811697C22878FF8300CE1765 /* ViewController.swift in Sources */,
+				811697C22878FF8300CE1765 /* LoginViewController.swift in Sources */,
 				81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */,
+				8107E485288768EA00891999 /* TabBarViewController.swift in Sources */,
 				81DE031A2868AD0F009C1856 /* FriendCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

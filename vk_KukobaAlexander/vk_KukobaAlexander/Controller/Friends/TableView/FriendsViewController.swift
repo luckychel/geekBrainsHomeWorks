@@ -83,6 +83,9 @@ class FriendsViewController: UIViewController {
         
         self.sortedFriends = sort(friends: friends)
 
+        
+        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutUser))
+            self.navigationItem.leftBarButtonItem  = logoutBarButtonItem
     }
 
     
@@ -100,6 +103,19 @@ class FriendsViewController: UIViewController {
             destination.title = friend.name
             destination.arrayFriends = friend.allFriends
         }
+    }
+    
+    @objc func logoutUser(sender: UITapGestureRecognizer){
+
+
+//        let FriendsView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "LoginView")
+//        FriendsView.modalTransitionStyle = .flipHorizontal
+//        FriendsView.modalPresentationStyle = .overFullScreen
+//        self.present(FriendsView, animated: true)
+        
+        
+        self.dismiss(animated: true, completion: nil)
+
     }
 }
 
@@ -177,6 +193,7 @@ extension FriendsViewController: UITableViewDataSource {
         
         return friend
     }
+    
 }
 
 extension FriendsViewController: UITableViewDelegate {
@@ -186,3 +203,4 @@ extension FriendsViewController: UITableViewDelegate {
 
     }
 }
+

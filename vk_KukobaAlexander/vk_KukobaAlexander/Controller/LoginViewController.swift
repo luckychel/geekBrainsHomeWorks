@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  vk_KukobaAlexander
 //
 //  Created by Александр Кукоба on 15.06.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     @IBOutlet var LoadingUIView: UIView!
     
@@ -30,8 +30,8 @@ class ViewController: UIViewController {
               loginTxt == "",
               passwordTxt == "" else {
             self.show(message: "Поля должны быть пустыми")
-            return
-        }
+                        return
+                    }
         
 //        let pointLayer = CAShapeLayer()
 //        pointLayer.backgroundColor = UIColor.green.cgColor
@@ -73,7 +73,22 @@ class ViewController: UIViewController {
         }
         
         _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { timer in
-               self.performSegue(withIdentifier: "LoginSega", sender: nil)
+               //self.performSegue(withIdentifier: "LoginSega", sender: nil)
+
+            let FriendsView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabBarView")
+            FriendsView.modalTransitionStyle = .flipHorizontal
+            FriendsView.modalPresentationStyle = .overFullScreen
+            
+            //FriendsView.transitioningDelegate = FriendsView as! TabBarViewController
+            
+            self.present(FriendsView, animated: true, completion: {
+                for i in 0..<loadingPoints.count {
+                    loadingPoints[i].layer.opacity = 0
+                    loadingPoints[i].layer.removeAllAnimations()
+                }
+            })
+
+            
         }
        
     }
