@@ -76,10 +76,10 @@ class LoginViewController: UIViewController {
                //self.performSegue(withIdentifier: "LoginSega", sender: nil)
 
             let FriendsView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabBarView")
-            FriendsView.modalTransitionStyle = .flipHorizontal
-            FriendsView.modalPresentationStyle = .overFullScreen
+            //FriendsView.modalTransitionStyle = .flipHorizontal
+            //FriendsView.modalPresentationStyle = .overFullScreen
             
-            //FriendsView.transitioningDelegate = FriendsView as! TabBarViewController
+            FriendsView.transitioningDelegate = FriendsView as! TabBarViewController
             
             self.present(FriendsView, animated: true, completion: {
                 for i in 0..<loadingPoints.count {
