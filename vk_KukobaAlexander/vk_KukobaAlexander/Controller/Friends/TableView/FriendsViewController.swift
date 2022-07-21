@@ -107,8 +107,8 @@ class FriendsViewController: UIViewController {
     
     @objc func logoutUser(){
         
-        //self.dismiss(animated: true, completion: nil)
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+ //       self.navigationController?.popViewController(animated: true)
 //        let TabBarView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabBarView")
 //        TabBarView.transitioningDelegate = TabBarView as! TabBarViewController
 //        self.navigationController?.popToViewController(TabBarView, animated: true)
