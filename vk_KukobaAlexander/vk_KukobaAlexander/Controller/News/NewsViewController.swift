@@ -1,18 +1,20 @@
 //
-//  TabbarViewController.swift
+//  NewsViewController.swift
 //  vk_KukobaAlexander
 //
-//  Created by Александр Кукоба on 22.06.2022.
+//  Created by Александр Кукоба on 09.07.2022.
 //
 
 import UIKit
 
-class TabbarViewController: UIViewController {
+class NewsViewController: UIViewController {
 
+    @IBOutlet var newsTable: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        newsTable.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsXIB")
     }
     
 
