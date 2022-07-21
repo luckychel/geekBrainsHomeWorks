@@ -72,24 +72,22 @@ class LoginViewController: UIViewController {
            })
         }
         
-        _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { timer in
-               //self.performSegue(withIdentifier: "LoginSega", sender: nil)
+        //_ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { timer in
+               self.performSegue(withIdentifier: "LoginSega", sender: nil)  //MARK: srart timer
 
-            let FriendsView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabBarView")
-            //FriendsView.modalTransitionStyle = .flipHorizontal
-            //FriendsView.modalPresentationStyle = .overFullScreen
-            
-            FriendsView.transitioningDelegate = FriendsView as! TabBarViewController
-            
-            self.present(FriendsView, animated: true, completion: {
-                for i in 0..<loadingPoints.count {
-                    loadingPoints[i].layer.opacity = 0
-                    loadingPoints[i].layer.removeAllAnimations()
-                }
-            })
+//            let TabBarView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabBarView")
+//            TabBarView.transitioningDelegate = TabBarView as! TabBarViewController
+//            self.navigationController?.pushViewController(TabBarView, animated: true)
 
-            
-        }
+//            self.present(FriendsView, animated: true, completion: {
+//                for i in 0..<loadingPoints.count {
+//                    loadingPoints[i].layer.opacity = 0
+//                    loadingPoints[i].layer.removeAllAnimations()
+//                }
+//            })
+        
+       
+        //}  //MARK: end timer
        
     }
 }

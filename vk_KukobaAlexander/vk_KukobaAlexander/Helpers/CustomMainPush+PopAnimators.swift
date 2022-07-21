@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PushAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+class PushMainAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     private let animationDuration: TimeInterval = 1
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -51,7 +51,7 @@ class PushAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     }
 }
 
-class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+class PopMainAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     private let animationDuration: TimeInterval = 1
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {

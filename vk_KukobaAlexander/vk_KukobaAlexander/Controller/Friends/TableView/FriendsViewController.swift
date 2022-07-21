@@ -85,7 +85,7 @@ class FriendsViewController: UIViewController {
 
         
         let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutUser))
-            self.navigationItem.leftBarButtonItem  = logoutBarButtonItem
+        self.navigationItem.leftBarButtonItem  = logoutBarButtonItem
     }
 
     
@@ -105,16 +105,13 @@ class FriendsViewController: UIViewController {
         }
     }
     
-    @objc func logoutUser(sender: UITapGestureRecognizer){
-
-
-//        let FriendsView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "LoginView")
-//        FriendsView.modalTransitionStyle = .flipHorizontal
-//        FriendsView.modalPresentationStyle = .overFullScreen
-//        self.present(FriendsView, animated: true)
+    @objc func logoutUser(){
         
-        
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+//        let TabBarView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabBarView")
+//        TabBarView.transitioningDelegate = TabBarView as! TabBarViewController
+//        self.navigationController?.popToViewController(TabBarView, animated: true)
 
     }
 }

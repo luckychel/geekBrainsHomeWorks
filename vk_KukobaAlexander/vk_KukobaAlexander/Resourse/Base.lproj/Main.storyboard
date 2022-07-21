@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Custom Main Navigation Controller-->
         <scene sceneID="dW7-wV-O26">
             <objects>
-                <navigationController id="LXj-JR-fz0" sceneMemberID="viewController">
+                <navigationController id="LXj-JR-fz0" customClass="CustomMainNavigationController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Igc-vP-BkO">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -173,6 +173,7 @@
                         <outlet property="LoginBtn" destination="u5u-lS-QtZ" id="scc-l5-Mgp"/>
                         <outlet property="textLogin" destination="9Zc-vx-XuA" id="lze-nv-z1M"/>
                         <outlet property="textPassword" destination="hXT-KC-Zya" id="hbk-rn-cLD"/>
+                        <segue destination="reK-XA-XxX" kind="show" identifier="LoginSega" id="stN-I4-ZZy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -534,7 +535,7 @@
         <!--Друзья-->
         <scene sceneID="g4w-y9-aIY">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aPk-8V-o4c" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aPk-8V-o4c" customClass="CustomNavigationController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="person.circle.fill" catalog="system" selectedImage="person.circle.fill" id="2WK-J5-hi9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="y3L-UF-bIq">
@@ -553,7 +554,7 @@
         <!--Группы-->
         <scene sceneID="i4S-S5-oZ0">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="78q-WW-5ve" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="78q-WW-5ve" customClass="CustomNavigationController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Группы" image="menucard.fill" catalog="system" selectedImage="menucard.fill" id="wdc-Gj-dHR"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="q5F-uc-pbA">
@@ -572,7 +573,7 @@
         <!--Новости-->
         <scene sceneID="zsg-nl-buM">
             <objects>
-                <navigationController id="yfB-dU-Cyw" sceneMemberID="viewController">
+                <navigationController id="yfB-dU-Cyw" customClass="CustomNavigationController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Новости" image="newspaper.fill" catalog="system" selectedImage="newspaper.fill" id="wAN-oS-gW8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYG-R9-nJo">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
