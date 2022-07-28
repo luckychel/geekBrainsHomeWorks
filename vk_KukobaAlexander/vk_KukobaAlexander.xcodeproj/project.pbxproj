@@ -12,6 +12,12 @@
 		8107E48B2889E75C00891999 /* CustomPushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8107E4882889E75C00891999 /* CustomPushAnimator.swift */; };
 		8107E48C2889E75C00891999 /* CustomPopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8107E4892889E75C00891999 /* CustomPopAnimator.swift */; };
 		8107E48D2889E75C00891999 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8107E48A2889E75C00891999 /* CustomInteractiveTransition.swift */; };
+		8107E48F28932B2A00891999 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8107E48E28932B2A00891999 /* Utilities.swift */; };
+		8107E495289337C200891999 /* ViewNewsCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8107E491289337C200891999 /* ViewNewsCounter.swift */; };
+		8107E496289337C200891999 /* CommentNewsControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8107E492289337C200891999 /* CommentNewsControl.swift */; };
+		8107E497289337C200891999 /* LikeNewsControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8107E493289337C200891999 /* LikeNewsControl.swift */; };
+		8107E498289337C200891999 /* ShareNewsControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8107E494289337C200891999 /* ShareNewsControl.swift */; };
+		8107E49A28933A9200891999 /* NewsItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8107E49928933A9200891999 /* NewsItemViewController.swift */; };
 		811697C02878FB8C00CE1765 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811697BF2878FB8C00CE1765 /* News.swift */; };
 		811697C22878FF8300CE1765 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811697C12878FF8300CE1765 /* LoginViewController.swift */; };
 		811697C42879005300CE1765 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811697C32879005300CE1765 /* NewsViewController.swift */; };
@@ -56,6 +62,12 @@
 		8107E4882889E75C00891999 /* CustomPushAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPushAnimator.swift; sourceTree = "<group>"; };
 		8107E4892889E75C00891999 /* CustomPopAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPopAnimator.swift; sourceTree = "<group>"; };
 		8107E48A2889E75C00891999 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
+		8107E48E28932B2A00891999 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		8107E491289337C200891999 /* ViewNewsCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewNewsCounter.swift; sourceTree = "<group>"; };
+		8107E492289337C200891999 /* CommentNewsControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentNewsControl.swift; sourceTree = "<group>"; };
+		8107E493289337C200891999 /* LikeNewsControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeNewsControl.swift; sourceTree = "<group>"; };
+		8107E494289337C200891999 /* ShareNewsControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareNewsControl.swift; sourceTree = "<group>"; };
+		8107E49928933A9200891999 /* NewsItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemViewController.swift; sourceTree = "<group>"; };
 		811697BF2878FB8C00CE1765 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		811697C12878FF8300CE1765 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		811697C32879005300CE1765 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -107,10 +119,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8107E490289337AB00891999 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				8107E492289337C200891999 /* CommentNewsControl.swift */,
+				8107E493289337C200891999 /* LikeNewsControl.swift */,
+				8107E494289337C200891999 /* ShareNewsControl.swift */,
+				8107E491289337C200891999 /* ViewNewsCounter.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
 		811697C52879007800CE1765 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				8107E490289337AB00891999 /* Controls */,
 				811697C32879005300CE1765 /* NewsViewController.swift */,
+				8107E49928933A9200891999 /* NewsItemViewController.swift */,
 				811697CA2879079D00CE1765 /* NewsXIB */,
 			);
 			path = News;
@@ -155,6 +180,7 @@
 				8107E4892889E75C00891999 /* CustomPopAnimator.swift */,
 				8107E4882889E75C00891999 /* CustomPushAnimator.swift */,
 				811697D92880DBED00CE1765 /* SJCenterFlowLayout.swift */,
+				8107E48E28932B2A00891999 /* Utilities.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -377,8 +403,11 @@
 			files = (
 				811697ED2887342C00CE1765 /* Animator.swift in Sources */,
 				81ED6321287637B300B81225 /* FriendXIBTableViewCell.swift in Sources */,
+				8107E49A28933A9200891999 /* NewsItemViewController.swift in Sources */,
+				8107E496289337C200891999 /* CommentNewsControl.swift in Sources */,
 				81ED63262876442D00B81225 /* GroupXIBTableViewCell.swift in Sources */,
 				8107E48C2889E75C00891999 /* CustomPopAnimator.swift in Sources */,
+				8107E495289337C200891999 /* ViewNewsCounter.swift in Sources */,
 				815315F7286A5EDA0030537D /* FriendCollectionViewCell.swift in Sources */,
 				811697EB2887342C00CE1765 /* CustomMainPush+PopAnimators.swift in Sources */,
 				8117C068286CEA6500649B1E /* LikeControl.swift in Sources */,
@@ -389,6 +418,7 @@
 				815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */,
 				8107E48D2889E75C00891999 /* CustomInteractiveTransition.swift in Sources */,
 				811697CC287F7C3500CE1765 /* FriendsPhotoGalleryController.swift in Sources */,
+				8107E498289337C200891999 /* ShareNewsControl.swift in Sources */,
 				8117C07028731E9300649B1E /* LoginUIView.swift in Sources */,
 				811697EC2887342C00CE1765 /* CustomSegue.swift in Sources */,
 				811697C82879079300CE1765 /* NewsXIBTableViewCell.swift in Sources */,
@@ -398,6 +428,7 @@
 				8107E4872889E71600891999 /* CustomNavigationController.swift in Sources */,
 				815315F2286A55CB0030537D /* Group.swift in Sources */,
 				8117C064286B7D6000649B1E /* GroupCell.swift in Sources */,
+				8107E48F28932B2A00891999 /* Utilities.swift in Sources */,
 				8116C4F6285A788300ECB796 /* SceneDelegate.swift in Sources */,
 				811697DA2880DBED00CE1765 /* SJCenterFlowLayout.swift in Sources */,
 				81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */,
@@ -409,6 +440,7 @@
 				81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */,
 				8107E485288768EA00891999 /* TabBarViewController.swift in Sources */,
 				81DE031A2868AD0F009C1856 /* FriendCell.swift in Sources */,
+				8107E497289337C200891999 /* LikeNewsControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

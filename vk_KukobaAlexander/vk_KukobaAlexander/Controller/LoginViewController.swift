@@ -87,6 +87,7 @@ class LoginViewController: UIViewController {
                         loadingPoints[i].layer.removeAllAnimations()
                     }
                     self.LoginBtn.isEnabled = true
+                    
                 })
         
             

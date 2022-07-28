@@ -22,7 +22,9 @@ class NewsXIBTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+       
+        self.authorImageXIB.layer.cornerRadius = self.authorImageXIB.bounds.width / 2
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

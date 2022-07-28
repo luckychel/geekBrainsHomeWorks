@@ -212,6 +212,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.91976243260000001" green="0.68845025999999998" blue="0.63188492210000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" systemColor="tintColor"/>
+                        <color key="sectionIndexBackgroundColor" red="0.91976243260000001" green="0.68845025999999998" blue="0.63188492210000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Найти" showsSearchResultsButton="YES" showsCancelButton="YES" id="6wT-mR-qNA">
                             <rect key="frame" x="0.0" y="0.0" width="428" height="51"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -600,6 +601,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jTQ-sg-Nud">
                                 <rect key="frame" x="0.0" y="88" width="428" height="755"/>
+                                <color key="sectionIndexBackgroundColor" systemColor="systemYellowColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="JFH-pI-hyF">
                                         <rect key="frame" x="0.0" y="44.666666030883789" width="428" height="43.666667938232422"/>
@@ -608,12 +610,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IoA-pR-foG"/>
-                        <color key="backgroundColor" red="0.99514524940000004" green="1" blue="0.84047391979999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
                         <constraints>
                             <constraint firstItem="IoA-pR-foG" firstAttribute="bottom" secondItem="jTQ-sg-Nud" secondAttribute="bottom" id="3Gz-bx-gRT"/>
                             <constraint firstItem="IoA-pR-foG" firstAttribute="trailing" secondItem="jTQ-sg-Nud" secondAttribute="trailing" id="Q3r-oU-xnM"/>
@@ -624,22 +627,39 @@
                     <navigationItem key="navigationItem" id="8Qh-gu-Mmi"/>
                     <connections>
                         <outlet property="newsTable" destination="jTQ-sg-Nud" id="uTM-gD-Hh7"/>
+                        <segue destination="Z3A-ZG-CfO" kind="show" identifier="ShowNewsItem" id="3aT-09-zKd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7FT-f2-s3Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3385.5140186915887" y="869.54643628509723"/>
         </scene>
-        <!--View Controller-->
+        <!--News Item View Controller-->
         <scene sceneID="ef6-7Z-KV2">
             <objects>
-                <viewController id="Z3A-ZG-CfO" sceneMemberID="viewController">
+                <viewController id="Z3A-ZG-CfO" customClass="NewsItemViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XeJ-Fw-tsy">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ybk-od-1bf">
+                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="e26-Pg-0Js"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ybk-od-1bf" firstAttribute="top" secondItem="e26-Pg-0Js" secondAttribute="top" id="5uI-aS-3SI"/>
+                            <constraint firstItem="e26-Pg-0Js" firstAttribute="trailing" secondItem="ybk-od-1bf" secondAttribute="trailing" id="Ixd-Ww-wgT"/>
+                            <constraint firstItem="ybk-od-1bf" firstAttribute="leading" secondItem="e26-Pg-0Js" secondAttribute="leading" id="bTe-EM-MZU"/>
+                            <constraint firstItem="e26-Pg-0Js" firstAttribute="bottom" secondItem="ybk-od-1bf" secondAttribute="bottom" id="x6k-8S-Lo8"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="0fY-Q6-6Il"/>
+                    <connections>
+                        <outlet property="NewsItemTableView" destination="ybk-od-1bf" id="dV1-BI-srw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gk7-56-G7n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -663,6 +683,9 @@
         </systemColor>
         <systemColor name="systemMintColor">
             <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
