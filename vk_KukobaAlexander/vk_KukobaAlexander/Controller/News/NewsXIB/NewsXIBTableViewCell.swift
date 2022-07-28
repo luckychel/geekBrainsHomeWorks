@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsTableViewCell: UITableViewCell {
+class NewsXIBTableViewCell: UITableViewCell {
 
     @IBOutlet var authorImageXIB: UIImageView!
     
@@ -30,5 +30,7 @@ class NewsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
 }

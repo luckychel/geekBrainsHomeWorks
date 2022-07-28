@@ -75,7 +75,7 @@ class LoginViewController: UIViewController {
            })
         }
         
-        _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { timer in
+       // _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { timer in
                //self.performSegue(withIdentifier: "LoginSega", sender: nil)  //MARK: srart timer
 
                 let TabBarView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabBarView")
@@ -86,13 +86,14 @@ class LoginViewController: UIViewController {
                         loadingPoints[i].layer.opacity = 0
                         loadingPoints[i].layer.removeAllAnimations()
                     }
+                    self.LoginBtn.isEnabled = true
                 })
         
-            self.LoginBtn.isEnabled = true
+            
             //self.navigationController?.pushViewController(TabBarView, animated: true)
 
        
-        }  //MARK: end timer
+        //}  //MARK: end timer
        
     }
 }
