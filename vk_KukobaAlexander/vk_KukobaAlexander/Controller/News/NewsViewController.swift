@@ -62,6 +62,10 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.newsImageXIB.contentMode = .scaleAspectFill
         cell.newsImageXIB.image = self.news[indexPath.row].newsImage
         
+        let newsItem  = news[indexPath.item]
+        
+        cell.configure(newsItem: newsItem, cellIndex: indexPath.item)
+        
         cell.contentConfiguration = content as? UIContentConfiguration
        
         return cell

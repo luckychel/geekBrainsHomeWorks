@@ -7,9 +7,8 @@
 
 import UIKit
 
-class ViewNewsCounter: UIView {
+class ViewNewsCounter: UIControl {
     
-
     var newsItem: News!
     
     let viewCount  = UILabel(frame: CGRect(x: 32, y: 0, width: 30, height: 30))
@@ -17,7 +16,7 @@ class ViewNewsCounter: UIView {
     
     func setViewNewsCounter(news : News) {
         newsItem = news
-        viewCount.text = String(news.likeCount)
+        viewCount.text = String(news.viewCount)
         viewIcon.setImage(UIImage(systemName: "eye.fill"), for: .normal)
         viewIcon.tintColor = .lightGray
         viewCount.textColor = .lightGray
@@ -35,7 +34,7 @@ class ViewNewsCounter: UIView {
     }
 
     @objc func handleTap(_: UITapGestureRecognizer){
-            newsItem.viewCount += 1
-            setViewNewsCounter(news: newsItem)
-        }
+        newsItem.viewCount += 1
+        viewCount.text = String(newsItem.viewCount)
+    }
 }
