@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension ViewController {
+extension LoginViewController {
     func show(message: String) {
         let alertVC = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         
