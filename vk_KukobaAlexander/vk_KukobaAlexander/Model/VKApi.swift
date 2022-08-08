@@ -32,8 +32,8 @@ class VKApi {
 
             let url = VKApi.baseUrl+path
 
-            AF.request(url, parameters: parameters).responseJSON { response in
-                print("********FRIENDS***********")
+        AF.request(url, parameters: parameters).responseJSON { response in
+                print("===========friends.get===========")
                 print(response.value as Any)
             }
         }
@@ -41,19 +41,19 @@ class VKApi {
 
         func getUserPhotos(token: String, id: Int){
 
-            let path = "/method/photos.getAll"
+            let path = "/method/photos.get"
 
             let parameters: Parameters = [
                 "access_token" : token,
-                "user_id": id,
-                "client_id": VKApi.clientId,
+                "owner_id": id,
+                "album_id": "profile",
                 "v": "5.131"
             ]
 
             let url = VKApi.baseUrl+path
 
             AF.request(url, parameters: parameters).responseJSON { response in
-                print("********PHOTOS***********")
+                print("===========photos.get===========")
                 print(response.value as Any)
             }
         }
@@ -72,7 +72,7 @@ class VKApi {
             let url = VKApi.baseUrl+path
 
             AF.request(url, parameters: parameters).responseJSON { response in
-                print("*******GROUPS************")
+                print("===========groups.get===========")
                 print(response.value as Any)
             }
         }
@@ -82,7 +82,7 @@ class VKApi {
             let path = "/method/groups.search"
 
             let parameters: Parameters = [
-                "q": "running",
+                "q": "музыка",
                 "type": "group",
                 "count": "2",
                 "sort": 6,
@@ -94,7 +94,7 @@ class VKApi {
             let url = VKApi.baseUrl+path
 
             AF.request(url, parameters: parameters).responseJSON { response in
-                print("*******GROUPS-Search************")
+                print("===========groups.search ===========")
                 print(response.value as Any)
             }
         }

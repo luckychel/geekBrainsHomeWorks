@@ -87,7 +87,9 @@ extension LoginWebViewController: WKNavigationDelegate{
         vkApi.getUserPhotos(token: session.token, id: session.userId)
         vkApi.getUserGroups(token: session.token, id: session.userId)
         vkApi.getUserGroupsSearch(token: session.token)
+        
         performSegue(withIdentifier: "LoginWeb", sender: nil)
+        
         decisionHandler(.cancel)
 
     }
