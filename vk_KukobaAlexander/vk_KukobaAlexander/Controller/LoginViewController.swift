@@ -86,9 +86,11 @@ class LoginViewController: UIViewController {
                         loadingPoints[i].layer.opacity = 0
                         loadingPoints[i].layer.removeAllAnimations()
                     }
+                    self.LoginBtn.isEnabled = true
+                    
                 })
         
-            self.LoginBtn.isEnabled = true
+            
             //self.navigationController?.pushViewController(TabBarView, animated: true)
 
        

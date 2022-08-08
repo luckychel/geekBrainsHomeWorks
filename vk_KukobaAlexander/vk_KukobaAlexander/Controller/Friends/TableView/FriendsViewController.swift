@@ -107,7 +107,14 @@ class FriendsViewController: UIViewController {
     
     @objc func logoutUser(){
         
-        self.dismiss(animated: true, completion: nil)
+        let vcLoging: LoginViewController = self.storyboard?.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+                
+        vcLoging.modalTransitionStyle = .flipHorizontal
+        vcLoging.modalPresentationStyle = .fullScreen
+            
+        self.present(vcLoging, animated: true)
+        
+        //self.dismiss(animated: true, completion: nil)
  //       self.navigationController?.popViewController(animated: true)
 //        let TabBarView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabBarView")
 //        TabBarView.transitioningDelegate = TabBarView as! TabBarViewController
