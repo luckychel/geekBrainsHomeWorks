@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  vk_KukobaAlexander
 //
 //  Created by Александр Кукоба on 15.06.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     @IBOutlet var LoadingUIView: UIView!
     
@@ -28,10 +28,13 @@ class ViewController: UIViewController {
         guard let loginTxt = textLogin.text,
               let passwordTxt = textPassword.text,
               loginTxt == "",
-              passwordTxt == "" else {
+              passwordTxt == ""
+        else {
             self.show(message: "Поля должны быть пустыми")
             return
         }
+        
+        LoginBtn.isEnabled = false
         
 //        let pointLayer = CAShapeLayer()
 //        pointLayer.backgroundColor = UIColor.green.cgColor
@@ -73,8 +76,23 @@ class ViewController: UIViewController {
         }
         
         _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { timer in
-               self.performSegue(withIdentifier: "LoginSega", sender: nil)
-        }
+               //self.performSegue(withIdentifier: "LoginSega", sender: nil)  //MARK: srart timer
+
+                let TabBarView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabBarView")
+                TabBarView.transitioningDelegate = TabBarView as! TabBarViewController
+
+                self.present(TabBarView, animated: true, completion: {
+                    for i in 0..<loadingPoints.count {
+                        loadingPoints[i].layer.opacity = 0
+                        loadingPoints[i].layer.removeAllAnimations()
+                    }
+                })
+        
+            self.LoginBtn.isEnabled = true
+            //self.navigationController?.pushViewController(TabBarView, animated: true)
+
+       
+        }  //MARK: end timer
        
     }
 }

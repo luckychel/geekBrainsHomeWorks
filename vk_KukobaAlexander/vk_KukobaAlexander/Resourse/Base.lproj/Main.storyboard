@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LXj-JR-fz0">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -9,10 +9,29 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Custom Main Navigation Controller-->
+        <scene sceneID="dW7-wV-O26">
+            <objects>
+                <navigationController id="LXj-JR-fz0" customClass="CustomMainNavigationController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Igc-vP-BkO">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YLv-hN-DrZ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="04u-t8-H35"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qbp-jK-JXo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-318" y="305"/>
+        </scene>
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="vk_KukobaAlexander" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginView" id="BYZ-38-t0r" customClass="LoginViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="LoginUIView" customModule="vk_KukobaAlexander" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -157,17 +176,17 @@
                         <outlet property="LoginBtn" destination="u5u-lS-QtZ" id="scc-l5-Mgp"/>
                         <outlet property="textLogin" destination="9Zc-vx-XuA" id="lze-nv-z1M"/>
                         <outlet property="textPassword" destination="hXT-KC-Zya" id="hbk-rn-cLD"/>
-                        <segue destination="reK-XA-XxX" kind="presentation" identifier="LoginSega" modalPresentationStyle="fullScreen" id="iVA-FX-N1h"/>
+                        <segue destination="reK-XA-XxX" kind="show" identifier="LoginSega" id="stN-I4-ZZy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="535.51401869158872" y="304.5356371490281"/>
+            <point key="canvasLocation" x="471" y="305"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="Xmm-Vy-a5A">
             <objects>
-                <tabBarController id="reK-XA-XxX" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarView" id="reK-XA-XxX" customClass="TabBarViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="tSX-GL-IBR"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ejh-UH-WvT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -182,12 +201,12 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gff-yl-X9g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1471" y="305"/>
+            <point key="canvasLocation" x="1290" y="305"/>
         </scene>
         <!--Groups Table View Controller-->
         <scene sceneID="ODC-v9-IEl">
             <objects>
-                <tableViewController id="9H6-I8-Ggb" customClass="GroupsTableViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="GroupsTableView" id="9H6-I8-Ggb" customClass="GroupsTableViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Wzu-V1-tgR">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -312,7 +331,7 @@
         <!--Friends View Controller-->
         <scene sceneID="Pfi-kA-4JJ">
             <objects>
-                <viewController id="OUX-yu-8Q7" customClass="FriendsViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FriendsView" id="OUX-yu-8Q7" customClass="FriendsViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p5d-dX-TDV">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -519,7 +538,7 @@
         <!--Друзья-->
         <scene sceneID="g4w-y9-aIY">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aPk-8V-o4c" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aPk-8V-o4c" customClass="CustomNavigationController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="person.circle.fill" catalog="system" selectedImage="person.circle.fill" id="2WK-J5-hi9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="y3L-UF-bIq">
@@ -538,7 +557,7 @@
         <!--Группы-->
         <scene sceneID="i4S-S5-oZ0">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="78q-WW-5ve" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="78q-WW-5ve" customClass="CustomNavigationController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Группы" image="menucard.fill" catalog="system" selectedImage="menucard.fill" id="wdc-Gj-dHR"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="q5F-uc-pbA">
@@ -557,7 +576,7 @@
         <!--Новости-->
         <scene sceneID="zsg-nl-buM">
             <objects>
-                <navigationController id="yfB-dU-Cyw" sceneMemberID="viewController">
+                <navigationController id="yfB-dU-Cyw" customClass="CustomNavigationController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Новости" image="newspaper.fill" catalog="system" selectedImage="newspaper.fill" id="wAN-oS-gW8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYG-R9-nJo">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
@@ -574,7 +593,7 @@
         <!--News View Controller-->
         <scene sceneID="E5L-4X-Hco">
             <objects>
-                <viewController id="An4-Ba-iOO" customClass="NewsViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewsView" id="An4-Ba-iOO" customClass="NewsViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NXS-ah-iId">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
