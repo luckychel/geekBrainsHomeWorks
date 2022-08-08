@@ -16,6 +16,7 @@ class LikeControl: UIControl {
         likePicture.backgroundColor = .none
         likePicture.tintColor = .gray
         likePicture.image = UIImage(systemName: "suit.heart")
+        
     }
     
 
