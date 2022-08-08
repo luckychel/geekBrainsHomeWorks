@@ -15,6 +15,9 @@
 		8116C500285A788500ECB796 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8116C4FE285A788500ECB796 /* LaunchScreen.storyboard */; };
 		8117C062286B792A00649B1E /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C061286B792A00649B1E /* GroupsViewController.swift */; };
 		8117C064286B7D6000649B1E /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C063286B7D6000649B1E /* GroupCell.swift */; };
+		8117C066286CDC0400649B1E /* AvatarUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C065286CDC0400649B1E /* AvatarUIView.swift */; };
+		8117C068286CEA6500649B1E /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C067286CEA6500649B1E /* LikeControl.swift */; };
+		8117C06C286CF50F00649B1E /* UIView + IBInspectable extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C06B286CF50F00649B1E /* UIView + IBInspectable extension.swift */; };
 		815315F2286A55CB0030537D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F1286A55CB0030537D /* Group.swift */; };
 		815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */; };
 		815315F7286A5EDA0030537D /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */; };
@@ -37,6 +40,9 @@
 		8116C501285A788500ECB796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8117C061286B792A00649B1E /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		8117C063286B7D6000649B1E /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		8117C065286CDC0400649B1E /* AvatarUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarUIView.swift; sourceTree = "<group>"; };
+		8117C067286CEA6500649B1E /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
+		8117C06B286CF50F00649B1E /* UIView + IBInspectable extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + IBInspectable extension.swift"; sourceTree = "<group>"; };
 		815315F1286A55CB0030537D /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewController.swift; sourceTree = "<group>"; };
 		815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -129,8 +135,10 @@
 		815315F9286A605A0030537D /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				8117C065286CDC0400649B1E /* AvatarUIView.swift */,
 				81DE03152868A755009C1856 /* FriendsTableViewController.swift */,
 				81DE03192868AD0F009C1856 /* FriendCell.swift */,
+				8117C067286CEA6500649B1E /* LikeControl.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -159,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				81DE030D286275FB009C1856 /* UiViewController+extension.swift */,
+				8117C06B286CF50F00649B1E /* UIView + IBInspectable extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -245,7 +254,9 @@
 			files = (
 				815315F7286A5EDA0030537D /* FriendCollectionViewCell.swift in Sources */,
 				8116C4F8285A788300ECB796 /* ViewController.swift in Sources */,
+				8117C068286CEA6500649B1E /* LikeControl.swift in Sources */,
 				8116C4F4285A788300ECB796 /* AppDelegate.swift in Sources */,
+				8117C06C286CF50F00649B1E /* UIView + IBInspectable extension.swift in Sources */,
 				815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */,
 				81DE03162868A755009C1856 /* FriendsTableViewController.swift in Sources */,
 				8117C062286B792A00649B1E /* GroupsViewController.swift in Sources */,
@@ -255,6 +266,7 @@
 				81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */,
 				81DE031428627E00009C1856 /* TabbarViewController.swift in Sources */,
 				81DE031C2868B31F009C1856 /* Friend.swift in Sources */,
+				8117C066286CDC0400649B1E /* AvatarUIView.swift in Sources */,
 				81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */,
 				81DE031A2868AD0F009C1856 /* FriendCell.swift in Sources */,
 			);
