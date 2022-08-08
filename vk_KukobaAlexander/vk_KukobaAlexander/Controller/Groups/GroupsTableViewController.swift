@@ -9,6 +9,14 @@ import UIKit
 
 class GroupsTableViewController: UITableViewController {
 
+    @IBOutlet var searchBarGroups: UISearchBar! {
+        didSet {
+            searchBarGroups.delegate = self
+        }
+    }
+    
+    var filteredGroups = [Group]()
+    
     var groups = [
         Group(name: "Программисты C#", description: "Эта группа создана для ищущих себя в великолепном языке программирования от компании Microsoft"),
         Group(name: "Отдых на реке с палатками", description: "Встречи, посиделки у костра, рыбалка, уха, коллективное кормление комаров, палаточный отдых, душевные беседы"),
@@ -21,11 +29,10 @@ class GroupsTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.title = "Группы"
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        tableView.register(UINib(nibName: "GroupXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "GroupXIB")
+        
+        filteredGroups = groups
     }
 
     // MARK: - Table view data source
@@ -37,17 +44,23 @@ class GroupsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return groups.count
+        return filteredGroups.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupCell else {
+        
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupCell else {
+//            preconditionFailure("Error")
+//        }
+
+        //MARK: перешли на XIB
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupXIB", for: indexPath) as? GroupXIBTableViewCell else {
             preconditionFailure("Error")
         }
-
-        cell.groupName.text = groups[indexPath.row].name
-        cell.groupDescription.text = groups[indexPath.row].description
+        
+        cell.groupNameXIB.text = filteredGroups[indexPath.row].name
+        cell.groupDescriptionXIB.text = filteredGroups[indexPath.row].description
 
         return cell
     }
@@ -55,13 +68,15 @@ class GroupsTableViewController: UITableViewController {
     
     //возврат по клику на группу при добавлении на следующем экране
     @IBAction func addSelectGroup(segue: UIStoryboardSegue) {
+        //print("unwined")
         if (segue.identifier == "addGroupToAll") {
             guard let allGroupsController = segue.source as? GroupsViewController else { return }
             
             if let indexPath = allGroupsController.allGroups.indexPathForSelectedRow {
                 let group = allGroupsController.groups[indexPath.row]
                 
-                if (!groups.contains(where: {$0.name == group.name})) {
+                if (!filteredGroups.contains(where: {$0.name == group.name})) {
+                    filteredGroups.append(group)
                     groups.append(group)
                     
                     tableView.reloadData()
@@ -89,7 +104,7 @@ class GroupsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            groups.remove(at: indexPath.row)
+            filteredGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -122,4 +137,21 @@ class GroupsTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension GroupsTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if !searchText.isEmpty {
+            filteredGroups = groups.filter{$0.name.lowercased().contains(searchText.lowercased())}
+        }
+        else
+        {
+            filteredGroups = groups
+        }
+        tableView.reloadData()
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        self.searchBar(searchBar, textDidChange: "")
+    }
 }
