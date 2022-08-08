@@ -13,7 +13,6 @@ class FriendsCollectionViewController: UICollectionViewController {
 
     var arrayFriends : [Friend]? = []
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,41 +66,29 @@ class FriendsCollectionViewController: UICollectionViewController {
             cell.nameFriend.text = arrayFriends?[indexPath.row].name
             cell.nameFriend.text = "No friends"
         }
-       
-
+        
         return cell
     
     }
 
-    // MARK: UICollectionViewDelegate
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard arrayFriends != nil else {
+            return
+        }
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "FriendsPhotoGalleryController") as! FriendsPhotoGalleryController
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+        var images = [UIImage]()
+        for fr in arrayFriends! {
+            if fr.avatar != nil {
+                images.append(fr.avatar!)
+            }
+        }
     
+        //vc.modalPresentationStyle = .currentContext
+        vc.images = images
+        vc.myIndexPath = indexPath
+        self.navigationController?.pushViewController(vc, animated: true)
     }
-    */
 
 }
