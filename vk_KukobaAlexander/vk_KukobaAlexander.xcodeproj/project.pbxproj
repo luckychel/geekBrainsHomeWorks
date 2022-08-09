@@ -48,6 +48,8 @@
 		81CD93E62899CC2C009BC3B3 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93E52899CC2C009BC3B3 /* Session.swift */; };
 		81CD93E828A028BE009BC3B3 /* VKApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93E728A028BE009BC3B3 /* VKApi.swift */; };
 		81CD93EA28A032D9009BC3B3 /* LoginWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93E928A032D9009BC3B3 /* LoginWebViewController.swift */; };
+		81CD93F028A2EF5C009BC3B3 /* vk.friends.get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93EF28A2EF5C009BC3B3 /* vk.friends.get.swift */; };
+		81CD93F228A2FE35009BC3B3 /* vk.users.get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93F128A2FE35009BC3B3 /* vk.users.get.swift */; };
 		81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE030D286275FB009C1856 /* UiViewController+extension.swift */; };
 		81DE03162868A755009C1856 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03152868A755009C1856 /* FriendsViewController.swift */; };
 		81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03172868A811009C1856 /* GroupsTableViewController.swift */; };
@@ -105,6 +107,8 @@
 		81CD93E52899CC2C009BC3B3 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		81CD93E728A028BE009BC3B3 /* VKApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKApi.swift; sourceTree = "<group>"; };
 		81CD93E928A032D9009BC3B3 /* LoginWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebViewController.swift; sourceTree = "<group>"; };
+		81CD93EF28A2EF5C009BC3B3 /* vk.friends.get.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vk.friends.get.swift; sourceTree = "<group>"; };
+		81CD93F128A2FE35009BC3B3 /* vk.users.get.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vk.users.get.swift; sourceTree = "<group>"; };
 		81DE030D286275FB009C1856 /* UiViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+extension.swift"; sourceTree = "<group>"; };
 		81DE03152868A755009C1856 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		81DE03172868A811009C1856 /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 				811697BF2878FB8C00CE1765 /* News.swift */,
 				81CD93E52899CC2C009BC3B3 /* Session.swift */,
 				81CD93E728A028BE009BC3B3 /* VKApi.swift */,
+				81CD93EF28A2EF5C009BC3B3 /* vk.friends.get.swift */,
+				81CD93F128A2FE35009BC3B3 /* vk.users.get.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -489,7 +495,9 @@
 				811697EB2887342C00CE1765 /* CustomMainPush+PopAnimators.swift in Sources */,
 				8117C068286CEA6500649B1E /* LikeControl.swift in Sources */,
 				8116C4F4285A788300ECB796 /* AppDelegate.swift in Sources */,
+				81CD93F028A2EF5C009BC3B3 /* vk.friends.get.swift in Sources */,
 				8117C06C286CF50F00649B1E /* UIView + IBInspectable extension.swift in Sources */,
+				81CD93F228A2FE35009BC3B3 /* vk.users.get.swift in Sources */,
 				811697CF288035B700CE1765 /* PhotoCollectionViewCell.swift in Sources */,
 				8107E48B2889E75C00891999 /* CustomPushAnimator.swift in Sources */,
 				815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */,

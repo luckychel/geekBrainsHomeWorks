@@ -13,9 +13,6 @@ struct DecodableType: Decodable { let url: String }
 
 
 class VKApi {
-    
-    
-
 
     static let shared = VKApi()
     
@@ -25,14 +22,10 @@ class VKApi {
     static let redirectUrl: String = "https://oauth.vk.com/blank.html"
     static let baseUrl : String = "https://api.vk.com"
     
+    let session = Session.shared
+    
     func getFriendsList(token: String, id: Int){
 
-        
-//        AF.request("https://httpbin.org/get").responseDecodable(of: DecodableType.self) { response in
-//            print("Response: \(response)")
-//            print("Response String: \(response.value)")
-//        }
-//        
         let path = "/method/friends.get"
 
         let parameters: Parameters = [
@@ -45,12 +38,51 @@ class VKApi {
 
         let url = VKApi.baseUrl+path
 
-        AF.request(url, parameters: parameters).responseJSON { response in
+        AF.request(url, method: .get, parameters: parameters).responseJSON { response in
             print("===========friends.get===========")
-            print(response.value as Any)
+            
+            guard let data = response.data else { return }
+
+            let friendsIds = try? JSONDecoder().decode(VkFriendsGet.self, from: data)
+            
+            guard let items = friendsIds?.response.items else { return }
+            
+            self.session.friendsIds = items
+            
+            self.getUsers(token: self.session.token, ids: self.session.friendsIds)
         }
     }
+    
+    func getUsers(token: String, ids: [Int]) {
 
+        let idsStr = ids.map { String($0) }.joined(separator: ",")
+        
+        let path = "/method/users.get"
+        
+        let parameters: Parameters = [
+            "access_token" : token,
+            "user_ids": idsStr,
+            "fields": "bdate, domain, sex, city, country, photo_400_orig, status, counters",
+            "v": "5.131"
+        ]
+
+        let url = VKApi.baseUrl+path
+
+        AF.request(url, method: .get, parameters: parameters).responseJSON { [weak self] response in
+            print("===========users.get===========")
+            guard let self = self else { return }
+ 
+            guard let data = response.data else { return }
+
+            let friendsIds = try? JSONDecoder().decode(VkUsersGet.self, from: data)
+            
+            guard let items = friendsIds?.response else { return }
+            
+            self.session.friends = items
+            
+            //self.getUsers(token: self.session.token, ids: self.session.friendsIdsList)
+        }
+    }
 
     func getUserPhotos(token: String, id: Int){
 
