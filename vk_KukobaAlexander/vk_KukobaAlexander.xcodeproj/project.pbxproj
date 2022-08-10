@@ -50,6 +50,8 @@
 		81CD93EA28A032D9009BC3B3 /* LoginWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93E928A032D9009BC3B3 /* LoginWebViewController.swift */; };
 		81CD93F028A2EF5C009BC3B3 /* vk.friends.get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93EF28A2EF5C009BC3B3 /* vk.friends.get.swift */; };
 		81CD93F228A2FE35009BC3B3 /* vk.users.get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93F128A2FE35009BC3B3 /* vk.users.get.swift */; };
+		81CD93F528A4422D009BC3B3 /* vk.photos.get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93F428A4422D009BC3B3 /* vk.photos.get.swift */; };
+		81CD93F728A4605D009BC3B3 /* vk.group.get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93F628A4605D009BC3B3 /* vk.group.get.swift */; };
 		81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE030D286275FB009C1856 /* UiViewController+extension.swift */; };
 		81DE03162868A755009C1856 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03152868A755009C1856 /* FriendsViewController.swift */; };
 		81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03172868A811009C1856 /* GroupsTableViewController.swift */; };
@@ -109,6 +111,8 @@
 		81CD93E928A032D9009BC3B3 /* LoginWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebViewController.swift; sourceTree = "<group>"; };
 		81CD93EF28A2EF5C009BC3B3 /* vk.friends.get.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vk.friends.get.swift; sourceTree = "<group>"; };
 		81CD93F128A2FE35009BC3B3 /* vk.users.get.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vk.users.get.swift; sourceTree = "<group>"; };
+		81CD93F428A4422D009BC3B3 /* vk.photos.get.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vk.photos.get.swift; sourceTree = "<group>"; };
+		81CD93F628A4605D009BC3B3 /* vk.group.get.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vk.group.get.swift; sourceTree = "<group>"; };
 		81DE030D286275FB009C1856 /* UiViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+extension.swift"; sourceTree = "<group>"; };
 		81DE03152868A755009C1856 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		81DE03172868A811009C1856 /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
@@ -321,6 +325,8 @@
 			children = (
 				81CD93EF28A2EF5C009BC3B3 /* vk.friends.get.swift */,
 				81CD93F128A2FE35009BC3B3 /* vk.users.get.swift */,
+				81CD93F428A4422D009BC3B3 /* vk.photos.get.swift */,
+				81CD93F628A4605D009BC3B3 /* vk.group.get.swift */,
 			);
 			path = VKModel;
 			sourceTree = "<group>";
@@ -506,9 +512,11 @@
 				81CD93F028A2EF5C009BC3B3 /* vk.friends.get.swift in Sources */,
 				8117C06C286CF50F00649B1E /* UIView + IBInspectable extension.swift in Sources */,
 				81CD93F228A2FE35009BC3B3 /* vk.users.get.swift in Sources */,
+				81CD93F528A4422D009BC3B3 /* vk.photos.get.swift in Sources */,
 				811697CF288035B700CE1765 /* PhotoCollectionViewCell.swift in Sources */,
 				8107E48B2889E75C00891999 /* CustomPushAnimator.swift in Sources */,
 				815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */,
+				81CD93F728A4605D009BC3B3 /* vk.group.get.swift in Sources */,
 				8107E48D2889E75C00891999 /* CustomInteractiveTransition.swift in Sources */,
 				811697CC287F7C3500CE1765 /* FriendsPhotoGalleryController.swift in Sources */,
 				81CD93E62899CC2C009BC3B3 /* Session.swift in Sources */,

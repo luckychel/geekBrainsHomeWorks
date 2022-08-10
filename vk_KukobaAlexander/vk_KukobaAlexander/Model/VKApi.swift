@@ -24,7 +24,7 @@ class VKApi {
     
     let session = Session.shared
     
-    func getFriendsList(token: String, id: Int, complection: @escaping ([Int]) -> ()){
+    func getFriendsList(token: String, id: Int, completion: @escaping ([Int]) -> ()){
 
         let path = "/method/friends.get"
 
@@ -38,23 +38,23 @@ class VKApi {
 
         let url = VKApi.baseUrl+path
 
-        AF.request(url, method: .get, parameters: parameters).responseJSON { response in
+        AF.request(url, method: .get, parameters: parameters).responseData { response in
             
             print("===========friends.get===========")
             
-            guard let data = response.data else { return }
+            guard let data = response.value else { return }
 
-            let friendsIds = try? JSONDecoder().decode(VkFriendsGet.self, from: data)
+            let ids = try? JSONDecoder().decode(VkFriendsGet.self, from: data)
             
-            guard let items = friendsIds?.response.items else { return }
+            guard let items = ids?.response.items else { return }
             
             self.session.friendsIds = items
             
-            complection(items)
+            completion(items)
         }
     }
     
-    func getUsers(token: String, ids: [Int], complection: @escaping ([VkUsersGetResponse]) -> ()) {
+    func getUsers(token: String, ids: [Int], completion: @escaping ([VkUsersGetResponse]) -> ()) {
 
         let idsStr = ids.map { String($0) }.joined(separator: ",")
         
@@ -69,23 +69,23 @@ class VKApi {
 
         let url = VKApi.baseUrl+path
 
-        AF.request(url, method: .get, parameters: parameters).responseJSON { response in
+        AF.request(url, method: .get, parameters: parameters).responseData { response in
             
             print("===========users.get===========")
  
-            guard let data = response.data else { return }
+            guard let data = response.value else { return }
 
-            let friendsIds = try? JSONDecoder().decode(VkUsersGet.self, from: data)
+            let users = try? JSONDecoder().decode(VkUsersGet.self, from: data)
             
-            guard let items = friendsIds?.response else { return }
+            guard let items = users?.response else { return }
             
             self.session.friends = items
             
-            complection(items)
+            completion(items)
         }
     }
 
-    func getUserPhotos(token: String, id: Int){
+    func getUserPhotos(token: String, id: Int, completion: @escaping ([VkPhoto])->()){
 
         let path = "/method/photos.get"
 
@@ -93,34 +93,53 @@ class VKApi {
             "access_token" : token,
             "owner_id": id,
             "album_id": "profile",
+            "extended": "likes",
+            "photo_sizes": "0",
             "v": "5.131"
         ]
 
         let url = VKApi.baseUrl+path
 
-        AF.request(url, parameters: parameters).responseJSON { response in
+        AF.request(url, parameters: parameters).responseData { response in
             print("===========photos.get===========")
-            print(response.value as Any)
+            
+            guard let data = response.value else { return }
+
+            let photos = try? JSONDecoder().decode(VkPhotosGet.self, from: data)
+            
+            guard let items = photos?.response.items else { return }
+            
+            completion(items)
+            
         }
     }
     
 
-    func getUserGroups(token: String, id: Int){
+    func getUserGroups(token: String, id: Int, completion: @escaping ([VkGroup])->()){
 
         let path = "/method/groups.get"
 
         let parameters: Parameters = [
             "access_token" : token,
             "user_id": id,
-            "client_id": VKApi.clientId,
+            "extended": "1",
+            "fields": "name, photo_50, description",  // название, фото, описание
             "v": "5.131"
         ]
 
         let url = VKApi.baseUrl+path
 
-        AF.request(url, parameters: parameters).responseJSON { response in
+        AF.request(url, parameters: parameters).responseData{ response in
             print("===========groups.get===========")
-            print(response.value as Any)
+            
+            guard let data = response.value  else { return}
+            
+            let groups = try? JSONDecoder().decode( VkGroupResponse.self, from: data)
+            
+            guard let groups = groups?.response.items else { return }
+            
+            completion(groups)
+
         }
     }
     
@@ -135,7 +154,6 @@ class VKApi {
             "count": "2",
             "sort": 6,
             "access_token" : token,
-            "client_id": VKApi.clientId,
             "v": "5.131"
         ]
 
