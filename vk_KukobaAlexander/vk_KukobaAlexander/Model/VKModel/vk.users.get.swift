@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - UsersGet
+// MARK: - VkUsersGet
 struct VkUsersGet: Codable {
     var response: [VkUsersGetResponse]
 }
@@ -22,6 +22,9 @@ struct VkUsersGetResponse: Codable {
     var counters: [String: Int]?
     var sex: Int?  //self.sex == "1" ? "женский" : (sex == "2" ? "мужской" : "пол не указан")
     var first_name, last_name: String?
+    var fullName: String {
+        return (self.first_name != nil ? self.first_name! : "") + (self.last_name != nil ? " " + self.last_name! : "")
+    }
     var can_access_closed, is_closed: Bool?
 
     enum CodingKeys: String, CodingKey {

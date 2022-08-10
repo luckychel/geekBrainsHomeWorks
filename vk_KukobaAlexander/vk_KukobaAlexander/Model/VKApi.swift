@@ -24,7 +24,7 @@ class VKApi {
     
     let session = Session.shared
     
-    func getFriendsList(token: String, id: Int){
+    func getFriendsList(token: String, id: Int, complection: @escaping ([Int]) -> ()){
 
         let path = "/method/friends.get"
 
@@ -39,6 +39,7 @@ class VKApi {
         let url = VKApi.baseUrl+path
 
         AF.request(url, method: .get, parameters: parameters).responseJSON { response in
+            
             print("===========friends.get===========")
             
             guard let data = response.data else { return }
@@ -49,11 +50,11 @@ class VKApi {
             
             self.session.friendsIds = items
             
-            self.getUsers(token: self.session.token, ids: self.session.friendsIds)
+            complection(items)
         }
     }
     
-    func getUsers(token: String, ids: [Int]) {
+    func getUsers(token: String, ids: [Int], complection: @escaping ([VkUsersGetResponse]) -> ()) {
 
         let idsStr = ids.map { String($0) }.joined(separator: ",")
         
@@ -68,9 +69,9 @@ class VKApi {
 
         let url = VKApi.baseUrl+path
 
-        AF.request(url, method: .get, parameters: parameters).responseJSON { [weak self] response in
+        AF.request(url, method: .get, parameters: parameters).responseJSON { response in
+            
             print("===========users.get===========")
-            guard let self = self else { return }
  
             guard let data = response.data else { return }
 
@@ -80,7 +81,7 @@ class VKApi {
             
             self.session.friends = items
             
-            //self.getUsers(token: self.session.token, ids: self.session.friendsIdsList)
+            complection(items)
         }
     }
 

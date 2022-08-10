@@ -12,7 +12,7 @@ struct VkFriendsGet: Codable {
     var response: VkFriendsGetResponse
 }
 
-// MARK: - Response
+// MARK: - VkFriendsGetResponse
 struct VkFriendsGetResponse: Codable {
     var count: Int
     var items: [Int]
