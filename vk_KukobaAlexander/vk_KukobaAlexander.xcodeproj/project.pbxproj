@@ -45,6 +45,9 @@
 		815315F2286A55CB0030537D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F1286A55CB0030537D /* Group.swift */; };
 		815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */; };
 		815315F7286A5EDA0030537D /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */; };
+		81CD93E62899CC2C009BC3B3 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93E52899CC2C009BC3B3 /* Session.swift */; };
+		81CD93E828A028BE009BC3B3 /* VKApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93E728A028BE009BC3B3 /* VKApi.swift */; };
+		81CD93EA28A032D9009BC3B3 /* LoginWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93E928A032D9009BC3B3 /* LoginWebViewController.swift */; };
 		81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE030D286275FB009C1856 /* UiViewController+extension.swift */; };
 		81DE03162868A755009C1856 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03152868A755009C1856 /* FriendsViewController.swift */; };
 		81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03172868A811009C1856 /* GroupsTableViewController.swift */; };
@@ -54,9 +57,11 @@
 		81ED6322287637B300B81225 /* FriendXIBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81ED6320287637B300B81225 /* FriendXIBTableViewCell.xib */; };
 		81ED63262876442D00B81225 /* GroupXIBTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ED63242876442D00B81225 /* GroupXIBTableViewCell.swift */; };
 		81ED63272876442D00B81225 /* GroupXIBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81ED63252876442D00B81225 /* GroupXIBTableViewCell.xib */; };
+		F6194C15968211C5CD4F0D47 /* Pods_vk_KukobaAlexander.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8594E57398E0A748E52E0042 /* Pods_vk_KukobaAlexander.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		39900E79198E96E201235836 /* Pods-vk_KukobaAlexander.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk_KukobaAlexander.debug.xcconfig"; path = "Target Support Files/Pods-vk_KukobaAlexander/Pods-vk_KukobaAlexander.debug.xcconfig"; sourceTree = "<group>"; };
 		8107E484288768EA00891999 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		8107E4862889E71600891999 /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		8107E4882889E75C00891999 /* CustomPushAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPushAnimator.swift; sourceTree = "<group>"; };
@@ -97,6 +102,9 @@
 		815315F1286A55CB0030537D /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewController.swift; sourceTree = "<group>"; };
 		815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
+		81CD93E52899CC2C009BC3B3 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		81CD93E728A028BE009BC3B3 /* VKApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKApi.swift; sourceTree = "<group>"; };
+		81CD93E928A032D9009BC3B3 /* LoginWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebViewController.swift; sourceTree = "<group>"; };
 		81DE030D286275FB009C1856 /* UiViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+extension.swift"; sourceTree = "<group>"; };
 		81DE03152868A755009C1856 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		81DE03172868A811009C1856 /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +114,8 @@
 		81ED6320287637B300B81225 /* FriendXIBTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendXIBTableViewCell.xib; sourceTree = "<group>"; };
 		81ED63242876442D00B81225 /* GroupXIBTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupXIBTableViewCell.swift; sourceTree = "<group>"; };
 		81ED63252876442D00B81225 /* GroupXIBTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupXIBTableViewCell.xib; sourceTree = "<group>"; };
+		8594E57398E0A748E52E0042 /* Pods_vk_KukobaAlexander.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vk_KukobaAlexander.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1CFA694DB61AD2E9603ADDE /* Pods-vk_KukobaAlexander.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk_KukobaAlexander.release.xcconfig"; path = "Target Support Files/Pods-vk_KukobaAlexander/Pods-vk_KukobaAlexander.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6194C15968211C5CD4F0D47 /* Pods_vk_KukobaAlexander.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +201,8 @@
 			children = (
 				8116C4F2285A788300ECB796 /* vk_KukobaAlexander */,
 				8116C4F1285A788300ECB796 /* Products */,
+				E511C95DA5FA08C45C584CFB /* Pods */,
+				A3193567E7BC3A248DFCE735 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -282,6 +295,7 @@
 			children = (
 				811697C12878FF8300CE1765 /* LoginViewController.swift */,
 				8107E484288768EA00891999 /* TabBarViewController.swift */,
+				81CD93E928A032D9009BC3B3 /* LoginWebViewController.swift */,
 				8117C05F286B707300649B1E /* Groups */,
 				815315F8286A5EE50030537D /* Friends */,
 				811697C52879007800CE1765 /* News */,
@@ -304,6 +318,8 @@
 				81DE031B2868B31F009C1856 /* Friend.swift */,
 				815315F1286A55CB0030537D /* Group.swift */,
 				811697BF2878FB8C00CE1765 /* News.swift */,
+				81CD93E52899CC2C009BC3B3 /* Session.swift */,
+				81CD93E728A028BE009BC3B3 /* VKApi.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,6 +342,23 @@
 			path = GroupXIB;
 			sourceTree = "<group>";
 		};
+		A3193567E7BC3A248DFCE735 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8594E57398E0A748E52E0042 /* Pods_vk_KukobaAlexander.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E511C95DA5FA08C45C584CFB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				39900E79198E96E201235836 /* Pods-vk_KukobaAlexander.debug.xcconfig */,
+				D1CFA694DB61AD2E9603ADDE /* Pods-vk_KukobaAlexander.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -333,9 +366,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8116C504285A788500ECB796 /* Build configuration list for PBXNativeTarget "vk_KukobaAlexander" */;
 			buildPhases = (
+				5E7CCD8875B9507850C97F45 /* [CP] Check Pods Manifest.lock */,
 				8116C4EC285A788300ECB796 /* Sources */,
 				8116C4ED285A788300ECB796 /* Frameworks */,
 				8116C4EE285A788300ECB796 /* Resources */,
+				67D23A611771124794FB8AC1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -396,6 +431,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5E7CCD8875B9507850C97F45 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-vk_KukobaAlexander-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67D23A611771124794FB8AC1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-vk_KukobaAlexander/Pods-vk_KukobaAlexander-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-vk_KukobaAlexander/Pods-vk_KukobaAlexander-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-vk_KukobaAlexander/Pods-vk_KukobaAlexander-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8116C4EC285A788300ECB796 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -418,6 +495,7 @@
 				815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */,
 				8107E48D2889E75C00891999 /* CustomInteractiveTransition.swift in Sources */,
 				811697CC287F7C3500CE1765 /* FriendsPhotoGalleryController.swift in Sources */,
+				81CD93E62899CC2C009BC3B3 /* Session.swift in Sources */,
 				8107E498289337C200891999 /* ShareNewsControl.swift in Sources */,
 				8117C07028731E9300649B1E /* LoginUIView.swift in Sources */,
 				811697EC2887342C00CE1765 /* CustomSegue.swift in Sources */,
@@ -433,7 +511,9 @@
 				811697DA2880DBED00CE1765 /* SJCenterFlowLayout.swift in Sources */,
 				81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */,
 				811697C42879005300CE1765 /* NewsViewController.swift in Sources */,
+				81CD93E828A028BE009BC3B3 /* VKApi.swift in Sources */,
 				81DE031C2868B31F009C1856 /* Friend.swift in Sources */,
+				81CD93EA28A032D9009BC3B3 /* LoginWebViewController.swift in Sources */,
 				8117C066286CDC0400649B1E /* AvatarUIView.swift in Sources */,
 				811697C02878FB8C00CE1765 /* News.swift in Sources */,
 				811697C22878FF8300CE1765 /* LoginViewController.swift in Sources */,
@@ -582,6 +662,7 @@
 		};
 		8116C505285A788500ECB796 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39900E79198E96E201235836 /* Pods-vk_KukobaAlexander.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -610,6 +691,7 @@
 		};
 		8116C506285A788500ECB796 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1CFA694DB61AD2E9603ADDE /* Pods-vk_KukobaAlexander.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

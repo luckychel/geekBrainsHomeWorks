@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LXj-JR-fz0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B6k-Da-n1K">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -27,6 +27,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qbp-jK-JXo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-318" y="305"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8mv-rG-LX4">
+            <objects>
+                <navigationController id="B6k-Da-n1K" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mwj-OR-PhZ">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="A9W-Eb-OoU" kind="relationship" relationship="rootViewController" id="8JV-JA-25p"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cpe-Bn-Gg9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-355" y="-384"/>
+        </scene>
+        <!--Login Web View Controller-->
+        <scene sceneID="eA5-1v-xC1">
+            <objects>
+                <viewController id="A9W-Eb-OoU" customClass="LoginWebViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tdz-kF-njB">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0PS-8E-Eo9">
+                                <rect key="frame" x="0.0" y="88" width="428" height="804"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Xce-U9-rCC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Xce-U9-rCC" firstAttribute="bottom" secondItem="0PS-8E-Eo9" secondAttribute="bottom" id="ewr-Ir-Ktt"/>
+                            <constraint firstItem="Xce-U9-rCC" firstAttribute="trailing" secondItem="0PS-8E-Eo9" secondAttribute="trailing" id="mXf-S9-Vpb"/>
+                            <constraint firstItem="0PS-8E-Eo9" firstAttribute="leading" secondItem="Xce-U9-rCC" secondAttribute="leading" id="uT6-5x-Dox"/>
+                            <constraint firstItem="0PS-8E-Eo9" firstAttribute="top" secondItem="Xce-U9-rCC" secondAttribute="top" id="zsc-aa-En3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gH2-7m-Ruj"/>
+                    <connections>
+                        <outlet property="vkWebView" destination="0PS-8E-Eo9" id="6bw-7P-8eJ"/>
+                        <segue destination="reK-XA-XxX" kind="show" identifier="LoginWeb" id="IGf-br-07U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dB7-4l-2oe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="470" y="-383"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -201,7 +253,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gff-yl-X9g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1290" y="305"/>
+            <point key="canvasLocation" x="1528" y="-25"/>
         </scene>
         <!--Groups Table View Controller-->
         <scene sceneID="ODC-v9-IEl">
@@ -553,7 +605,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ScA-zt-ZCW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2504" y="-490"/>
+            <point key="canvasLocation" x="2504" y="-643"/>
         </scene>
         <!--Группы-->
         <scene sceneID="i4S-S5-oZ0">
@@ -572,7 +624,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePn-si-gpg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2504" y="189"/>
+            <point key="canvasLocation" x="2504" y="47"/>
         </scene>
         <!--Новости-->
         <scene sceneID="zsg-nl-buM">
@@ -589,7 +641,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U5a-Du-CjZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2504" y="870"/>
+            <point key="canvasLocation" x="2371" y="870"/>
         </scene>
         <!--News View Controller-->
         <scene sceneID="E5L-4X-Hco">
@@ -666,6 +718,9 @@
             <point key="canvasLocation" x="4241" y="870"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="IGf-br-07U"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="folder.badge.plus" catalog="system" width="128" height="91"/>
         <image name="menucard.fill" catalog="system" width="106" height="128"/>
