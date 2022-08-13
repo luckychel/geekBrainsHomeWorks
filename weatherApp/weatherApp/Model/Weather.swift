@@ -37,12 +37,9 @@ struct Weather: Decodable {
 
 // MARK: - Current
 struct Current: Decodable {
-    let dt: Int
-    let dtDate: Date
-    let sunrise, sunset: Int?
-    let sunriseDate, sunsetDate: Date?
+    let dt: Date
+    let sunrise, sunset: Date?
     let temp, feelsLike: Double
-    let tempCelciy, feelsLikeCelciy: Double
     let pressure, humidity: Int
     let dewPoint, uvi: Double
     let clouds, visibility: Int
@@ -68,20 +65,20 @@ struct Current: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        self.dt = try container.decode(Int.self, forKey: .dt)
-        self.dtDate = Utility.TimestampToDate(ts: self.dt)
+        let dt = try container.decode(Int.self, forKey: .dt)
+        self.dt = Utility.TimestampToDate(ts: dt)
 
-        self.sunrise = try container.decode(Int?.self, forKey: .sunrise)
-        self.sunset = try container.decode(Int?.self, forKey: .sunset)
+        let sunrise = try container.decode(Int?.self, forKey: .sunrise)
+        self.sunrise = Utility.TimestampToDate(ts: sunrise)
+        
+        let sunset = try container.decode(Int?.self, forKey: .sunset)
+        self.sunset = Utility.TimestampToDate(ts: sunset)
 
-        self.sunriseDate = Utility.TimestampToDate(ts: self.sunrise)
-        self.sunsetDate = Utility.TimestampToDate(ts: self.sunset)
+        let temp = try container.decode(Double.self, forKey: .temp)
+        self.temp = Utility.KelvinToCelciy(temp: temp)
 
-        self.temp = try container.decode(Double.self, forKey: .temp)
-        self.tempCelciy = Utility.KelvinToCelciy(temp: self.temp)
-
-        self.feelsLike = try container.decode(Double.self, forKey: .feelsLike)
-        self.feelsLikeCelciy = Utility.KelvinToCelciy(temp: self.feelsLike)
+        let feelsLike = try container.decode(Double.self, forKey: .feelsLike)
+        self.feelsLike = Utility.KelvinToCelciy(temp: feelsLike)
 
         self.pressure = try container.decode(Int.self, forKey: .pressure)
         self.humidity = try container.decode(Int.self, forKey: .humidity)
@@ -95,15 +92,12 @@ struct Current: Decodable {
         self.windDeg = try container.decode(Int.self, forKey: .windDeg)
         self.windGust = try container.decode(Double.self, forKey: .windGust)
         self.weather = try container.decode([WeatherElement].self, forKey: .weather)
-
-
     }
 }
 
 // MARK: - Daily
 struct Daily: Decodable {
-    let dt, sunrise, sunset, moonrise, moonset: Int
-    let dtDate, sunriseDate, sunsetDate, moonriseDate, moonsetDate: Date
+    let dt, sunrise, sunset, moonrise, moonset: Date
     let moonPhase: Double
     let temp: Temp
     let feelsLike: FeelsLike
@@ -131,18 +125,20 @@ struct Daily: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        self.dt = try container.decode(Int.self, forKey: .dt)
-        self.dtDate = Utility.TimestampToDate(ts: self.dt)
+        let dt = try container.decode(Int.self, forKey: .dt)
+        self.dt = Utility.TimestampToDate(ts: dt)
 
-        self.sunrise = try container.decode(Int.self, forKey: .sunrise)
-        self.sunset = try container.decode(Int.self, forKey: .sunset)
-        self.moonrise = try container.decode(Int.self, forKey: .moonrise)
-        self.moonset = try container.decode(Int.self, forKey: .moonset)
+        let sunrise = try container.decode(Int.self, forKey: .sunrise)
+        self.sunrise = Utility.TimestampToDate(ts: sunrise)
         
-        self.sunriseDate = Utility.TimestampToDate(ts: self.sunrise)
-        self.sunsetDate = Utility.TimestampToDate(ts: self.sunset)
-        self.moonriseDate = Utility.TimestampToDate(ts: self.moonrise)
-        self.moonsetDate = Utility.TimestampToDate(ts: self.moonset)
+        let sunset = try container.decode(Int.self, forKey: .sunset)
+        self.sunset = Utility.TimestampToDate(ts: sunset)
+        
+        let moonrise = try container.decode(Int.self, forKey: .moonrise)
+        self.moonrise = Utility.TimestampToDate(ts: moonrise)
+        
+        let moonset = try container.decode(Int.self, forKey: .moonset)
+        self.moonset = Utility.TimestampToDate(ts: moonset)
 
         self.moonPhase = try container.decode(Double.self, forKey: .moonPhase)
         
@@ -166,10 +162,8 @@ struct Daily: Decodable {
 
 // MARK: - Current
 struct Hourly: Decodable {
-    let dt: Int
-    let dtDate: Date
+    let dt: Date
     let temp, feelsLike: Double
-    let tempCelciy, feelsLikeCelciy: Double
     let pressure, humidity: Int
     let dewPoint, uvi: Double
     let clouds, visibility: Int
@@ -196,14 +190,14 @@ struct Hourly: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        self.dt = try container.decode(Int.self, forKey: .dt)
-        self.dtDate = Utility.TimestampToDate(ts: self.dt)
+        let dt = try container.decode(Int.self, forKey: .dt)
+        self.dt = Utility.TimestampToDate(ts: dt)
 
-        self.temp = try container.decode(Double.self, forKey: .temp)
-        self.tempCelciy = Utility.KelvinToCelciy(temp: self.temp)
+        let temp = try container.decode(Double.self, forKey: .temp)
+        self.temp = Utility.KelvinToCelciy(temp: temp)
 
-        self.feelsLike = try container.decode(Double.self, forKey: .feelsLike)
-        self.feelsLikeCelciy = Utility.KelvinToCelciy(temp: self.feelsLike)
+        let feelsLike = try container.decode(Double.self, forKey: .feelsLike)
+        self.feelsLike = Utility.KelvinToCelciy(temp: feelsLike)
 
         self.pressure = try container.decode(Int.self, forKey: .pressure)
         self.humidity = try container.decode(Int.self, forKey: .humidity)
@@ -224,8 +218,8 @@ struct Hourly: Decodable {
 
 // MARK: - Minutely
 struct Minutely: Codable {
-    let dt, precipitation: Int
-    let dtDate: Date
+    let dt: Date
+    let precipitation: Int
     
     enum CodingKeys: String, CodingKey {
        case dt, precipitation
@@ -234,8 +228,8 @@ struct Minutely: Codable {
     init(from decoder: Decoder) throws {
         let contaiter = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.dt = try contaiter.decode(Int.self, forKey: .dt)
-        self.dtDate = Utility.TimestampToDate(ts: self.dt)
+        let dt = try contaiter.decode(Int.self, forKey: .dt)
+        self.dt = Utility.TimestampToDate(ts: dt)
         
         self.precipitation = try contaiter.decode(Int.self, forKey: .precipitation)
         
@@ -245,7 +239,6 @@ struct Minutely: Codable {
 // MARK: - FeelsLike
 struct FeelsLike: Decodable {
     let day, night, eve, morn: Double
-    let dayCelciy, nightCelciy, eveCelciy, mornCelciy: Double
     
     enum CodingKeys: String, CodingKey {
         case day, night, eve, morn
@@ -254,22 +247,23 @@ struct FeelsLike: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.day = try container.decode(Double.self, forKey: .day)
-        self.night = try container.decode(Double.self, forKey: .night)
-        self.eve = try container.decode(Double.self, forKey: .eve)
-        self.morn = try container.decode(Double.self, forKey: .morn)
- 
-        self.dayCelciy = Utility.KelvinToCelciy(temp: self.day)
-        self.nightCelciy = Utility.KelvinToCelciy(temp: self.night)
-        self.eveCelciy = Utility.KelvinToCelciy(temp: self.morn)
-        self.mornCelciy = Utility.KelvinToCelciy(temp: self.morn)
+        let day = try container.decode(Double.self, forKey: .day)
+        self.day = Utility.KelvinToCelciy(temp: day)
+        
+        let night = try container.decode(Double.self, forKey: .night)
+        self.night = Utility.KelvinToCelciy(temp: night)
+                                                  
+        let eve = try container.decode(Double.self, forKey: .eve)
+        self.eve = Utility.KelvinToCelciy(temp: eve)
+                                            
+        let morn = try container.decode(Double.self, forKey: .morn)
+        self.morn = Utility.KelvinToCelciy(temp: morn)
     }
 }
 
 // MARK: - Temp
 struct Temp: Codable {
     let day, min, max, night, eve, morn: Double
-    let dayCelciy, minCelciy, maxCelciy, nightCelciy, eveCelciy, mornCelciy: Double
     
     enum CodingKeys: String, CodingKey {
         case day, min, max, night, eve, morn
@@ -278,19 +272,24 @@ struct Temp: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.day = try container.decode(Double.self, forKey: .day)
-        self.min = try container.decode(Double.self, forKey: .min)
-        self.max = try container.decode(Double.self, forKey: .max)
-        self.night = try container.decode(Double.self, forKey: .night)
-        self.eve = try container.decode(Double.self, forKey: .eve)
-        self.morn = try container.decode(Double.self, forKey: .morn)
- 
-        self.dayCelciy = Utility.KelvinToCelciy(temp: self.day)
-        self.minCelciy = Utility.KelvinToCelciy(temp: self.min)
-        self.maxCelciy = Utility.KelvinToCelciy(temp: self.max)
-        self.nightCelciy = Utility.KelvinToCelciy(temp: self.night)
-        self.eveCelciy = Utility.KelvinToCelciy(temp: self.morn)
-        self.mornCelciy = Utility.KelvinToCelciy(temp: self.morn)
+        let day = try container.decode(Double.self, forKey: .day)
+        self.day = Utility.KelvinToCelciy(temp: day)
+        
+        let night = try container.decode(Double.self, forKey: .night)
+        self.night = Utility.KelvinToCelciy(temp: night)
+                                                  
+        let eve = try container.decode(Double.self, forKey: .eve)
+        self.eve = Utility.KelvinToCelciy(temp: eve)
+                                            
+        let morn = try container.decode(Double.self, forKey: .morn)
+        self.morn = Utility.KelvinToCelciy(temp: morn)
+        
+        let min = try container.decode(Double.self, forKey: .min)
+        self.min = Utility.KelvinToCelciy(temp: min)
+        
+        let max = try container.decode(Double.self, forKey: .max)
+        self.max = Utility.KelvinToCelciy(temp: max)
+
     }
 }
 
