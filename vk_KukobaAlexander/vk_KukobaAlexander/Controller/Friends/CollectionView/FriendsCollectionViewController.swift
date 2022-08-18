@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 private let reuseIdentifier = "Cell"
 
@@ -26,11 +27,17 @@ class FriendsCollectionViewController: UICollectionViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        vkApi.getUserPhotos(token: session.token, id: self.userId, completion: { [weak self] items in
+        vkApi.getUserPhotos(token: session.token, id: self.userId, completion: { [weak self] in
             
             guard let self = self else { return }
             
-            self.photos = items
+            do {
+                let realm = try Realm()
+                let photos = realm.objects(VkPhoto.self)
+                self.photos = Array(photos)
+            } catch {
+                print(error)
+            }
             
             self.collectionView.reloadData()
         })

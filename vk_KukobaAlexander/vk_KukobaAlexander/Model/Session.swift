@@ -18,6 +18,6 @@ class Session {
     var userId: Int = 0
     
     var friendsIds: [Int] = []
-    var friends : [VkUsersGetResponse] = []
+    var friends : [VkUsers] = []
     
 }

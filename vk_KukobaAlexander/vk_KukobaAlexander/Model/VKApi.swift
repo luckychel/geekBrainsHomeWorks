@@ -7,10 +7,7 @@
 
 import Foundation
 import Alamofire
-
-
-struct DecodableType: Decodable { let url: String }
-
+import RealmSwift
 
 class VKApi {
 
@@ -54,7 +51,7 @@ class VKApi {
         }
     }
     
-    func getUsers(token: String, ids: [Int], completion: @escaping ([VkUsersGetResponse]) -> ()) {
+    func getUsers(token: String, ids: [Int], completion: @escaping () -> ()) {
 
         let idsStr = ids.map { String($0) }.joined(separator: ",")
         
@@ -79,13 +76,36 @@ class VKApi {
             
             guard let items = users?.response else { return }
             
-            self.session.friends = items
+            self.session.friends = items.filter({ user in
+                return user.first_name != "DELETED"
+            })
             
-            completion(items)
+            self.saveUsersToRealm(arr: self.session.friends)
+            
+            completion()
         }
     }
+    
+    func saveUsersToRealm(arr: [VkUsers]) {
+        let realm = try! Realm()
+        
+        do {
+            let oldUsers = realm.objects(VkUsers.self)
+            realm.beginWrite()
+            realm.delete(oldUsers)
+            try realm.commitWrite()
+            
+        } catch {
+            // если произошла ошибка, выводим ее в консоль
+            print(error)
+        }
+        
+        try! realm.write({
+            realm.add(arr)
+        })
+    }
 
-    func getUserPhotos(token: String, id: Int, completion: @escaping ([VkPhoto])->()){
+    func getUserPhotos(token: String, id: Int, completion: @escaping ()->()){
 
         let path = "/method/photos.get"
 
@@ -109,13 +129,33 @@ class VKApi {
             
             guard let items = photos?.response.items else { return }
             
-            completion(items)
+            self.saveUsersPhotosToRealm(arr: items)
+            
+            completion()
             
         }
     }
     
+    func saveUsersPhotosToRealm(arr: [VkPhoto]) {
+        let realm = try! Realm()
+        
+        do {
+            let oldPhotos = realm.objects(VkPhoto.self)
+            realm.beginWrite()
+            realm.delete(oldPhotos)
+            try realm.commitWrite()
+            
+        } catch {
+            // если произошла ошибка, выводим ее в консоль
+            print(error)
+        }
+        
+        try! realm.write({
+            realm.add(arr)
+        })
+    }
 
-    func getUserGroups(token: String, id: Int, completion: @escaping ([VkGroup])->()){
+    func getUserGroups(token: String, id: Int, completion: @escaping ()->()){
 
         let path = "/method/groups.get"
 
@@ -138,11 +178,31 @@ class VKApi {
             
             guard let groups = groups?.response.items else { return }
             
-            completion(groups)
+            self.saveGroupsToRealm(arr: groups)
+            
+            completion()
 
         }
     }
     
+    func saveGroupsToRealm(arr: [VkGroup]) {
+        let realm = try! Realm()
+        
+        do {
+            let oldGroups = realm.objects(VkGroup.self)
+            realm.beginWrite()
+            realm.delete(oldGroups)
+            try realm.commitWrite()
+            
+        } catch {
+            // если произошла ошибка, выводим ее в консоль
+            print(error)
+        }
+        
+        try! realm.write({
+            realm.add(arr)
+        })
+    }
 
     func getUserGroupsSearch(token: String){
 

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class GroupsTableViewController: UITableViewController {
 
@@ -28,12 +29,19 @@ class GroupsTableViewController: UITableViewController {
         
         tableView.register(UINib(nibName: "GroupXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "GroupXIB")
         
-        vkApi.getUserGroups(token: session.token, id: session.userId) { [weak self] items in
+        vkApi.getUserGroups(token: session.token, id: session.userId) { [weak self] in
             
             guard let self = self else { return }
             
-            self.groups = items
-            self.filteredGroups = items
+            do {
+                let realm = try Realm()
+                let groups = realm.objects(VkGroup.self)
+                self.groups = Array(groups)
+            } catch {
+                print(error)
+            }
+
+            self.filteredGroups = self.groups
             
             self.tableView.reloadData()
             
@@ -68,12 +76,12 @@ class GroupsTableViewController: UITableViewController {
         }
         
         cell.groupNameXIB.text = filteredGroups[indexPath.row].name
-        cell.groupDescriptionXIB.text = filteredGroups[indexPath.row].description
+        cell.groupDescriptionXIB.text = filteredGroups[indexPath.row].Description
         let url = URL(string: filteredGroups[indexPath.row].photoGroup)
-        if let data = try? Data(contentsOf: url!) {
+        
+        if let url = url, let data = try? Data(contentsOf: url) {
             cell.groupImage.image = UIImage(data: data)
         }
-        
 
         return cell
     }

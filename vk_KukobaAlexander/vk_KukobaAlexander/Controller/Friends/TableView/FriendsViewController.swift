@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FriendsViewController: UIViewController {
 
     let session = Session.shared
     let vkApi = VKApi.shared
     
-    var friends: [VkUsersGetResponse]? 
+    var friends: [VkUsers]? 
     
     @IBOutlet var myFriends: UITableView! {
         didSet {
@@ -32,13 +33,20 @@ class FriendsViewController: UIViewController {
 
             guard let self = self else { return }
             
-            self.vkApi.getUsers(token: self.session.token, ids: res) {[weak self] users in
-
+            self.vkApi.getUsers(token: self.session.token, ids: res) {[weak self] in
+                
                 guard let self = self else { return }
                 
-                self.friends = users
+                do {
+                    let realm = try Realm()
+                    let users = realm.objects(VkUsers.self)
+                    self.friends = Array(users)
+                } catch {
+                    print(error)
+                }
+
                 self.sortedFriends = self.sort(friends: self.friends ?? nil)
-                
+
                 self.myFriends.reloadData()
             }
         }
@@ -47,11 +55,11 @@ class FriendsViewController: UIViewController {
         self.navigationItem.leftBarButtonItem  = logoutBarButtonItem
     }
     
-    var sortedFriends = [Character: [VkUsersGetResponse]]()
+    var sortedFriends = [Character: [VkUsers]]()
     
-    private func sort(friends: [VkUsersGetResponse]?) -> [Character: [VkUsersGetResponse]] {
+    private func sort(friends: [VkUsers]?) -> [Character: [VkUsers]] {
         
-        var friendsDict = [Character: [VkUsersGetResponse]]()
+        var friendsDict = [Character: [VkUsers]]()
         
         guard let friends = friends else { return friendsDict }
         
@@ -166,8 +174,8 @@ extension FriendsViewController: UITableViewDataSource {
     }
     
     
-    func getFriendByIndexPath(_ indexPath: IndexPath) -> VkUsersGetResponse {
-        var friend: VkUsersGetResponse
+    func getFriendByIndexPath(_ indexPath: IndexPath) -> VkUsers {
+        var friend: VkUsers
         
         let firstChar = sortedFriends.keys.sorted()[indexPath.section]
         
