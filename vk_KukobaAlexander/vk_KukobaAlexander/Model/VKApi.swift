@@ -87,8 +87,9 @@ class VKApi {
     }
     
     func saveUsersToRealm(arr: [VkUsers]) {
-        let realm = try! Realm()
         
+        let realm = try! Realm()
+        print(realm.configuration.fileURL)
         do {
             let oldUsers = realm.objects(VkUsers.self)
             realm.beginWrite()

@@ -18,8 +18,8 @@ class VkUsers: Object, Decodable {
     @Persisted var id: Int
     @Persisted var bdate: String?
     @Persisted var domain: String?
-    @Persisted var city: City?
-    @Persisted var country: City?
+    @Persisted var city: String?
+    @Persisted var country: String?
     @Persisted var photo_400_orig: String?
     @Persisted var status: String?
     @Persisted var sex: String
@@ -41,15 +41,24 @@ class VkUsers: Object, Decodable {
         case is_closed = "is_closed"
     }
     
+    enum CityKeys: String, CodingKey {
+        case id, title
+    }
+    
     convenience required init(from decoder: Decoder) throws {
         self.init()
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(Int.self, forKey: .id)
         self.bdate = try? container.decode(String?.self, forKey: .bdate)
-        self.domain = try container.decode(String?.self, forKey: .domain)
-        self.city = try? container.decode(City?.self, forKey: .city)
-        self.country = try? container.decode(City?.self, forKey: .country)
+        self.domain = try? container.decode(String?.self, forKey: .domain)
+        
+        let city = try? container.nestedContainer(keyedBy: CityKeys.self , forKey: .city)
+        self.city = try city?.decode(String?.self, forKey: .title)
+
+        let country = try? container.nestedContainer(keyedBy: CityKeys.self , forKey: .country)
+        self.country = try country?.decode(String?.self, forKey: .title)
+        
         self.photo_400_orig = try? container.decode(String?.self, forKey: .photo_400_orig)
         self.status = try? container.decode(String?.self, forKey: .status)
         let sex = try? container.decode(Int?.self, forKey: .sex)
@@ -61,9 +70,9 @@ class VkUsers: Object, Decodable {
 }
 
 // MARK: - City
-class City: Object, Decodable {
-    @Persisted var id: Int
-    @Persisted var title: String
+class City: Decodable {
+    var id: Int
+    var title: String
 }
 
 
