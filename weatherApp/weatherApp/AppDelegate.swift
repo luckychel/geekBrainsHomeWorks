@@ -1,12 +1,11 @@
 //
 //  AppDelegate.swift
-//  vk_KukobaAlexander
+//  weatherApp
 //
-//  Created by Александр Кукоба on 15.06.2022.
+//  Created by Александр Кукоба on 13.08.2022.
 //
 
 import UIKit
-import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,10 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        
-//        let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-//        guard let realm = try? Realm(configuration: config) else { return false }
-//        
+        // Override point for customization after application launch.
         return true
     }
 

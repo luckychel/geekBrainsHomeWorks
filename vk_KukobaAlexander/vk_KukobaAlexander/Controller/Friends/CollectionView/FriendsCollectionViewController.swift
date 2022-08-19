@@ -6,12 +6,20 @@
 //
 
 import UIKit
+import RealmSwift
 
 private let reuseIdentifier = "Cell"
 
 class FriendsCollectionViewController: UICollectionViewController {
 
+    let session = Session.shared
+    let vkApi = VKApi.shared
+    
     var arrayFriends : [Friend]? = []
+    
+    var userId : Int = 0
+    
+    var photos = [VkPhoto]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,21 +27,26 @@ class FriendsCollectionViewController: UICollectionViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
+        vkApi.getUserPhotos(token: session.token, id: self.userId, completion: { [weak self] in
+            
+            guard let self = self else { return }
+            
+            do {
+                let realm = try Realm()
+                let photos = realm.objects(VkPhoto.self)
+                self.photos = Array(photos)
+            } catch {
+                print(error)
+            }
+            
+            self.collectionView.reloadData()
+        })
+        
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
 
@@ -45,7 +58,7 @@ class FriendsCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return arrayFriends?.count ?? 1
+        return photos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -57,15 +70,12 @@ class FriendsCollectionViewController: UICollectionViewController {
             preconditionFailure("Error casting FriendCollectionViewCell")
         }
         
-        if arrayFriends?.count ?? 0 > 0 {
-            cell.nameFriend.text = arrayFriends?[indexPath.row].name
-            cell.imageFriend.image = arrayFriends?[indexPath.row].avatar
+        let url = URL(string: photos[indexPath.row].url)
+        if let data = try? Data(contentsOf: url!) {
+            cell.imageFriend.image = UIImage(data: data)
         }
-        else
-        {
-            cell.nameFriend.text = arrayFriends?[indexPath.row].name
-            cell.nameFriend.text = "No friends"
-        }
+        cell.nameFriend.text = ""
+
         
         return cell
     
@@ -79,9 +89,10 @@ class FriendsCollectionViewController: UICollectionViewController {
         let vc = storyboard?.instantiateViewController(withIdentifier: "FriendsPhotoGalleryController") as! FriendsPhotoGalleryController
 
         var images = [UIImage]()
-        for fr in arrayFriends! {
-            if fr.avatar != nil {
-                images.append(fr.avatar!)
+        for fr in photos {
+            let url = URL(string: fr.url)
+            if let data = try? Data(contentsOf: url!) {
+                images.append(UIImage(data: data)!)
             }
         }
     

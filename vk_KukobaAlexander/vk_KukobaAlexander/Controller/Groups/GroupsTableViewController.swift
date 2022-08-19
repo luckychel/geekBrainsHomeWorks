@@ -6,25 +6,22 @@
 //
 
 import UIKit
+import RealmSwift
 
 class GroupsTableViewController: UITableViewController {
 
+    let session = Session.shared
+    let vkApi = VKApi.shared
+    
+    var groups = [VkGroup]()
+    var filteredGroups = [VkGroup]()
+    
     @IBOutlet var searchBarGroups: UISearchBar! {
         didSet {
             searchBarGroups.delegate = self
         }
     }
-    
-    var filteredGroups = [Group]()
-    
-    var groups = [
-        Group(name: "Программисты C#", description: "Эта группа создана для ищущих себя в великолепном языке программирования от компании Microsoft"),
-        Group(name: "Отдых на реке с палатками", description: "Встречи, посиделки у костра, рыбалка, уха, коллективное кормление комаров, палаточный отдых, душевные беседы"),
-        Group(name: "Ремонт своими руками", description: "Специалисты этой группы подскажут вам, как добиться желаемого резщультата при минимальных затратах"),
-        Group(name: "Музыка техно, драм, дип хаус", description: "Здесь вы можете найти интересующий вас трек и скачать себе на устройство"),
-        Group(name: "Вся литература", description: "Художественная литература, научная литература, фантастика, зарубежная литература, история, стихи")
-    ]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,7 +29,26 @@ class GroupsTableViewController: UITableViewController {
         
         tableView.register(UINib(nibName: "GroupXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "GroupXIB")
         
-        filteredGroups = groups
+        vkApi.getUserGroups(token: session.token, id: session.userId) { [weak self] in
+            
+            guard let self = self else { return }
+            
+            do {
+                let realm = try Realm()
+                let groups = realm.objects(VkGroup.self)
+                self.groups = Array(groups)
+            } catch {
+                print(error)
+            }
+
+            self.filteredGroups = self.groups
+            
+            self.tableView.reloadData()
+            
+        }
+        
+        
+       
     }
 
     // MARK: - Table view data source
@@ -60,7 +76,12 @@ class GroupsTableViewController: UITableViewController {
         }
         
         cell.groupNameXIB.text = filteredGroups[indexPath.row].name
-        cell.groupDescriptionXIB.text = filteredGroups[indexPath.row].description
+        cell.groupDescriptionXIB.text = filteredGroups[indexPath.row].Description
+        let url = URL(string: filteredGroups[indexPath.row].photoGroup)
+        
+        if let url = url, let data = try? Data(contentsOf: url) {
+            cell.groupImage.image = UIImage(data: data)
+        }
 
         return cell
     }
@@ -69,20 +90,22 @@ class GroupsTableViewController: UITableViewController {
     //возврат по клику на группу при добавлении на следующем экране
     @IBAction func addSelectGroup(segue: UIStoryboardSegue) {
         //print("unwined")
-        if (segue.identifier == "addGroupToAll") {
-            guard let allGroupsController = segue.source as? GroupsViewController else { return }
-            
-            if let indexPath = allGroupsController.allGroups.indexPathForSelectedRow {
-                let group = allGroupsController.groups[indexPath.row]
-                
-                if (!filteredGroups.contains(where: {$0.name == group.name})) {
-                    filteredGroups.append(group)
-                    groups.append(group)
-                    
-                    tableView.reloadData()
-                }
-            }
-        }
+        
+        
+//        if (segue.identifier == "addGroupToAll") {
+//            guard let allGroupsController = segue.source as? GroupsViewController else { return }
+//            
+//            if let indexPath = allGroupsController.allGroups.indexPathForSelectedRow {
+//                let group = allGroupsController.groups[indexPath.row]
+//                
+//                if (!self.filteredGroups.contains(where: {$0.name == group.name})) {
+//                    self.filteredGroups.append(group)
+//                    self.groups.append(group)
+//                    
+//                    self.tableView.reloadData()
+//                }
+//            }
+//        }
 
         //print(sourceVC)
         //print(segue.destination)
