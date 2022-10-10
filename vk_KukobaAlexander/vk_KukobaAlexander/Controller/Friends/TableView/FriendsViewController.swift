@@ -13,7 +13,10 @@ class FriendsViewController: UIViewController {
     let session = Session.shared
     let vkApi = VKApi.shared
     
-    var friends: [VkUsers]? 
+    var friends: [VkUsers]?
+    var sortedFriends = [Character: [VkUsers]]()
+    
+    let refresh = UIRefreshControl()
     
     @IBOutlet var myFriends: UITableView! {
         didSet {
@@ -29,6 +32,29 @@ class FriendsViewController: UIViewController {
         
         myFriends.register(UINib(nibName: "FriendXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendXIB")
         
+        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutUser))
+        self.navigationItem.leftBarButtonItem  = logoutBarButtonItem
+        
+        refresh.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        myFriends.addSubview(refresh)
+        
+        guard let realm = RealmHelper.getRealm() else { return }
+        //print(realm.configuration.fileURL)
+        
+        //MARK: Проверка на существование объекта Users в Realm
+        let users = realm.objects(VkUsers.self)
+        
+        if users.isEmpty {
+            self.refreshData(self)
+        }
+        else {
+            self.setUsers(Array(users))
+        }
+        
+    }
+    
+    @objc private func refreshData (_ sender: AnyObject) {
+        
         vkApi.getFriendsList(token: session.token, id: session.userId) {[weak self] res in
 
             guard let self = self else { return }
@@ -37,25 +63,25 @@ class FriendsViewController: UIViewController {
                 
                 guard let self = self else { return }
                 
-                do {
-                    let realm = try Realm()
-                    let users = realm.objects(VkUsers.self)
-                    self.friends = Array(users)
-                } catch {
-                    print(error)
+                guard let realm = RealmHelper.getRealm() else { return }
+                let users = realm.objects(VkUsers.self)
+                
+                self.setUsers(Array(users))
+                
+                if self.refresh.isRefreshing {
+                    self.refresh.endRefreshing()
                 }
-
-                self.sortedFriends = self.sort(friends: self.friends ?? nil)
-
-                self.myFriends.reloadData()
             }
         }
-        
-        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutUser))
-        self.navigationItem.leftBarButtonItem  = logoutBarButtonItem
     }
     
-    var sortedFriends = [Character: [VkUsers]]()
+    private func setUsers(_ users: [VkUsers]) {
+        self.friends = users
+        
+        self.sortedFriends = self.sort(friends: self.friends ?? nil)
+
+        self.myFriends.reloadData()
+    }
     
     private func sort(friends: [VkUsers]?) -> [Character: [VkUsers]] {
         
@@ -155,9 +181,6 @@ extension FriendsViewController: UITableViewDataSource {
         animation.beginTime = CACurrentMediaTime()
         //animation.fillMode = CAMediaTimingFillMode.backwards
         cell.imageFriendXIB.layer.add(animation, forKey: nil)
-   
-        //MARK: перешел на XIB
-    
         
         Utilities().UrlToImage(url: friend.photo_400_orig) { res in
             cell.imageFriendXIB.image = res
@@ -195,4 +218,3 @@ extension FriendsViewController: UITableViewDelegate {
 
     }
 }
-

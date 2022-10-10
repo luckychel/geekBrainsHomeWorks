@@ -16,6 +16,8 @@ class GroupsTableViewController: UITableViewController {
     var groups = [VkGroup]()
     var filteredGroups = [VkGroup]()
     
+    let refresh = UIRefreshControl()
+    
     @IBOutlet var searchBarGroups: UISearchBar! {
         didSet {
             searchBarGroups.delegate = self
@@ -29,26 +31,49 @@ class GroupsTableViewController: UITableViewController {
         
         tableView.register(UINib(nibName: "GroupXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "GroupXIB")
         
+        refresh.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        tableView.addSubview(refresh)
+        
+        
+        guard let realm = RealmHelper.getRealm() else { return }
+        //print(realm.configuration.fileURL)
+        
+        //MARK: Проверка на существование объекта VkGroup в Realm
+        let groups = realm.objects(VkGroup.self)
+        
+        if groups.isEmpty {
+            self.refreshData(self)
+        }
+        else {
+            self.setGroups(Array(groups))
+        }
+        
+        
+    }
+    
+    @objc private func refreshData (_ sender: AnyObject) {
+        
         vkApi.getUserGroups(token: session.token, id: session.userId) { [weak self] in
             
             guard let self = self else { return }
             
-            do {
-                let realm = try Realm()
-                let groups = realm.objects(VkGroup.self)
-                self.groups = Array(groups)
-            } catch {
-                print(error)
-            }
-
-            self.filteredGroups = self.groups
+            guard let realm = RealmHelper.getRealm() else { return }
+            let groups = realm.objects(VkGroup.self)
+            self.setGroups(Array(groups))
             
-            self.tableView.reloadData()
+            if self.refresh.isRefreshing {
+                self.refresh.endRefreshing()
+            }
             
         }
-        
-        
-       
+    }
+
+    private func setGroups(_ groups: [VkGroup]) {
+        self.groups = Array(groups)
+
+        self.filteredGroups = self.groups
+
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source

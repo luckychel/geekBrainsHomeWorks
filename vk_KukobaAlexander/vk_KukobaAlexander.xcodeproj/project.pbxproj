@@ -42,6 +42,7 @@
 		8117C068286CEA6500649B1E /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C067286CEA6500649B1E /* LikeControl.swift */; };
 		8117C06C286CF50F00649B1E /* UIView + IBInspectable extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C06B286CF50F00649B1E /* UIView + IBInspectable extension.swift */; };
 		8117C07028731E9300649B1E /* LoginUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C06F28731E9300649B1E /* LoginUIView.swift */; };
+		8146D66928F36AD100976BF0 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8146D66828F36AD100976BF0 /* RealmHelper.swift */; };
 		815315F2286A55CB0030537D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F1286A55CB0030537D /* Group.swift */; };
 		815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */; };
 		815315F7286A5EDA0030537D /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */; };
@@ -103,6 +104,7 @@
 		8117C067286CEA6500649B1E /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		8117C06B286CF50F00649B1E /* UIView + IBInspectable extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + IBInspectable extension.swift"; sourceTree = "<group>"; };
 		8117C06F28731E9300649B1E /* LoginUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginUIView.swift; path = vk_KukobaAlexander/LoginUIView.swift; sourceTree = SOURCE_ROOT; };
+		8146D66828F36AD100976BF0 /* RealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		815315F1286A55CB0030537D /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewController.swift; sourceTree = "<group>"; };
 		815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -199,7 +201,9 @@
 				8107E4892889E75C00891999 /* CustomPopAnimator.swift */,
 				8107E4882889E75C00891999 /* CustomPushAnimator.swift */,
 				811697D92880DBED00CE1765 /* SJCenterFlowLayout.swift */,
+				81CD93E728A028BE009BC3B3 /* VKApi.swift */,
 				8107E48E28932B2A00891999 /* Utilities.swift */,
+				8146D66828F36AD100976BF0 /* RealmHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -338,7 +342,6 @@
 				815315F1286A55CB0030537D /* Group.swift */,
 				811697BF2878FB8C00CE1765 /* News.swift */,
 				81CD93E52899CC2C009BC3B3 /* Session.swift */,
-				81CD93E728A028BE009BC3B3 /* VKApi.swift */,
 				81CD93F328A43B25009BC3B3 /* VKModel */,
 			);
 			path = Model;
@@ -521,6 +524,7 @@
 				811697CC287F7C3500CE1765 /* FriendsPhotoGalleryController.swift in Sources */,
 				81CD93E62899CC2C009BC3B3 /* Session.swift in Sources */,
 				8107E498289337C200891999 /* ShareNewsControl.swift in Sources */,
+				8146D66928F36AD100976BF0 /* RealmHelper.swift in Sources */,
 				8117C07028731E9300649B1E /* LoginUIView.swift in Sources */,
 				811697EC2887342C00CE1765 /* CustomSegue.swift in Sources */,
 				811697C82879079300CE1765 /* NewsXIBTableViewCell.swift in Sources */,

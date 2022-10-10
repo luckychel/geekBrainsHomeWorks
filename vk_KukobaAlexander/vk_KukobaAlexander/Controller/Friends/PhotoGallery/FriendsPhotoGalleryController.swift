@@ -46,6 +46,7 @@ class FriendsPhotoGalleryController: UIViewController {
     
 }
 
+
 extension FriendsPhotoGalleryController:UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count

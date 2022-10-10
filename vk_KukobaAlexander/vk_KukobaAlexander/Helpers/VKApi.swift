@@ -80,30 +80,10 @@ class VKApi {
                 return user.first_name != "DELETED"
             })
             
-            self.saveUsersToRealm(arr: self.session.friends)
+            RealmHelper.saveUsersToRealm(arr: self.session.friends)
             
             completion()
         }
-    }
-    
-    func saveUsersToRealm(arr: [VkUsers]) {
-        
-        let realm = try! Realm()
-        print(realm.configuration.fileURL)
-        do {
-            let oldUsers = realm.objects(VkUsers.self)
-            realm.beginWrite()
-            realm.delete(oldUsers)
-            try realm.commitWrite()
-            
-        } catch {
-            // если произошла ошибка, выводим ее в консоль
-            print(error)
-        }
-        
-        try! realm.write({
-            realm.add(arr)
-        })
     }
 
     func getUserPhotos(token: String, id: Int, completion: @escaping ()->()){
@@ -130,30 +110,11 @@ class VKApi {
             
             guard let items = photos?.response.items else { return }
             
-            self.saveUsersPhotosToRealm(arr: items)
+            RealmHelper.saveUsersPhotosToRealm(arr: items, user_id: id)
             
             completion()
             
         }
-    }
-    
-    func saveUsersPhotosToRealm(arr: [VkPhoto]) {
-        let realm = try! Realm()
-        
-        do {
-            let oldPhotos = realm.objects(VkPhoto.self)
-            realm.beginWrite()
-            realm.delete(oldPhotos)
-            try realm.commitWrite()
-            
-        } catch {
-            // если произошла ошибка, выводим ее в консоль
-            print(error)
-        }
-        
-        try! realm.write({
-            realm.add(arr)
-        })
     }
 
     func getUserGroups(token: String, id: Int, completion: @escaping ()->()){
@@ -179,30 +140,11 @@ class VKApi {
             
             guard let groups = groups?.response.items else { return }
             
-            self.saveGroupsToRealm(arr: groups)
+            RealmHelper.saveGroupsToRealm(arr: groups)
             
             completion()
 
         }
-    }
-    
-    func saveGroupsToRealm(arr: [VkGroup]) {
-        let realm = try! Realm()
-        
-        do {
-            let oldGroups = realm.objects(VkGroup.self)
-            realm.beginWrite()
-            realm.delete(oldGroups)
-            try realm.commitWrite()
-            
-        } catch {
-            // если произошла ошибка, выводим ее в консоль
-            print(error)
-        }
-        
-        try! realm.write({
-            realm.add(arr)
-        })
     }
 
     func getUserGroupsSearch(token: String){
