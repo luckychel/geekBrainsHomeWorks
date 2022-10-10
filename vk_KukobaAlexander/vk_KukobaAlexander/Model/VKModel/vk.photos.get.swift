@@ -22,12 +22,14 @@ class VkPhotos: Decodable {
 class VkPhoto: Object, Decodable {
 
     @Persisted var id: Int = 0
+    @Persisted var owner_id: Int = 0
     @Persisted var url: String = ""
     @Persisted var count: Int = 0
     @Persisted var userLikes: Int = 0
     
     enum CodingKeys: String, CodingKey{
         case id
+        case owner_id
         case likes
         case sizes
     }
@@ -46,6 +48,7 @@ class VkPhoto: Object, Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(Int.self, forKey: .id)
+        self.owner_id = try container.decode(Int.self, forKey: .owner_id)
         var sizeValues = try container.nestedUnkeyedContainer(forKey: .sizes)
         let firstSizeValue = try sizeValues.nestedContainer(keyedBy: SizeKeys.self)
         self.url = try firstSizeValue.decode(String.self, forKey: .url)

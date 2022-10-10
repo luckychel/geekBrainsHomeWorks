@@ -21,31 +21,57 @@ class FriendsCollectionViewController: UICollectionViewController {
     
     var photos = [VkPhoto]()
     
+    let refresh = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
-        vkApi.getUserPhotos(token: session.token, id: self.userId, completion: { [weak self] in
-            
-            guard let self = self else { return }
-            
-            do {
-                let realm = try Realm()
-                let photos = realm.objects(VkPhoto.self)
-                self.photos = Array(photos)
-            } catch {
-                print(error)
-            }
-            
-            self.collectionView.reloadData()
-        })
         
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
-        // Do any additional setup after loading the view.
+        refresh.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        collectionView.addSubview(refresh)
+        
+        guard let realm = RealmHelper.getRealm() else { return }
+        //print(realm.configuration.fileURL)
+        
+        //MARK: Проверка на существование объекта Photos в Realm
+        let photos = realm.objects(VkPhoto.self).where {
+            ($0.owner_id == self.userId)
+        }
+        
+        if photos.isEmpty {
+            self.refreshData(self)
+        }
+        else {
+            self.setPhotos(Array(photos))
+        }
+
+    }
+    
+    private func setPhotos(_ photos: [VkPhoto]) {
+        self.photos = photos
+        self.collectionView.reloadData()
+    }
+    
+    @objc private func refreshData(_ sender: AnyObject)  {
+        vkApi.getUserPhotos(token: session.token, id: self.userId, completion: { [weak self] in
+            
+            guard let self = self else { return }
+            
+            guard let realm = RealmHelper.getRealm() else { return }
+            
+            let photos = realm.objects(VkPhoto.self)
+            
+            self.setPhotos(Array(photos))
+            
+            if self.refresh.isRefreshing {
+                self.refresh.endRefreshing()
+            }
+        })
     }
 
     // MARK: UICollectionViewDataSource
