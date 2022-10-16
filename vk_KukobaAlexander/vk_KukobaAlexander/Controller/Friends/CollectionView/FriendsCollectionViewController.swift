@@ -59,24 +59,19 @@ class FriendsCollectionViewController: BaseUICollectionViewController {
         }
         
         token = photos.observe{( changes: RealmCollectionChange) in
+            guard let collectionView = self.collectionView else { return }
+
             switch changes {
-                
                 case .initial(_):
                     print("initial")
                     self.reloadData()
                 case .update(_, deletions: let deletions, insertions: let insertions, modifications: let modifications):
-                    if !deletions.isEmpty
-                    {
-                        print("deletions")
-                    }
-                    if !insertions.isEmpty
-                    {
-                        print("insertions")
-                    }
-                    if !modifications.isEmpty
-                    {
-                        print("modifications")
-                    }
+                    collectionView.performBatchUpdates({
+                        collectionView.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0) }))
+                        collectionView.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0)}))
+                        collectionView.reloadItems(at: modifications.map({ IndexPath(row: $0, section: 0) }))
+                    }, completion: nil)
+
                 case .error(let err):
                     print(err)
             }
