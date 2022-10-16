@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class FriendsViewController: UIViewController {
+class FriendsViewController: BaseUIViewController {
 
     let session = Session.shared
     let vkApi = VKApi.shared

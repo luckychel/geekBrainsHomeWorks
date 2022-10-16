@@ -10,7 +10,7 @@ import RealmSwift
 
 private let reuseIdentifier = "Cell"
 
-class FriendsCollectionViewController: UICollectionViewController {
+class FriendsCollectionViewController: BaseUICollectionViewController {
 
     let session = Session.shared
     let vkApi = VKApi.shared
@@ -23,11 +23,18 @@ class FriendsCollectionViewController: UICollectionViewController {
     
     let refresh = UIRefreshControl()
     
+    var realm: Realm?
+    
+    var token: NotificationToken?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        
+        // Включает вертикальный скрол приндутельно для появления обновления свайпом сверху вниз
+        self.collectionView.alwaysBounceVertical = true
         
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -36,8 +43,9 @@ class FriendsCollectionViewController: UICollectionViewController {
         collectionView.addSubview(refresh)
         
         guard let realm = RealmHelper.getRealm() else { return }
+        self.realm = realm
         //print(realm.configuration.fileURL)
-        
+
         //MARK: Проверка на существование объекта Photos в Realm
         let photos = realm.objects(VkPhoto.self).where {
             ($0.owner_id == self.userId)
@@ -49,28 +57,85 @@ class FriendsCollectionViewController: UICollectionViewController {
         else {
             self.setPhotos(Array(photos))
         }
-
+        
+        token = photos.observe{( changes: RealmCollectionChange) in
+            switch changes {
+                
+                case .initial(_):
+                    print("initial")
+                case .update(_, deletions: let deletions, insertions: let insertions, modifications: let modifications):
+                    if !deletions.isEmpty
+                    {
+                        print("deletions")
+                        self.reloadData()
+                    }
+                    if !insertions.isEmpty
+                    {
+                        print("insertions")
+                        self.reloadData()
+                    }
+                    if !modifications.isEmpty
+                    {
+                        print("modifications")
+                    }
+                case .error(let err):
+                    print(err)
+            }
+        }
+        
+//        self.collectionView?.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.new, context: nil)
     }
     
+//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//        if let observedObject = object as? UICollectionView, observedObject == self.collectionView {
+//            print("collectionViewDidLoad")
+//            self.collectionView?.removeObserver(self, forKeyPath: "contentSize")
+//        }
+//    }
+    
     private func setPhotos(_ photos: [VkPhoto]) {
+        print("set data")
         self.photos = photos
+    }
+    
+    private func reloadData() {
+        print("reload data")
         self.collectionView.reloadData()
     }
     
     @objc private func refreshData(_ sender: AnyObject)  {
+        
+        print("=====START LOADING=====")
+        self.startLoading()
+        
         vkApi.getUserPhotos(token: session.token, id: self.userId, completion: { [weak self] in
             
             guard let self = self else { return }
             
             guard let realm = RealmHelper.getRealm() else { return }
             
-            let photos = realm.objects(VkPhoto.self)
+            let photos = realm.objects(VkPhoto.self).where {
+                ($0.owner_id == self.userId)
+            }
+
+            for fr in photos {
+                let url = URL(string: fr.url)
+                if let data = try? Data(contentsOf: url!) {
+                    try! self.realm!.write {
+                        fr.savedImage = data
+                    }
+                }
+            }
             
             self.setPhotos(Array(photos))
             
             if self.refresh.isRefreshing {
                 self.refresh.endRefreshing()
             }
+            
+            print("=====END LOADING======")
+            self.endLoading()
+            
         })
     }
 
@@ -96,16 +161,28 @@ class FriendsCollectionViewController: UICollectionViewController {
             preconditionFailure("Error casting FriendCollectionViewCell")
         }
         
-        let url = URL(string: photos[indexPath.row].url)
-        if let data = try? Data(contentsOf: url!) {
-            cell.imageFriend.image = UIImage(data: data)
+        if let savedImage = photos[indexPath.row].savedImage {
+            cell.imageFriend.image = UIImage(data: savedImage)
         }
-        cell.nameFriend.text = ""
+        else
+        {
+            //подстраховка
+            let url = URL(string: photos[indexPath.row].url)
+            if let data = try? Data(contentsOf: url!) {
+                cell.imageFriend.image = UIImage(data: data)
+                try! self.realm!.write {
+                    photos[indexPath.row].savedImage = data
+                }
+            }
+        }
 
+        cell.nameFriend.text = ""
         
         return cell
     
     }
+    
+
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard arrayFriends != nil else {
@@ -116,9 +193,8 @@ class FriendsCollectionViewController: UICollectionViewController {
 
         var images = [UIImage]()
         for fr in photos {
-            let url = URL(string: fr.url)
-            if let data = try? Data(contentsOf: url!) {
-                images.append(UIImage(data: data)!)
+            if let savedImage = fr.savedImage {
+                images.append(UIImage(data: savedImage)!)
             }
         }
     
