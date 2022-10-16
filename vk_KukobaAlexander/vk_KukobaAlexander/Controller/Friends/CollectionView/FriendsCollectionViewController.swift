@@ -63,16 +63,15 @@ class FriendsCollectionViewController: BaseUICollectionViewController {
                 
                 case .initial(_):
                     print("initial")
+                    self.reloadData()
                 case .update(_, deletions: let deletions, insertions: let insertions, modifications: let modifications):
                     if !deletions.isEmpty
                     {
                         print("deletions")
-                        self.reloadData()
                     }
                     if !insertions.isEmpty
                     {
                         print("insertions")
-                        self.reloadData()
                     }
                     if !modifications.isEmpty
                     {
@@ -96,6 +95,7 @@ class FriendsCollectionViewController: BaseUICollectionViewController {
     private func setPhotos(_ photos: [VkPhoto]) {
         print("set data")
         self.photos = photos
+        self.reloadData()
     }
     
     private func reloadData() {
@@ -129,13 +129,13 @@ class FriendsCollectionViewController: BaseUICollectionViewController {
             
             self.setPhotos(Array(photos))
             
-            if self.refresh.isRefreshing {
-                self.refresh.endRefreshing()
-            }
-            
             print("=====END LOADING======")
             self.endLoading()
             
+            if self.refresh.isRefreshing {
+                self.refresh.endRefreshing()
+            }
+
         })
     }
 
