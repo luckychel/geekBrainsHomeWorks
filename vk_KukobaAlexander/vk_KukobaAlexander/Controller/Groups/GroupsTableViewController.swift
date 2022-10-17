@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class GroupsTableViewController: UITableViewController {
+class GroupsTableViewController: BaseUITableViewController {
 
     let session = Session.shared
     let vkApi = VKApi.shared
@@ -53,13 +53,20 @@ class GroupsTableViewController: UITableViewController {
     
     @objc private func refreshData (_ sender: AnyObject) {
         
+        print("=====START LOADING=====")
+        self.startLoading()
+
         vkApi.getUserGroups(token: session.token, id: session.userId) { [weak self] in
             
             guard let self = self else { return }
             
             guard let realm = RealmHelper.getRealm() else { return }
             let groups = realm.objects(VkGroup.self)
+            
             self.setGroups(Array(groups))
+            
+            print("=====END LOADING======")
+            self.endLoading()
             
             if self.refresh.isRefreshing {
                 self.refresh.endRefreshing()

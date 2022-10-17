@@ -24,8 +24,8 @@ class VkPhoto: Object, Decodable {
     @Persisted var id: Int = 0
     @Persisted var owner_id: Int = 0
     @Persisted var url: String = ""
-    @Persisted var count: Int = 0
-    @Persisted var userLikes: Int = 0
+    @Persisted var likeCount: Int = 0
+    @Persisted var savedImage: Data?
     
     enum CodingKeys: String, CodingKey{
         case id
@@ -40,7 +40,6 @@ class VkPhoto: Object, Decodable {
     
     enum LikesKeys: String, CodingKey{
         case count
-        case userLikes = "user_likes"
     }
 
     convenience required init(from decoder: Decoder) throws {
@@ -53,8 +52,7 @@ class VkPhoto: Object, Decodable {
         let firstSizeValue = try sizeValues.nestedContainer(keyedBy: SizeKeys.self)
         self.url = try firstSizeValue.decode(String.self, forKey: .url)
         let likeValues = try container.nestedContainer(keyedBy: LikesKeys.self, forKey: .likes)
-        self.count = try likeValues.decode(Int.self, forKey: .count)
-        self.userLikes = try likeValues.decode(Int.self, forKey: .userLikes)
+        self.likeCount = try likeValues.decode(Int.self, forKey: .count)
     }
 }
 

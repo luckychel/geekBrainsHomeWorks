@@ -36,8 +36,7 @@ class VKApi {
         let url = VKApi.baseUrl+path
 
         AF.request(url, method: .get, parameters: parameters).responseData { response in
-            
-            print("===========friends.get===========")
+            //print("===========friends.get===========")
             
             guard let data = response.value else { return }
 
@@ -67,8 +66,7 @@ class VKApi {
         let url = VKApi.baseUrl+path
 
         AF.request(url, method: .get, parameters: parameters).responseData { response in
-            
-            print("===========users.get===========")
+            //print("===========users.get===========")
  
             guard let data = response.value else { return }
 
@@ -102,7 +100,7 @@ class VKApi {
         let url = VKApi.baseUrl+path
 
         AF.request(url, parameters: parameters).responseData { response in
-            print("===========photos.get===========")
+            //print("===========photos.get===========")
             
             guard let data = response.value else { return }
 
@@ -132,7 +130,7 @@ class VKApi {
         let url = VKApi.baseUrl+path
 
         AF.request(url, parameters: parameters).responseData{ response in
-            print("===========groups.get===========")
+            //print("===========groups.get===========")
             
             guard let data = response.value  else { return}
             
@@ -163,7 +161,7 @@ class VKApi {
         let url = VKApi.baseUrl+path
 
         AF.request(url, parameters: parameters).responseJSON { response in
-            print("===========groups.search ===========")
+            //print("===========groups.search ===========")
             print(response.value as Any)
         }
     }

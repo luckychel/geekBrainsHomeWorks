@@ -50,9 +50,9 @@ class RealmHelper {
         guard let realm = RealmHelper.getRealm() else { return }
         
         do {
-            let oldPhotos = realm.objects(VkPhoto.self)//.where {
-            //    $0.owner_id == user_id
-            //}
+            let oldPhotos = realm.objects(VkPhoto.self).where {
+                $0.owner_id == user_id
+            }
             realm.beginWrite()
             realm.delete(oldPhotos)
             try realm.commitWrite()

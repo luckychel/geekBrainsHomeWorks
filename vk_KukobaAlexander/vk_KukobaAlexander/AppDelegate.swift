@@ -15,9 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 //        
-//      let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-//      guard let realm = try? Realm(configuration: config) else { return false }
-//        
+        let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+        guard let realm = try? Realm(configuration: config) else { return false }
+        print(realm.configuration.fileURL as Any)
         return true
     }
 
