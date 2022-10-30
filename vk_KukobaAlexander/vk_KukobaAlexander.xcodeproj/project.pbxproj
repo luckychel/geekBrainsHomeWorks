@@ -42,9 +42,23 @@
 		8117C068286CEA6500649B1E /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C067286CEA6500649B1E /* LikeControl.swift */; };
 		8117C06C286CF50F00649B1E /* UIView + IBInspectable extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C06B286CF50F00649B1E /* UIView + IBInspectable extension.swift */; };
 		8117C07028731E9300649B1E /* LoginUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8117C06F28731E9300649B1E /* LoginUIView.swift */; };
+		8145B82828FB64D300B1DB58 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145B82628FB64D300B1DB58 /* LoadingViewController.swift */; };
+		8145B82928FB64D300B1DB58 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8145B82728FB64D300B1DB58 /* LoadingViewController.xib */; };
+		8145B82C28FB691700B1DB58 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145B82B28FB691700B1DB58 /* BaseUIViewController.swift */; };
+		8145B82E28FB6E2A00B1DB58 /* BaseUICollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145B82D28FB6E2A00B1DB58 /* BaseUICollectionViewController.swift */; };
+		8145B83028FB807B00B1DB58 /* LoadingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145B82F28FB807B00B1DB58 /* LoadingProtocol.swift */; };
+		8145B83228FB88D300B1DB58 /* BaseUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145B83128FB88D300B1DB58 /* BaseUITableViewController.swift */; };
+		8146D66928F36AD100976BF0 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8146D66828F36AD100976BF0 /* RealmHelper.swift */; };
 		815315F2286A55CB0030537D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F1286A55CB0030537D /* Group.swift */; };
 		815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */; };
 		815315F7286A5EDA0030537D /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */; };
+		81CD93E62899CC2C009BC3B3 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93E52899CC2C009BC3B3 /* Session.swift */; };
+		81CD93E828A028BE009BC3B3 /* VKApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93E728A028BE009BC3B3 /* VKApi.swift */; };
+		81CD93EA28A032D9009BC3B3 /* LoginWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93E928A032D9009BC3B3 /* LoginWebViewController.swift */; };
+		81CD93F028A2EF5C009BC3B3 /* vk.friends.get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93EF28A2EF5C009BC3B3 /* vk.friends.get.swift */; };
+		81CD93F228A2FE35009BC3B3 /* vk.users.get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93F128A2FE35009BC3B3 /* vk.users.get.swift */; };
+		81CD93F528A4422D009BC3B3 /* vk.photos.get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93F428A4422D009BC3B3 /* vk.photos.get.swift */; };
+		81CD93F728A4605D009BC3B3 /* vk.group.get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93F628A4605D009BC3B3 /* vk.group.get.swift */; };
 		81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE030D286275FB009C1856 /* UiViewController+extension.swift */; };
 		81DE03162868A755009C1856 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03152868A755009C1856 /* FriendsViewController.swift */; };
 		81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE03172868A811009C1856 /* GroupsTableViewController.swift */; };
@@ -54,9 +68,11 @@
 		81ED6322287637B300B81225 /* FriendXIBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81ED6320287637B300B81225 /* FriendXIBTableViewCell.xib */; };
 		81ED63262876442D00B81225 /* GroupXIBTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ED63242876442D00B81225 /* GroupXIBTableViewCell.swift */; };
 		81ED63272876442D00B81225 /* GroupXIBTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81ED63252876442D00B81225 /* GroupXIBTableViewCell.xib */; };
+		F6194C15968211C5CD4F0D47 /* Pods_vk_KukobaAlexander.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8594E57398E0A748E52E0042 /* Pods_vk_KukobaAlexander.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		39900E79198E96E201235836 /* Pods-vk_KukobaAlexander.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk_KukobaAlexander.debug.xcconfig"; path = "Target Support Files/Pods-vk_KukobaAlexander/Pods-vk_KukobaAlexander.debug.xcconfig"; sourceTree = "<group>"; };
 		8107E484288768EA00891999 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		8107E4862889E71600891999 /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		8107E4882889E75C00891999 /* CustomPushAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPushAnimator.swift; sourceTree = "<group>"; };
@@ -94,9 +110,23 @@
 		8117C067286CEA6500649B1E /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		8117C06B286CF50F00649B1E /* UIView + IBInspectable extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + IBInspectable extension.swift"; sourceTree = "<group>"; };
 		8117C06F28731E9300649B1E /* LoginUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginUIView.swift; path = vk_KukobaAlexander/LoginUIView.swift; sourceTree = SOURCE_ROOT; };
+		8145B82628FB64D300B1DB58 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		8145B82728FB64D300B1DB58 /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
+		8145B82B28FB691700B1DB58 /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
+		8145B82D28FB6E2A00B1DB58 /* BaseUICollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUICollectionViewController.swift; sourceTree = "<group>"; };
+		8145B82F28FB807B00B1DB58 /* LoadingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingProtocol.swift; sourceTree = "<group>"; };
+		8145B83128FB88D300B1DB58 /* BaseUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITableViewController.swift; sourceTree = "<group>"; };
+		8146D66828F36AD100976BF0 /* RealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		815315F1286A55CB0030537D /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		815315F4286A5A8C0030537D /* FriendsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewController.swift; sourceTree = "<group>"; };
 		815315F6286A5EDA0030537D /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
+		81CD93E52899CC2C009BC3B3 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		81CD93E728A028BE009BC3B3 /* VKApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKApi.swift; sourceTree = "<group>"; };
+		81CD93E928A032D9009BC3B3 /* LoginWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebViewController.swift; sourceTree = "<group>"; };
+		81CD93EF28A2EF5C009BC3B3 /* vk.friends.get.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vk.friends.get.swift; sourceTree = "<group>"; };
+		81CD93F128A2FE35009BC3B3 /* vk.users.get.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vk.users.get.swift; sourceTree = "<group>"; };
+		81CD93F428A4422D009BC3B3 /* vk.photos.get.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vk.photos.get.swift; sourceTree = "<group>"; };
+		81CD93F628A4605D009BC3B3 /* vk.group.get.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vk.group.get.swift; sourceTree = "<group>"; };
 		81DE030D286275FB009C1856 /* UiViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+extension.swift"; sourceTree = "<group>"; };
 		81DE03152868A755009C1856 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		81DE03172868A811009C1856 /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +136,8 @@
 		81ED6320287637B300B81225 /* FriendXIBTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendXIBTableViewCell.xib; sourceTree = "<group>"; };
 		81ED63242876442D00B81225 /* GroupXIBTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupXIBTableViewCell.swift; sourceTree = "<group>"; };
 		81ED63252876442D00B81225 /* GroupXIBTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupXIBTableViewCell.xib; sourceTree = "<group>"; };
+		8594E57398E0A748E52E0042 /* Pods_vk_KukobaAlexander.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vk_KukobaAlexander.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1CFA694DB61AD2E9603ADDE /* Pods-vk_KukobaAlexander.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vk_KukobaAlexander.release.xcconfig"; path = "Target Support Files/Pods-vk_KukobaAlexander/Pods-vk_KukobaAlexander.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6194C15968211C5CD4F0D47 /* Pods_vk_KukobaAlexander.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,7 +213,10 @@
 				8107E4892889E75C00891999 /* CustomPopAnimator.swift */,
 				8107E4882889E75C00891999 /* CustomPushAnimator.swift */,
 				811697D92880DBED00CE1765 /* SJCenterFlowLayout.swift */,
+				81CD93E728A028BE009BC3B3 /* VKApi.swift */,
 				8107E48E28932B2A00891999 /* Utilities.swift */,
+				8146D66828F36AD100976BF0 /* RealmHelper.swift */,
+				8145B82F28FB807B00B1DB58 /* LoadingProtocol.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -190,6 +226,8 @@
 			children = (
 				8116C4F2285A788300ECB796 /* vk_KukobaAlexander */,
 				8116C4F1285A788300ECB796 /* Products */,
+				E511C95DA5FA08C45C584CFB /* Pods */,
+				A3193567E7BC3A248DFCE735 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -236,6 +274,15 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		8145B82A28FB64DF00B1DB58 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				8145B82628FB64D300B1DB58 /* LoadingViewController.swift */,
+				8145B82728FB64D300B1DB58 /* LoadingViewController.xib */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
 		815315F3286A56730030537D /* Resourse */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,8 +327,13 @@
 		8179784A286A54FB00D14B27 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8145B83128FB88D300B1DB58 /* BaseUITableViewController.swift */,
+				8145B82B28FB691700B1DB58 /* BaseUIViewController.swift */,
+				8145B82D28FB6E2A00B1DB58 /* BaseUICollectionViewController.swift */,
 				811697C12878FF8300CE1765 /* LoginViewController.swift */,
 				8107E484288768EA00891999 /* TabBarViewController.swift */,
+				81CD93E928A032D9009BC3B3 /* LoginWebViewController.swift */,
+				8145B82A28FB64DF00B1DB58 /* Loading */,
 				8117C05F286B707300649B1E /* Groups */,
 				815315F8286A5EE50030537D /* Friends */,
 				811697C52879007800CE1765 /* News */,
@@ -298,12 +350,25 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		81CD93F328A43B25009BC3B3 /* VKModel */ = {
+			isa = PBXGroup;
+			children = (
+				81CD93EF28A2EF5C009BC3B3 /* vk.friends.get.swift */,
+				81CD93F128A2FE35009BC3B3 /* vk.users.get.swift */,
+				81CD93F428A4422D009BC3B3 /* vk.photos.get.swift */,
+				81CD93F628A4605D009BC3B3 /* vk.group.get.swift */,
+			);
+			path = VKModel;
+			sourceTree = "<group>";
+		};
 		81DE031D2868D2AE009C1856 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				81DE031B2868B31F009C1856 /* Friend.swift */,
 				815315F1286A55CB0030537D /* Group.swift */,
 				811697BF2878FB8C00CE1765 /* News.swift */,
+				81CD93E52899CC2C009BC3B3 /* Session.swift */,
+				81CD93F328A43B25009BC3B3 /* VKModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,6 +391,23 @@
 			path = GroupXIB;
 			sourceTree = "<group>";
 		};
+		A3193567E7BC3A248DFCE735 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8594E57398E0A748E52E0042 /* Pods_vk_KukobaAlexander.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E511C95DA5FA08C45C584CFB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				39900E79198E96E201235836 /* Pods-vk_KukobaAlexander.debug.xcconfig */,
+				D1CFA694DB61AD2E9603ADDE /* Pods-vk_KukobaAlexander.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -333,9 +415,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8116C504285A788500ECB796 /* Build configuration list for PBXNativeTarget "vk_KukobaAlexander" */;
 			buildPhases = (
+				5E7CCD8875B9507850C97F45 /* [CP] Check Pods Manifest.lock */,
 				8116C4EC285A788300ECB796 /* Sources */,
 				8116C4ED285A788300ECB796 /* Frameworks */,
 				8116C4EE285A788300ECB796 /* Resources */,
+				67D23A611771124794FB8AC1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -391,10 +475,53 @@
 				811697D0288035B700CE1765 /* PhotoCollectionViewCell.xib in Resources */,
 				811697C92879079300CE1765 /* NewsXIBTableViewCell.xib in Resources */,
 				8116C4FB285A788300ECB796 /* Main.storyboard in Resources */,
+				8145B82928FB64D300B1DB58 /* LoadingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5E7CCD8875B9507850C97F45 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-vk_KukobaAlexander-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67D23A611771124794FB8AC1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-vk_KukobaAlexander/Pods-vk_KukobaAlexander-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-vk_KukobaAlexander/Pods-vk_KukobaAlexander-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-vk_KukobaAlexander/Pods-vk_KukobaAlexander-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8116C4EC285A788300ECB796 /* Sources */ = {
@@ -405,20 +532,28 @@
 				81ED6321287637B300B81225 /* FriendXIBTableViewCell.swift in Sources */,
 				8107E49A28933A9200891999 /* NewsItemViewController.swift in Sources */,
 				8107E496289337C200891999 /* CommentNewsControl.swift in Sources */,
+				8145B82E28FB6E2A00B1DB58 /* BaseUICollectionViewController.swift in Sources */,
 				81ED63262876442D00B81225 /* GroupXIBTableViewCell.swift in Sources */,
 				8107E48C2889E75C00891999 /* CustomPopAnimator.swift in Sources */,
+				8145B83228FB88D300B1DB58 /* BaseUITableViewController.swift in Sources */,
 				8107E495289337C200891999 /* ViewNewsCounter.swift in Sources */,
 				815315F7286A5EDA0030537D /* FriendCollectionViewCell.swift in Sources */,
 				811697EB2887342C00CE1765 /* CustomMainPush+PopAnimators.swift in Sources */,
 				8117C068286CEA6500649B1E /* LikeControl.swift in Sources */,
 				8116C4F4285A788300ECB796 /* AppDelegate.swift in Sources */,
+				81CD93F028A2EF5C009BC3B3 /* vk.friends.get.swift in Sources */,
 				8117C06C286CF50F00649B1E /* UIView + IBInspectable extension.swift in Sources */,
+				81CD93F228A2FE35009BC3B3 /* vk.users.get.swift in Sources */,
+				81CD93F528A4422D009BC3B3 /* vk.photos.get.swift in Sources */,
 				811697CF288035B700CE1765 /* PhotoCollectionViewCell.swift in Sources */,
 				8107E48B2889E75C00891999 /* CustomPushAnimator.swift in Sources */,
 				815315F5286A5A8C0030537D /* FriendsCollectionViewController.swift in Sources */,
+				81CD93F728A4605D009BC3B3 /* vk.group.get.swift in Sources */,
 				8107E48D2889E75C00891999 /* CustomInteractiveTransition.swift in Sources */,
 				811697CC287F7C3500CE1765 /* FriendsPhotoGalleryController.swift in Sources */,
+				81CD93E62899CC2C009BC3B3 /* Session.swift in Sources */,
 				8107E498289337C200891999 /* ShareNewsControl.swift in Sources */,
+				8146D66928F36AD100976BF0 /* RealmHelper.swift in Sources */,
 				8117C07028731E9300649B1E /* LoginUIView.swift in Sources */,
 				811697EC2887342C00CE1765 /* CustomSegue.swift in Sources */,
 				811697C82879079300CE1765 /* NewsXIBTableViewCell.swift in Sources */,
@@ -426,17 +561,22 @@
 				811697EA2887342C00CE1765 /* CustomMainNavigationController.swift in Sources */,
 				8117C062286B792A00649B1E /* GroupsViewController.swift in Sources */,
 				8107E4872889E71600891999 /* CustomNavigationController.swift in Sources */,
+				8145B83028FB807B00B1DB58 /* LoadingProtocol.swift in Sources */,
 				815315F2286A55CB0030537D /* Group.swift in Sources */,
 				8117C064286B7D6000649B1E /* GroupCell.swift in Sources */,
 				8107E48F28932B2A00891999 /* Utilities.swift in Sources */,
 				8116C4F6285A788300ECB796 /* SceneDelegate.swift in Sources */,
+				8145B82828FB64D300B1DB58 /* LoadingViewController.swift in Sources */,
 				811697DA2880DBED00CE1765 /* SJCenterFlowLayout.swift in Sources */,
 				81DE03182868A811009C1856 /* GroupsTableViewController.swift in Sources */,
 				811697C42879005300CE1765 /* NewsViewController.swift in Sources */,
+				81CD93E828A028BE009BC3B3 /* VKApi.swift in Sources */,
 				81DE031C2868B31F009C1856 /* Friend.swift in Sources */,
+				81CD93EA28A032D9009BC3B3 /* LoginWebViewController.swift in Sources */,
 				8117C066286CDC0400649B1E /* AvatarUIView.swift in Sources */,
 				811697C02878FB8C00CE1765 /* News.swift in Sources */,
 				811697C22878FF8300CE1765 /* LoginViewController.swift in Sources */,
+				8145B82C28FB691700B1DB58 /* BaseUIViewController.swift in Sources */,
 				81DE030E286275FB009C1856 /* UiViewController+extension.swift in Sources */,
 				8107E485288768EA00891999 /* TabBarViewController.swift in Sources */,
 				81DE031A2868AD0F009C1856 /* FriendCell.swift in Sources */,
@@ -582,6 +722,7 @@
 		};
 		8116C505285A788500ECB796 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39900E79198E96E201235836 /* Pods-vk_KukobaAlexander.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -610,6 +751,7 @@
 		};
 		8116C506285A788500ECB796 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1CFA694DB61AD2E9603ADDE /* Pods-vk_KukobaAlexander.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

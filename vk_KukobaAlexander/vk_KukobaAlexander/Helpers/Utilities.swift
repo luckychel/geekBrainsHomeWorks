@@ -17,4 +17,28 @@ class Utilities {
         RFC3339DateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         return RFC3339DateFormatter.date(from: dateStr) ?? Date.now
     }
+    
+    func UrlToImage(url: String?, complection: @escaping (UIImage) -> ()) {
+
+        guard let url = url else { return }
+
+        // Create Data Task
+        let dataTask = URLSession.shared.dataTask(with: URL(string: url)!) { (data, _, _) in
+
+            if let data = data {
+                DispatchQueue.main.async {
+                    // Create Image and Update Image View
+                    complection(UIImage(data: data)!)
+                }
+            }
+        }
+
+        // Start Data Task
+        dataTask.resume()
+    }
+    
+//    func UrlToImage(from url: String?, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+//        guard let url = url else { return }
+//        URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: completion).resume()
+//    }
 }
