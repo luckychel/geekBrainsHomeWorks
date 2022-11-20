@@ -25,6 +25,7 @@ class LoginWebViewController: UIViewController {
                 URLQueryItem(name: "redirect_uri", value: VKApi.redirectUrl),
                 URLQueryItem(name: "display", value: "mobile"),
                 URLQueryItem(name: "response_type", value: "token"),
+                URLQueryItem(name: "scope", value: "friends,groups,photos,wall"),
             ]
             return urlComponents
         }()
@@ -87,6 +88,9 @@ extension LoginWebViewController: WKNavigationDelegate{
         //vkApi.getUserPhotos(token: session.token, id: session.userId)
         //vkApi.getUserGroups(token: session.token, id: session.userId)
         //vkApi.getUserGroupsSearch(token: session.token)
+//        vkApi.getNews(token: session.token, id: session.userId) { newsItem in
+//            print(newsItem)
+//        }
         
         performSegue(withIdentifier: "LoginWeb", sender: nil)
         
