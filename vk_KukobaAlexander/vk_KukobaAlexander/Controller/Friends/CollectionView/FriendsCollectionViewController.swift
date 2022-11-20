@@ -114,12 +114,19 @@ class FriendsCollectionViewController: BaseUICollectionViewController {
             }
 
             for fr in photos {
-                let url = URL(string: fr.url)
-                if let data = try? Data(contentsOf: url!) {
+                
+                Utilities().UrlToData(url: fr.url) { res in
                     try! self.realm!.write {
-                        fr.savedImage = data
+                        fr.savedImage = res
                     }
                 }
+                
+//                let url = URL(string: fr.url)
+//                if let data = try? Data(contentsOf: url!) {
+//                    try! self.realm!.write {
+//                        fr.savedImage = data
+//                    }
+//                }
             }
             
             self.setPhotos(Array(photos))
@@ -162,13 +169,22 @@ class FriendsCollectionViewController: BaseUICollectionViewController {
         else
         {
             //подстраховка
-            let url = URL(string: photos[indexPath.row].url)
-            if let data = try? Data(contentsOf: url!) {
-                cell.imageFriend.image = UIImage(data: data)
+           
+            Utilities().UrlToData(url: photos[indexPath.row].url) { res in
+                cell.imageFriend.image = UIImage(data: res)
                 try! self.realm!.write {
-                    photos[indexPath.row].savedImage = data
+                    self.photos[indexPath.row].savedImage = res
                 }
             }
+            
+            //let url = URL(string: photos[indexPath.row].url)
+            
+//            if let data = try? Data(contentsOf: url!) {
+//                cell.imageFriend.image = UIImage(data: data)
+//                try! self.realm!.write {
+//                    photos[indexPath.row].savedImage = data
+//                }
+//            }
         }
 
         cell.nameFriend.text = ""

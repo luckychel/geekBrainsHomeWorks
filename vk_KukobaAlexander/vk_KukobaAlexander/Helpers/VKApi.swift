@@ -134,7 +134,7 @@ class VKApi {
             
             guard let data = response.value  else { return}
             
-            let groups = try? JSONDecoder().decode( VkGroupResponse.self, from: data)
+            let groups = try? JSONDecoder().decode(VkGroupResponse.self, from: data)
             
             guard let groups = groups?.response.items else { return }
             
@@ -145,12 +145,12 @@ class VKApi {
         }
     }
 
-    func getUserGroupsSearch(token: String){
+    func getUserGroupsSearch(token: String, q: String){
 
         let path = "/method/groups.search"
 
         let parameters: Parameters = [
-            "q": "музыка",
+            "q": q, //"музыка",
             "type": "group",
             "count": "2",
             "sort": 6,
@@ -165,5 +165,32 @@ class VKApi {
             print(response.value as Any)
         }
     }
+    
+    func getNews(token: String, id: Int, completion: @escaping ([NewsItem]) -> Void){
+
+            let path = "/method/newsfeed.get"
+
+            let parameters: Parameters = [
+                "access_token" : token,
+                "user_id": id,
+                "client_id": VKApi.clientId,
+                //"filters": "photo, post",
+                //"source_ids": "friends",
+                "v": "5.131"
+            ]
+        
+            let url = VKApi.baseUrl+path
+        
+            AF.request(url, method: .get, parameters: parameters).responseData { response in
+                guard let data = response.value  else { return}
+                
+                let news = try? JSONDecoder().decode(NewsResponse.self, from: data)
+                
+                guard let news = news?.response.items else { return }
+                
+              //  self.saveData(news)
+                completion(news)
+            }
+        }
     
 }
