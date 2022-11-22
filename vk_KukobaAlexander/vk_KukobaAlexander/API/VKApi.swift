@@ -174,7 +174,7 @@ class VKApi {
                 "access_token" : token,
                 "user_id": id,
                 "client_id": VKApi.clientId,
-                //"filters": "photo, post",
+                "filters": "photo, post",
                 //"source_ids": "friends",
                 "v": "5.131"
             ]

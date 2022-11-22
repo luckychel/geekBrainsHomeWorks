@@ -237,7 +237,6 @@
 				8107E4892889E75C00891999 /* CustomPopAnimator.swift */,
 				8107E4882889E75C00891999 /* CustomPushAnimator.swift */,
 				811697D92880DBED00CE1765 /* SJCenterFlowLayout.swift */,
-				81CD93E728A028BE009BC3B3 /* VKApi.swift */,
 				8107E48E28932B2A00891999 /* Utilities.swift */,
 				8146D66828F36AD100976BF0 /* RealmHelper.swift */,
 				8145B82F28FB807B00B1DB58 /* LoadingProtocol.swift */,
@@ -266,6 +265,7 @@
 		8116C4F2285A788300ECB796 /* vk_KukobaAlexander */ = {
 			isa = PBXGroup;
 			children = (
+				816C7143292A867900977D7D /* API */,
 				8117C07128731EAB00649B1E /* View */,
 				81DE031D2868D2AE009C1856 /* Model */,
 				8179784A286A54FB00D14B27 /* Controller */,
@@ -353,7 +353,6 @@
 			children = (
 				816C7145292A86A500977D7D /* Controller */,
 				816C7144292A869300977D7D /* View */,
-				816C7143292A867900977D7D /* API */,
 				816C7142292A866B00977D7D /* Model */,
 			);
 			path = NewsV2;
@@ -370,6 +369,7 @@
 		816C7143292A867900977D7D /* API */ = {
 			isa = PBXGroup;
 			children = (
+				81CD93E728A028BE009BC3B3 /* VKApi.swift */,
 				816C7137292A85C700977D7D /* DataV2.swift */,
 			);
 			path = API;
