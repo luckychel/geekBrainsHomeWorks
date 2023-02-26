@@ -8,7 +8,6 @@
 import UIKit
 
 class ShareNewsControl: UIControl {
-    
 
     var newsItem: News!
     

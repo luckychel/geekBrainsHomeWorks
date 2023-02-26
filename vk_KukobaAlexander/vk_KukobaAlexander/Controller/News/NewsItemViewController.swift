@@ -42,7 +42,7 @@ extension NewsItemViewController: UITableViewDataSource, UITableViewDelegate {
         
         let content = cell
         content.authorImageXIB.contentMode = .scaleAspectFill
-        cell.authorImageXIB?.image = self.newsItem.authorImage
+        cell.authorImageXIB.image = self.newsItem.authorImage
         cell.authorNameXIB.text = self.newsItem.authorName
         
         let dateFormatter = DateFormatter()
