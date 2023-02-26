@@ -28,28 +28,28 @@ class NewsLikeCommentsTableViewCell: UITableViewCell {
     
     @objc func handleTap(_: UITapGestureRecognizer){
 
-        if likeNewsControl.newsItem.userLikes == 1 {
-            likeNewsControl.newsItem.userLikes = 0
-            likeNewsControl.newsItem.likeCount -= 1
+        if likeNewsControl.newsItem.likes?.userLikes == 1 {
+            likeNewsControl.newsItem.likes?.userLikes = 0
+            likeNewsControl.newsItem.likes?.count! -= 1
             likeNewsControl.likeCount.textColor = .lightGray
             animateLikeCountAppear()
         }
         else {
-            likeNewsControl.newsItem.userLikes = 1
-            likeNewsControl.newsItem.likeCount += 1
+            likeNewsControl.newsItem.likes?.userLikes = 1
+            likeNewsControl.newsItem.likes?.count! += 1
             likeNewsControl.likeCount.textColor = .systemRed
             animateLikeCountAppear()
             groupAnimation()
         }
         
-        likeNewsControl.setLikeButton(isLike: likeNewsControl.newsItem.userLikes)
+        likeNewsControl.setLikeButton(isLike: likeNewsControl.newsItem.likes?.userLikes ?? 0)
 }
 
 func animateLikeCountAppear(){
     UIView.transition(with: likeNewsControl.likeCount,
                       duration: 0.5,
                       options: .transitionFlipFromRight) { [self] in
-                                    self.likeNewsControl.likeCount.text = String(likeNewsControl.newsItem.likeCount)
+                                    self.likeNewsControl.likeCount.text = String(likeNewsControl.newsItem.likes?.count ?? 0)
                                 }
 }
 
@@ -75,7 +75,7 @@ func groupAnimation(){
     }
     
   
-    func configure(newsItem: NewsV2, cellIndex: Int) {
+    func configure(newsItem: VKNewsItem, cellIndex: Int) {
         
         setControl(control: likeNewsControl)
         self.likeNewsControl.setLikeNewsControl(item: newsItem, cellIndex: cellIndex)

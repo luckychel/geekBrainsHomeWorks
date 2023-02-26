@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KR9-l2-nED">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B6k-Da-n1K">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -249,12 +249,12 @@
                     <connections>
                         <segue destination="aPk-8V-o4c" kind="relationship" relationship="viewControllers" id="uYy-0e-q0E"/>
                         <segue destination="78q-WW-5ve" kind="relationship" relationship="viewControllers" id="Cgm-oy-O6Z"/>
-                        <segue destination="yfB-dU-Cyw" kind="relationship" relationship="viewControllers" id="Iey-lL-Fsq"/>
+                        <segue destination="yfB-dU-Cyw" kind="relationship" relationship="viewControllers" id="7yI-OA-Cqb"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gff-yl-X9g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528" y="-25"/>
+            <point key="canvasLocation" x="1510" y="156"/>
         </scene>
         <!--Groups Table View Controller-->
         <scene sceneID="ODC-v9-IEl">
@@ -637,7 +637,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="An4-Ba-iOO" kind="relationship" relationship="rootViewController" id="FNR-Sv-ulv"/>
+                        <segue destination="KR9-l2-nED" kind="relationship" relationship="rootViewController" id="eHG-RF-p2m"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U5a-Du-CjZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -653,7 +653,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jTQ-sg-Nud">
-                                <rect key="frame" x="0.0" y="91" width="428" height="752"/>
+                                <rect key="frame" x="0.0" y="47" width="428" height="845"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="systemYellowColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="JFH-pI-hyF">
@@ -692,11 +692,11 @@
             <objects>
                 <viewController id="Z3A-ZG-CfO" customClass="NewsItemViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XeJ-Fw-tsy">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="869"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ybk-od-1bf">
-                                <rect key="frame" x="0.0" y="91" width="428" height="752"/>
+                                <rect key="frame" x="0.0" y="47" width="428" height="822"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -718,7 +718,7 @@
             </objects>
             <point key="canvasLocation" x="4241" y="870"/>
         </scene>
-        <!--NewsV2 View Controller-->
+        <!--Item-->
         <scene sceneID="e8R-yo-Ean">
             <objects>
                 <viewController id="KR9-l2-nED" customClass="NewsV2ViewController" customModule="vk_KukobaAlexander" customModuleProvider="target" sceneMemberID="viewController">
@@ -727,7 +727,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="scX-fu-CAM">
-                                <rect key="frame" x="0.0" y="47" width="428" height="845"/>
+                                <rect key="frame" x="0.0" y="91" width="428" height="752"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsAuthor" rowHeight="80" id="COZ-OP-OAv" customClass="NewsAuthorDataTableViewCell" customModule="vk_KukobaAlexander" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.333332061767578" width="388" height="80"/>
@@ -746,24 +746,24 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="35d-LQ-rCc">
-                                                    <rect key="frame" x="80" y="10" width="298" height="60"/>
+                                                    <rect key="frame" x="80" y="10" width="298" height="48"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfj-wL-syH">
                                                             <rect key="frame" x="0.0" y="0.0" width="298" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="Bej-SR-3zo"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qm-MC-0Ry">
-                                                            <rect key="frame" x="0.0" y="28" width="298" height="32"/>
+                                                            <rect key="frame" x="0.0" y="28" width="298" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="WTF-uV-Sj7"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -783,7 +783,6 @@
                                                 <constraint firstItem="fJj-C6-GUB" firstAttribute="top" secondItem="GWc-Dy-L7a" secondAttribute="top" constant="10" id="bHM-Ry-viB"/>
                                                 <constraint firstItem="35d-LQ-rCc" firstAttribute="top" secondItem="GWc-Dy-L7a" secondAttribute="top" constant="10" id="f65-8Y-4oF"/>
                                                 <constraint firstItem="fJj-C6-GUB" firstAttribute="leading" secondItem="GWc-Dy-L7a" secondAttribute="leading" constant="10" id="hpC-QD-Uzf"/>
-                                                <constraint firstAttribute="bottom" secondItem="35d-LQ-rCc" secondAttribute="bottom" constant="10" id="xEh-gW-Y5w"/>
                                                 <constraint firstAttribute="bottom" secondItem="fJj-C6-GUB" secondAttribute="bottom" constant="10" id="xUz-Ke-sxv"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -795,15 +794,15 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTextCell" id="dg4-QP-o1h" customClass="NewsTextTableViewCell" customModule="vk_KukobaAlexander" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="135.33333206176758" width="388" height="42.333332061767578"/>
+                                        <rect key="frame" x="20" y="135.33333206176758" width="388" height="36.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dg4-QP-o1h" id="cYa-QM-oO2">
-                                            <rect key="frame" x="0.0" y="0.0" width="388" height="42.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="388" height="36.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xf3-W2-Mvq">
-                                                    <rect key="frame" x="20" y="10.999999999999998" width="348" height="20.333333333333329"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="20" y="11" width="348" height="14.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -820,7 +819,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsPhotoTableViewCell" rowHeight="128" id="LM1-vk-0pQ" customClass="NewsPhotoTableViewCell" customModule="vk_KukobaAlexander" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="177.66666412353516" width="388" height="128"/>
+                                        <rect key="frame" x="20" y="171.66666412353516" width="388" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LM1-vk-0pQ" id="n3A-jC-4Vj">
                                             <rect key="frame" x="0.0" y="0.0" width="388" height="128"/>
@@ -839,7 +838,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewsPhotoCollectionViewCell" id="v2j-aw-BWN" customClass="NewsPhotoCollectionViewCell" customModule="VKontakte" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewsPhotoCollectionViewCell" id="v2j-aw-BWN" customClass="NewsPhotoCollectionViewCell" customModule="vk_KukobaAlexander" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="160" height="170"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LHt-Ro-bWJ">
@@ -880,7 +879,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsLikeCommentsCell" rowHeight="102" id="Rwy-pA-pTo" customClass="NewsLikeCommentsTableViewCell" customModule="vk_KukobaAlexander" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="305.66666412353516" width="388" height="102"/>
+                                        <rect key="frame" x="20" y="299.66666412353516" width="388" height="102"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rwy-pA-pTo" id="KbG-Fp-edI">
                                             <rect key="frame" x="0.0" y="0.0" width="388" height="102"/>
@@ -929,6 +928,8 @@
                             <constraint firstItem="hth-hE-rZk" firstAttribute="bottom" secondItem="scX-fu-CAM" secondAttribute="bottom" id="mj8-bn-2xH"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="yyS-gV-EeG"/>
+                    <navigationItem key="navigationItem" id="Aic-x0-Xun"/>
                     <connections>
                         <outlet property="newsTable" destination="scX-fu-CAM" id="juD-2V-pVJ"/>
                     </connections>

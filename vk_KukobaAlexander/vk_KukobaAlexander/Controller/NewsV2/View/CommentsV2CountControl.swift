@@ -9,16 +9,17 @@ import UIKit
 
 class CommentCountControl: UIControl {
 
-    var newsItem: NewsV2!
+    var newsItem: VKNewsItem!
     
     let commentCount  = UILabel(frame: CGRect(x: 32, y: 0, width: 30, height: 30))
     let commentButton = UIButton(frame: CGRect(x: 5, y: 0, width: 30, height: 30))
     
-    func setCommentNewsControl(item : NewsV2, cellIndex: Int) {
+    func setCommentNewsControl(item : VKNewsItem, cellIndex: Int) {
         
         newsItem = item
+        let text: String = String(newsItem.comments?.count ?? 0)
         
-        commentCount.text = String((newsItem.commentCount))
+        commentCount.text = text
         commentCount.textColor = .lightGray
         
         commentButton.setImage(UIImage(systemName: "text.bubble"), for: .normal)

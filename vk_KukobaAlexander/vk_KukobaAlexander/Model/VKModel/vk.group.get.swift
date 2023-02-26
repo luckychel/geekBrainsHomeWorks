@@ -16,7 +16,7 @@ class VkGroups: Decodable{
     let items: [VkGroup]
 }
 
-class VkGroup: Object, Decodable{
+class VkGroup: Object, Decodable {
     @Persisted var name: String = ""
     @Persisted var photoGroup: String = ""
     @Persisted var Description: String = ""

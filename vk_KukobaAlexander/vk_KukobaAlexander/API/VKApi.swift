@@ -166,7 +166,7 @@ class VKApi {
         }
     }
     
-    func getNews(token: String, id: Int, completion: @escaping ([NewsItem]) -> Void){
+    func getNews(token: String, id: Int, completion: @escaping (VKNewsGet) -> Void){
 
             let path = "/method/newsfeed.get"
 
@@ -174,22 +174,23 @@ class VKApi {
                 "access_token" : token,
                 "user_id": id,
                 "client_id": VKApi.clientId,
-                "filters": "photo, post",
-                //"source_ids": "friends",
+                "filters": "post",
                 "v": "5.131"
             ]
         
             let url = VKApi.baseUrl+path
         
+            print(token)
+        
             AF.request(url, method: .get, parameters: parameters).responseData { response in
-                guard let data = response.value  else { return}
+                guard let data = response.value  else { return }
                 
-                let news = try? JSONDecoder().decode(NewsResponse.self, from: data)
+                let news = try? JSONDecoder().decode(VKNewsGet.self, from: data)
                 
-                guard let news = news?.response.items else { return }
+                guard let news11 = news?.response else { return }
                 
               //  self.saveData(news)
-                completion(news)
+                completion(news!)
             }
         }
     
