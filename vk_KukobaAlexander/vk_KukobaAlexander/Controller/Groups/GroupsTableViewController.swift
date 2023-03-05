@@ -7,14 +7,25 @@
 
 import UIKit
 import RealmSwift
+import Alamofire
 
-class GroupsTableViewController: BaseUITableViewController {
+protocol GroupSavable: NSObject {
+    func setGroups(groups: [VkGroup])
+    
+    func getOldRealmGroups(groups: [VkGroup])
+    func getNewToRealm(groups: [VkGroup])
+}
+
+class GroupsTableViewController: BaseUITableViewController, GroupSavable {
 
     let session = Session.shared
     let vkApi = VKApi.shared
     
     var groups = [VkGroup]()
     var filteredGroups = [VkGroup]()
+    
+    var oldRealmGroups = [VkGroup]()
+    var newToRealmGroups = [VkGroup]()
     
     let refresh = UIRefreshControl()
     
@@ -23,7 +34,15 @@ class GroupsTableViewController: BaseUITableViewController {
             searchBarGroups.delegate = self
         }
     }
-
+    
+    private let queue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        queue.name = "serialQueue"
+        queue.qualityOfService = .utility
+        return queue
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,10 +52,9 @@ class GroupsTableViewController: BaseUITableViewController {
         
         refresh.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         tableView.addSubview(refresh)
-        
-        
+
         guard let realm = RealmHelper.getRealm() else { return }
-        //print(realm.configuration.fileURL)
+        print(realm.configuration.fileURL as Any)
         
         //MARK: Проверка на существование объекта VkGroup в Realm
         let groups = realm.objects(VkGroup.self)
@@ -45,7 +63,7 @@ class GroupsTableViewController: BaseUITableViewController {
             self.refreshData(self)
         }
         else {
-            self.setGroups(Array(groups))
+            self.setGroups(groups: Array(groups))
         }
         
         
@@ -53,35 +71,80 @@ class GroupsTableViewController: BaseUITableViewController {
     
     @objc private func refreshData (_ sender: AnyObject) {
         
-        print("=====START LOADING=====")
-        self.startLoading()
+//        print("=====START LOADING=====")
+//        self.startLoading()
+//
+//        vkApi.getUserGroups(token: session.token, id: session.userId) { [weak self] in
+//
+//            guard let self = self else { return }
+//
+//            guard let realm = RealmHelper.getRealm() else { return }
+//
+//            let groups = realm.objects(VkGroup.self)
+//
+//            self.setGroups(Array(groups))
+//
+//            print("=====END LOADING======")
+//            self.endLoading()
+//
+//            if self.refresh.isRefreshing {
+//                self.refresh.endRefreshing()
+//            }
+//
+//        }
+        
+        let path = "/method/groups.get"
 
-        vkApi.getUserGroups(token: session.token, id: session.userId) { [weak self] in
-            
-            guard let self = self else { return }
-            
-            guard let realm = RealmHelper.getRealm() else { return }
-            let groups = realm.objects(VkGroup.self)
-            
-            self.setGroups(Array(groups))
-            
-            print("=====END LOADING======")
-            self.endLoading()
-            
+        let parameters: Parameters = [
+            "access_token" : session.token,
+            "user_id": session.userId,
+            "extended": "1",
+            "fields": "id, name, photo_50, description",  // название, фото, описание
+            "v": "5.131"
+        ]
+
+        let url = VKApi.baseUrl+path
+  
+        let request = AF.request(url, method: .get, parameters: parameters)
+        
+        let getData = GetDataOperation(request: request)
+        let parseData = DataParseOperation()
+        let saveOperation = SaveOperation()
+        let reloadOperation = ReloadTableController(controller: self)
+        
+        parseData.addDependency(getData)
+        saveOperation.addDependency(parseData)
+        reloadOperation.addDependency(saveOperation)
+        
+        queue.addOperation(getData)
+        queue.addOperation(parseData)
+        queue.addOperation(saveOperation)
+        OperationQueue.main.addOperation(reloadOperation)
+        OperationQueue.main.addOperation {
             if self.refresh.isRefreshing {
                 self.refresh.endRefreshing()
             }
-            
         }
+        
     }
 
-    private func setGroups(_ groups: [VkGroup]) {
+    func setGroups(groups: [VkGroup]) {
         self.groups = Array(groups)
 
         self.filteredGroups = self.groups
 
         self.tableView.reloadData()
     }
+    
+    func getOldRealmGroups(groups: [VkGroup]) {
+        self.oldRealmGroups = groups
+    }
+    
+    func getNewToRealm(groups: [VkGroup]){
+        self.newToRealmGroups = groups
+    }
+    
+   
 
     // MARK: - Table view data source
 
@@ -166,31 +229,6 @@ class GroupsTableViewController: BaseUITableViewController {
         }    
     }
     
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

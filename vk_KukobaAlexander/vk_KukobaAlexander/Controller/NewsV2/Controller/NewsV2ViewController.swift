@@ -24,7 +24,7 @@ class NewsV2ViewController: BaseUIViewController {
         newsTable.delegate = self
       
         
-        vkApi.getNews(token: session.token, id: session.userId) {res in
+        vkApi.getNews(token: session.token, id: session.userId) { res in
             
             //guard res.response?.items?.count ?? 0 > 0  else {return}
             guard let response = res.response else { return }

@@ -17,23 +17,33 @@ class VkGroups: Decodable{
 }
 
 class VkGroup: Object, Decodable {
+    
+    @Persisted var id: Int = 0
     @Persisted var name: String = ""
     @Persisted var photoGroup: String = ""
     @Persisted var Description: String = ""
     
     enum CodingKeys: String, CodingKey {
+        case id = "id"
         case name
         case photoGroup = "photo_50"
         case Description = "description"
     }
     
+    @Persisted var owner: MainUser?
+    @Persisted var owners = LinkingObjects(fromType: MainUser.self, property: "groups")
+    
     convenience required init(from decoder: Decoder) throws {
         self.init()
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
         self.name = try container.decode(String.self, forKey: .name)
         self.photoGroup = try container.decode(String.self, forKey: .photoGroup)
         self.Description = try container.decode(String.self, forKey: .Description)
     }
-
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

@@ -19,7 +19,7 @@ class MainUser: Object, Decodable {
 
     @Persisted var groups = List<VkGroup>()
     @Persisted var friends = List<VkUsers>()
-    //@Persisted var news = List<NewsItem>()
+    //@Persisted var news = List<NewsV2>()
 
     enum CodingKeys: String, CodingKey {
         case lastName = "last_name"

@@ -123,13 +123,13 @@ class VKApi {
             "access_token" : token,
             "user_id": id,
             "extended": "1",
-            "fields": "name, photo_50, description",  // название, фото, описание
+            "fields": "id, name, photo_50, description",  // название, фото, описание
             "v": "5.131"
         ]
 
         let url = VKApi.baseUrl+path
 
-        AF.request(url, parameters: parameters).responseData{ response in
+        AF.request(url, parameters: parameters).responseData { response in
             //print("===========groups.get===========")
             
             guard let data = response.value  else { return}
