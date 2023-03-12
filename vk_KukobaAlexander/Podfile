@@ -7,6 +7,9 @@ target 'vk_KukobaAlexander' do
 
   # Pods for vk_KukobaAlexander
   pod 'Alamofire'
-  pod 'RealmSwift', '~> 10.28'
-
+  pod 'RealmSwift'
+  pod 'PromiseKit'
+pod 'SwiftyJSON'
+pod 'ReadMoreTextView'
+pod 'SDWebImage' 
 end

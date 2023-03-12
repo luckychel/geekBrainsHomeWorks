@@ -1,26 +1,52 @@
 PODS:
   - Alamofire (5.6.2)
+  - PromiseKit (6.18.1):
+    - PromiseKit/CorePromise (= 6.18.1)
+    - PromiseKit/Foundation (= 6.18.1)
+    - PromiseKit/UIKit (= 6.18.1)
+  - PromiseKit/CorePromise (6.18.1)
+  - PromiseKit/Foundation (6.18.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.18.1):
+    - PromiseKit/CorePromise
+  - ReadMoreTextView (3.0.1)
   - Realm (10.28.5):
     - Realm/Headers (= 10.28.5)
   - Realm/Headers (10.28.5)
   - RealmSwift (10.28.5):
     - Realm (= 10.28.5)
+  - SDWebImage (5.15.5):
+    - SDWebImage/Core (= 5.15.5)
+  - SDWebImage/Core (5.15.5)
+  - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
   - Alamofire
-  - RealmSwift (~> 10.28)
+  - PromiseKit
+  - ReadMoreTextView
+  - RealmSwift
+  - SDWebImage
+  - SwiftyJSON
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - PromiseKit
+    - ReadMoreTextView
     - Realm
     - RealmSwift
+    - SDWebImage
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
+  PromiseKit: 49d70c53d5d20e346beaea4b276b5dd2ab446bb4
+  ReadMoreTextView: 19147adf93abce6d7271e14031a00303fe28720d
   Realm: eb7f6a7a8395906822e6fab71eb8496d6d52b318
   RealmSwift: 6b54904d4a236de143f3411a757641fd74e9cb3d
+  SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: cc584aa817f0d2431cea582095f79ef0a83b79f1
+PODFILE CHECKSUM: 429f9f39da8b6ff4d3641291cc138bf315cee1d0
 
 COCOAPODS: 1.11.3

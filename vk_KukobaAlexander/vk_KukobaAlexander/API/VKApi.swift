@@ -8,9 +8,15 @@
 import Foundation
 import Alamofire
 import RealmSwift
+import PromiseKit
 
 class VKApi {
 
+    enum AppError: String, Error {
+        case noData = "Данные не получены"
+        case noParseData = "Данные не распарсены"
+    }
+    
     static let shared = VKApi()
     
     private init() {}
@@ -18,16 +24,17 @@ class VKApi {
     static let clientId : String = "51396167"
     static let redirectUrl: String = "https://oauth.vk.com/blank.html"
     static let baseUrl : String = "https://api.vk.com"
-    
+
     let session = Session.shared
     
-    func getFriendsList(token: String, id: Int, completion: @escaping ([Int]) -> ()){
+    //MARK: получение getFriendsList
+    func getFriendsList(token: String, userId: Int, completion: @escaping ([Int]) -> ()){
 
         let path = "/method/friends.get"
 
         let parameters: Parameters = [
             "access_token" : token,
-            "user_id": id,
+            "user_id": userId,
             "client_id": VKApi.clientId,
             "order": "name", // сортировка по имени
             "v": "5.131"
@@ -50,6 +57,7 @@ class VKApi {
         }
     }
     
+    //MARK: получение getUsers
     func getUsers(token: String, ids: [Int], completion: @escaping () -> ()) {
 
         let idsStr = ids.map { String($0) }.joined(separator: ",")
@@ -84,6 +92,7 @@ class VKApi {
         }
     }
 
+    //MARK: getUserPhotos
     func getUserPhotos(token: String, id: Int, completion: @escaping ()->()){
 
         let path = "/method/photos.get"
@@ -115,6 +124,56 @@ class VKApi {
         }
     }
 
+    
+    // 1. Создаем URL для запроса
+    func getUrl() -> Promise<String> {
+
+        let path = "/method/friends.get"
+        let url = VKApi.baseUrl+path
+        return Promise { resolver in
+            resolver.fulfill(url)
+        }
+    }
+
+    // 2. Создаем запрос
+    func getData(_ url: String) -> Promise<Data> {
+
+        let parameters: Parameters = [
+            "access_token" : session.token,
+            "user_id": session.userId,
+            "client_id": VKApi.clientId,
+            "order": "name",// сортировка по имени
+            "v": "5.131"
+        ]
+        return Promise { resolver in
+            AF.request(url, method: .get, parameters: parameters).responseData { response in
+                guard let data = response.value  else {
+                    resolver.reject(AppError.noData)
+                    return
+                }
+                resolver.fulfill(data)
+            }
+        }
+    }
+
+    // 3. Парсим data
+    func getParseData(_ data: Data) -> Promise<[Int]> {
+        return Promise { resolver in
+
+            let ids = try? JSONDecoder().decode(VkFriendsGet.self, from: data)
+            
+            guard let items = ids?.response.items else {
+                resolver.reject(AppError.noParseData)
+                return
+            }
+            
+            self.session.friendsIds = items
+            
+            resolver.fulfill(items)
+
+        }
+    }
+    
     func getUserGroups(token: String, id: Int, completion: @escaping ()->()){
 
         let path = "/method/groups.get"

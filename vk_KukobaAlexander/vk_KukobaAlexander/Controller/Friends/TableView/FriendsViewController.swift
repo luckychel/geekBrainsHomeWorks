@@ -55,24 +55,49 @@ class FriendsViewController: BaseUIViewController {
     
     @objc private func refreshData (_ sender: AnyObject) {
         
-        vkApi.getFriendsList(token: session.token, id: session.userId) {[weak self] res in
-
-            guard let self = self else { return }
-            
-            self.vkApi.getUsers(token: self.session.token, ids: res) {[weak self] in
+        //MARK: новая версия с Promise
+        vkApi.getUrl()
+            .then(on: .global(), vkApi.getData(_:))
+            .then(vkApi.getParseData(_:))
+            .done(on: .main) { res in
                 
-                guard let self = self else { return }
-                
-                guard let realm = RealmHelper.getRealm() else { return }
-                let users = realm.objects(VkUsers.self)
-                
-                self.setUsers(Array(users))
-                
-                if self.refresh.isRefreshing {
-                    self.refresh.endRefreshing()
+                self.vkApi.getUsers(token: self.session.token, ids: res) {[weak self] in
+                    
+                    guard let self = self else { return }
+                    
+                    guard let realm = RealmHelper.getRealm() else { return }
+                    let users = realm.objects(VkUsers.self)
+                    
+                    self.setUsers(Array(users))
+                    
+                    if self.refresh.isRefreshing {
+                        self.refresh.endRefreshing()
+                    }
                 }
+                
+            }.catch { error in
+                print(error)
             }
-        }
+        
+        //MARK: старая версия
+//        vkApi.getFriendsList(token: session.token, id: session.userId) {[weak self] res in
+//
+//            guard let self = self else { return }
+//
+//            self.vkApi.getUsers(token: self.session.token, ids: res) {[weak self] in
+//
+//                guard let self = self else { return }
+//
+//                guard let realm = RealmHelper.getRealm() else { return }
+//                let users = realm.objects(VkUsers.self)
+//
+//                self.setUsers(Array(users))
+//
+//                if self.refresh.isRefreshing {
+//                    self.refresh.endRefreshing()
+//                }
+//            }
+//        }
     }
     
     private func setUsers(_ users: [VkUsers]) {
