@@ -6,54 +6,116 @@
 //
 
 import UIKit
+import RealmSwift
 
-class FriendsViewController: UIViewController {
+class FriendsViewController: BaseUIViewController {
 
-    var friends = [
-        Friend(name: "Кирилл", avatar: UIImage(named:  "kirill"), allFriends: [Friend(name: "Валерия", avatar: UIImage(named:  "valeria")), Friend(name: "Ирина", avatar: UIImage(named:  "irina"))]),
-        
-        Friend(name: "Валерия", avatar: UIImage(named:  "valeria"), allFriends: [Friend(name: "Георгий", avatar: UIImage(named:  "gosha")), Friend(name: "Роман", avatar: UIImage(named:  "roma")), Friend(name: "Всеволод", avatar: UIImage(named:  "seva"))]),
-        
-        Friend(name: "Ирина", avatar: UIImage(named:  "irina"), allFriends: [Friend(name: "Сергей", avatar: UIImage(named:  "sergey")), Friend(name: "Кирилл", avatar: UIImage(named:  "kirill"))]),
-                                                                             
-        Friend(name: "Всеволод", avatar: UIImage(named:  "seva"), allFriends: [Friend(name: "Александр", avatar: UIImage(named:  "alexander"))]),
-        
-        Friend(name: "Александр", avatar: UIImage(named:  "alexander"), allFriends: [Friend(name: "Всеволод", avatar: UIImage(named:  "seva"))]),
-        
-        Friend(name: "Жанна", avatar: UIImage(named:  "ganna"), allFriends: [Friend(name: "Валерия", avatar: UIImage(named:  "valeria")), Friend(name: "Ирина", avatar: UIImage(named:  "irina"))]),
-        
-        Friend(name: "Сергей", avatar: UIImage(named:  "sergey"), allFriends: [Friend(name: "Кирилл", avatar: UIImage(named:  "kirill")), Friend(name: "Александр", avatar: UIImage(named:  "alexander")), Friend(name: "Жанна", avatar: UIImage(named:  "ganna"))]),
-        
-        Friend(name: "Георгий", avatar: UIImage(named:  "gosha"), allFriends: [Friend(name: "Всеволод", avatar: UIImage(named:  "seva")), Friend(name: "Сергей", avatar: UIImage(named:  "sergey"))]),
-        
-        Friend(name: "Роман", avatar: UIImage(named:  "roma")),
-        Friend(name: "Кирилл", avatar: UIImage(named:  "kirill"), allFriends: [Friend(name: "Валерия", avatar: UIImage(named:  "valeria")), Friend(name: "Ирина", avatar: UIImage(named:  "irina"))]),
-        
-        Friend(name: "Валерия", avatar: UIImage(named:  "valeria"), allFriends: [Friend(name: "Георгий", avatar: UIImage(named:  "gosha")), Friend(name: "Роман", avatar: UIImage(named:  "roma")), Friend(name: "Всеволод", avatar: UIImage(named:  "seva"))]),
-        
-        Friend(name: "Ирина", avatar: UIImage(named:  "irina"), allFriends: [Friend(name: "Сергей", avatar: UIImage(named:  "sergey")), Friend(name: "Кирилл", avatar: UIImage(named:  "kirill"))]),
-                                                                             
-        Friend(name: "Всеволод", avatar: UIImage(named:  "seva"), allFriends: [Friend(name: "Александр", avatar: UIImage(named:  "alexander"))]),
-        
-        Friend(name: "Александр", avatar: UIImage(named:  "alexander"), allFriends: [Friend(name: "Всеволод", avatar: UIImage(named:  "seva"))]),
-        
-        Friend(name: "Жанна", avatar: UIImage(named:  "ganna"), allFriends: [Friend(name: "Валерия", avatar: UIImage(named:  "valeria")), Friend(name: "Ирина", avatar: UIImage(named:  "irina"))]),
-        
-        Friend(name: "Сергей", avatar: UIImage(named:  "sergey"), allFriends: [Friend(name: "Кирилл", avatar: UIImage(named:  "kirill")), Friend(name: "Александр", avatar: UIImage(named:  "alexander")), Friend(name: "Жанна", avatar: UIImage(named:  "ganna"))]),
-        
-        Friend(name: "Георгий", avatar: UIImage(named:  "gosha"), allFriends: [Friend(name: "Всеволод", avatar: UIImage(named:  "seva")), Friend(name: "Сергей", avatar: UIImage(named:  "sergey"))]),
-        
-        Friend(name: "Роман", avatar: UIImage(named:  "roma")),
-        
-    ]
+    let session = Session.shared
+    let vkApi = VKApi.shared
     
-    var sortedFriends = [Character: [Friend]]()
+    var friends: [VkUsers]?
+    var sortedFriends = [Character: [VkUsers]]()
     
-    private func sort(friends: [Friend]) -> [Character: [Friend]] {
-        var friendsDict = [Character: [Friend]]()
+    let refresh = UIRefreshControl()
+    
+    @IBOutlet var myFriends: UITableView! {
+        didSet {
+            myFriends.dataSource = self
+            myFriends.delegate = self
+        }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.title = "Друзья"
+        
+        myFriends.register(UINib(nibName: "FriendXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendXIB")
+        
+        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutUser))
+        self.navigationItem.leftBarButtonItem  = logoutBarButtonItem
+        
+        refresh.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        myFriends.addSubview(refresh)
+        
+        guard let realm = RealmHelper.getRealm() else { return }
+        //print(realm.configuration.fileURL)
+        
+        //MARK: Проверка на существование объекта Users в Realm
+        let users = realm.objects(VkUsers.self)
+        
+        if users.isEmpty {
+            self.refreshData(self)
+        }
+        else {
+            self.setUsers(Array(users))
+        }
+        
+    }
+    
+    @objc private func refreshData (_ sender: AnyObject) {
+        
+        //MARK: новая версия с Promise
+        vkApi.getUrl()
+            .then(on: .global(), vkApi.getData(_:))
+            .then(vkApi.getParseData(_:))
+            .done(on: .main) { res in
+                
+                self.vkApi.getUsers(token: self.session.token, ids: res) {[weak self] in
+                    
+                    guard let self = self else { return }
+                    
+                    guard let realm = RealmHelper.getRealm() else { return }
+                    let users = realm.objects(VkUsers.self)
+                    
+                    self.setUsers(Array(users))
+                    
+                    if self.refresh.isRefreshing {
+                        self.refresh.endRefreshing()
+                    }
+                }
+                
+            }.catch { error in
+                print(error)
+            }
+        
+        //MARK: старая версия
+//        vkApi.getFriendsList(token: session.token, id: session.userId) {[weak self] res in
+//
+//            guard let self = self else { return }
+//
+//            self.vkApi.getUsers(token: self.session.token, ids: res) {[weak self] in
+//
+//                guard let self = self else { return }
+//
+//                guard let realm = RealmHelper.getRealm() else { return }
+//                let users = realm.objects(VkUsers.self)
+//
+//                self.setUsers(Array(users))
+//
+//                if self.refresh.isRefreshing {
+//                    self.refresh.endRefreshing()
+//                }
+//            }
+//        }
+    }
+    
+    private func setUsers(_ users: [VkUsers]) {
+        self.friends = users
+        
+        self.sortedFriends = self.sort(friends: self.friends ?? nil)
+
+        self.myFriends.reloadData()
+    }
+    
+    private func sort(friends: [VkUsers]?) -> [Character: [VkUsers]] {
+        
+        var friendsDict = [Character: [VkUsers]]()
+        
+        guard let friends = friends else { return friendsDict }
         
         friends.forEach() { friend in
-            guard let firstChar = friend.name.first else {return}
+            guard let firstChar = friend.first_name?.first else {return}
             
             if var thisFriend = friendsDict[firstChar] {
                 thisFriend.append(friend)
@@ -65,27 +127,6 @@ class FriendsViewController: UIViewController {
         }
         
         return friendsDict
-    }
-    
-    @IBOutlet var myFriends: UITableView! {
-        didSet {
-            myFriends.dataSource = self
-            myFriends.delegate = self
-        }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.title = "Друзья"
-        
-        myFriends.register(UINib(nibName: "FriendXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendXIB")
-        
-        self.sortedFriends = sort(friends: friends)
-
-        
-        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutUser))
-        self.navigationItem.leftBarButtonItem  = logoutBarButtonItem
     }
 
     
@@ -100,8 +141,8 @@ class FriendsViewController: UIViewController {
 
         if segue.identifier == "CollectionFriends",
            let destination = segue.destination as? FriendsCollectionViewController {
-            destination.title = friend.name
-            destination.arrayFriends = friend.allFriends
+            destination.title = friend.fullName
+            destination.userId = friend.id
         }
     }
     
@@ -113,12 +154,6 @@ class FriendsViewController: UIViewController {
         vcLoging.modalPresentationStyle = .fullScreen
             
         self.present(vcLoging, animated: true)
-        
-        //self.dismiss(animated: true, completion: nil)
- //       self.navigationController?.popViewController(animated: true)
-//        let TabBarView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabBarView")
-//        TabBarView.transitioningDelegate = TabBarView as! TabBarViewController
-//        self.navigationController?.popToViewController(TabBarView, animated: true)
 
     }
 }
@@ -171,10 +206,11 @@ extension FriendsViewController: UITableViewDataSource {
         animation.beginTime = CACurrentMediaTime()
         //animation.fillMode = CAMediaTimingFillMode.backwards
         cell.imageFriendXIB.layer.add(animation, forKey: nil)
-   
-        //MARK: перешел на XIB
-        cell.imageFriendXIB.image = friend.avatar
-        cell.nameFriendXIB.text = friend.name
+        
+        Utilities().UrlToImage(url: friend.photo_400_orig) { res in
+            cell.imageFriendXIB.image = res
+        }
+        cell.nameFriendXIB.text = friend.fullName
 
         return cell
     }
@@ -186,8 +222,8 @@ extension FriendsViewController: UITableViewDataSource {
     }
     
     
-    func getFriendByIndexPath(_ indexPath: IndexPath) -> Friend {
-        var friend: Friend
+    func getFriendByIndexPath(_ indexPath: IndexPath) -> VkUsers {
+        var friend: VkUsers
         
         let firstChar = sortedFriends.keys.sorted()[indexPath.section]
         
@@ -207,4 +243,3 @@ extension FriendsViewController: UITableViewDelegate {
 
     }
 }
-

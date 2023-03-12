@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>554151899986-iqs4j8cc1jpgl8smlpm8g39gt2alq4ph.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.554151899986-iqs4j8cc1jpgl8smlpm8g39gt2alq4ph</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDnyX3YEUJK4kA3KV3ivrrfDRpTV3hBpbY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>554151899986</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>home.authSwiftKukobaProject</string>
+	<key>PROJECT_ID</key>
+	<string>authswiftproject</string>
+	<key>STORAGE_BUCKET</key>
+	<string>authswiftproject.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:554151899986:ios:8787fd9aca61e37c91808b</string>
+</dict>
+</plist>
