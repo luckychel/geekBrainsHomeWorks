@@ -13,6 +13,8 @@ class GroupXIBTableViewCell: UITableViewCell {
     
     @IBOutlet var groupDescriptionXIB: UILabel!
     
+    @IBOutlet var groupImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

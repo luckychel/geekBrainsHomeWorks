@@ -6,34 +6,149 @@
 //
 
 import UIKit
+import RealmSwift
+import Alamofire
 
-class GroupsTableViewController: UITableViewController {
+protocol GroupSavable: NSObject {
+    func setGroups(groups: [VkGroup])
+    
+    func getOldRealmGroups(groups: [VkGroup])
+    func getNewToRealm(groups: [VkGroup])
+}
 
+class GroupsTableViewController: BaseUITableViewController, GroupSavable {
+
+    let session = Session.shared
+    let vkApi = VKApi.shared
+    
+    var groups = [VkGroup]()
+    var filteredGroups = [VkGroup]()
+    
+    var oldRealmGroups = [VkGroup]()
+    var newToRealmGroups = [VkGroup]()
+    
+    let refresh = UIRefreshControl()
+    
+    private var photoService: PhotoService?
+    
     @IBOutlet var searchBarGroups: UISearchBar! {
         didSet {
             searchBarGroups.delegate = self
         }
     }
     
-    var filteredGroups = [Group]()
-    
-    var groups = [
-        Group(name: "Программисты C#", description: "Эта группа создана для ищущих себя в великолепном языке программирования от компании Microsoft"),
-        Group(name: "Отдых на реке с палатками", description: "Встречи, посиделки у костра, рыбалка, уха, коллективное кормление комаров, палаточный отдых, душевные беседы"),
-        Group(name: "Ремонт своими руками", description: "Специалисты этой группы подскажут вам, как добиться желаемого резщультата при минимальных затратах"),
-        Group(name: "Музыка техно, драм, дип хаус", description: "Здесь вы можете найти интересующий вас трек и скачать себе на устройство"),
-        Group(name: "Вся литература", description: "Художественная литература, научная литература, фантастика, зарубежная литература, история, стихи")
-    ]
+    private let queue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        queue.name = "serialQueue"
+        queue.qualityOfService = .utility
+        return queue
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "Группы"
         
+        photoService = PhotoService(container: tableView)
+        
         tableView.register(UINib(nibName: "GroupXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "GroupXIB")
         
-        filteredGroups = groups
+        refresh.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        tableView.addSubview(refresh)
+
+        guard let realm = RealmHelper.getRealm() else { return }
+        print(realm.configuration.fileURL as Any)
+        
+        //MARK: Проверка на существование объекта VkGroup в Realm
+        let groups = realm.objects(VkGroup.self)
+        
+        if groups.isEmpty {
+            self.refreshData(self)
+        }
+        else {
+            self.setGroups(groups: Array(groups))
+        }
+        
+        
     }
+    
+    @objc private func refreshData (_ sender: AnyObject) {
+        
+//        print("=====START LOADING=====")
+//        self.startLoading()
+//
+//        vkApi.getUserGroups(token: session.token, id: session.userId) { [weak self] in
+//
+//            guard let self = self else { return }
+//
+//            guard let realm = RealmHelper.getRealm() else { return }
+//
+//            let groups = realm.objects(VkGroup.self)
+//
+//            self.setGroups(Array(groups))
+//
+//            print("=====END LOADING======")
+//            self.endLoading()
+//
+//            if self.refresh.isRefreshing {
+//                self.refresh.endRefreshing()
+//            }
+//
+//        }
+        
+        let path = "/method/groups.get"
+
+        let parameters: Parameters = [
+            "access_token" : session.token,
+            "user_id": session.userId,
+            "extended": "1",
+            "fields": "id, name, photo_50, description",  // название, фото, описание
+            "v": "5.131"
+        ]
+
+        let url = VKApi.baseUrl+path
+  
+        let request = AF.request(url, method: .get, parameters: parameters)
+        
+        let getData = GetDataOperation(request: request)
+        let parseData = DataParseOperation()
+        let saveOperation = SaveOperation()
+        let reloadOperation = ReloadTableController(controller: self)
+        
+        parseData.addDependency(getData)
+        saveOperation.addDependency(parseData)
+        reloadOperation.addDependency(saveOperation)
+        
+        queue.addOperation(getData)
+        queue.addOperation(parseData)
+        queue.addOperation(saveOperation)
+        OperationQueue.main.addOperation(reloadOperation)
+        OperationQueue.main.addOperation {
+            if self.refresh.isRefreshing {
+                self.refresh.endRefreshing()
+            }
+        }
+        
+    }
+
+    func setGroups(groups: [VkGroup]) {
+        self.groups = Array(groups)
+
+        self.filteredGroups = self.groups
+
+        self.tableView.reloadData()
+    }
+    
+    func getOldRealmGroups(groups: [VkGroup]) {
+        self.oldRealmGroups = groups
+    }
+    
+    func getNewToRealm(groups: [VkGroup]){
+        self.newToRealmGroups = groups
+    }
+    
+   
 
     // MARK: - Table view data source
 
@@ -60,8 +175,17 @@ class GroupsTableViewController: UITableViewController {
         }
         
         cell.groupNameXIB.text = filteredGroups[indexPath.row].name
-        cell.groupDescriptionXIB.text = filteredGroups[indexPath.row].description
-
+        cell.groupDescriptionXIB.text = filteredGroups[indexPath.row].Description
+        
+        //кеширование
+        let image = photoService?.photo(atIndexpath: indexPath, byUrl: filteredGroups[indexPath.row].photoGroup)
+        
+        cell.groupImage.image = image
+        
+//        let url = URL(string: filteredGroups[indexPath.row].photoGroup)
+//        Utilities().UrlToImage(url: filteredGroups[indexPath.row].photoGroup) { res in
+//            cell.groupImage.image = res
+//        }
         return cell
     }
     
@@ -69,20 +193,22 @@ class GroupsTableViewController: UITableViewController {
     //возврат по клику на группу при добавлении на следующем экране
     @IBAction func addSelectGroup(segue: UIStoryboardSegue) {
         //print("unwined")
-        if (segue.identifier == "addGroupToAll") {
-            guard let allGroupsController = segue.source as? GroupsViewController else { return }
-            
-            if let indexPath = allGroupsController.allGroups.indexPathForSelectedRow {
-                let group = allGroupsController.groups[indexPath.row]
-                
-                if (!filteredGroups.contains(where: {$0.name == group.name})) {
-                    filteredGroups.append(group)
-                    groups.append(group)
-                    
-                    tableView.reloadData()
-                }
-            }
-        }
+        
+        
+//        if (segue.identifier == "addGroupToAll") {
+//            guard let allGroupsController = segue.source as? GroupsViewController else { return }
+//            
+//            if let indexPath = allGroupsController.allGroups.indexPathForSelectedRow {
+//                let group = allGroupsController.groups[indexPath.row]
+//                
+//                if (!self.filteredGroups.contains(where: {$0.name == group.name})) {
+//                    self.filteredGroups.append(group)
+//                    self.groups.append(group)
+//                    
+//                    self.tableView.reloadData()
+//                }
+//            }
+//        }
 
         //print(sourceVC)
         //print(segue.destination)
@@ -111,31 +237,6 @@ class GroupsTableViewController: UITableViewController {
         }    
     }
     
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
