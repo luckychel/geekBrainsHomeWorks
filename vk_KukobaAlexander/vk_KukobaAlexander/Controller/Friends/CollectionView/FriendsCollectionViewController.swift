@@ -14,6 +14,10 @@ class FriendsCollectionViewController: BaseUICollectionViewController {
 
     let session = Session.shared
     let vkApi = VKApi.shared
+
+    var realm: Realm?
+    
+    var token: NotificationToken?
     
     var arrayFriends : [Friend]? = []
     
@@ -23,15 +27,16 @@ class FriendsCollectionViewController: BaseUICollectionViewController {
     
     let refresh = UIRefreshControl()
     
-    var realm: Realm?
+    private var photoService: PhotoService?
     
-    var token: NotificationToken?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        
+        photoService = PhotoService(container: collectionView)
         
         // Включает вертикальный скрол приндутельно для появления обновления свайпом сверху вниз
         self.collectionView.alwaysBounceVertical = true
@@ -163,31 +168,25 @@ class FriendsCollectionViewController: BaseUICollectionViewController {
             preconditionFailure("Error casting FriendCollectionViewCell")
         }
         
-        if let savedImage = photos[indexPath.row].savedImage {
-            cell.imageFriend.image = UIImage(data: savedImage)
-        }
-        else
-        {
-            //подстраховка
-           
-            Utilities().UrlToData(url: photos[indexPath.row].url) { res in
-                cell.imageFriend.image = UIImage(data: res)
-                try! self.realm!.write {
-                    self.photos[indexPath.row].savedImage = res
-                }
-            }
-            
-            //let url = URL(string: photos[indexPath.row].url)
-            
-//            if let data = try? Data(contentsOf: url!) {
-//                cell.imageFriend.image = UIImage(data: data)
+        cell.nameFriend.text = ""
+        
+        //кеширование
+        let image = photoService?.photo(atIndexpath: indexPath, byUrl: photos[indexPath.row].url)
+        
+        cell.imageFriend.image = image
+        
+//        if let savedImage = photos[indexPath.row].savedImage {
+//            cell.imageFriend.image = UIImage(data: savedImage)
+//        }
+//        else
+//        {
+//            Utilities().UrlToData(url: photos[indexPath.row].url) { res in
+//                cell.imageFriend.image = UIImage(data: res)
 //                try! self.realm!.write {
-//                    photos[indexPath.row].savedImage = data
+//                    self.photos[indexPath.row].savedImage = res
 //                }
 //            }
-        }
-
-        cell.nameFriend.text = ""
+//        }
         
         return cell
     

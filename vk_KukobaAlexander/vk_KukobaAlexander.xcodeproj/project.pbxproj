@@ -73,6 +73,8 @@
 		81B29E4C29B51F68008F3B11 /* FindNewToRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B29E4B29B51F68008F3B11 /* FindNewToRealm.swift */; };
 		81B29E4E29B51F97008F3B11 /* UpdateRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B29E4D29B51F97008F3B11 /* UpdateRealm.swift */; };
 		81B29E5029B534C4008F3B11 /* ReloadTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B29E4F29B534C4008F3B11 /* ReloadTableController.swift */; };
+		81B29E5229C4E1D8008F3B11 /* UIImageView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B29E5129C4E1D8008F3B11 /* UIImageView+extension.swift */; };
+		81B29E5529C4F6F8008F3B11 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B29E5429C4F6F8008F3B11 /* PhotoService.swift */; };
 		81CD93E62899CC2C009BC3B3 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93E52899CC2C009BC3B3 /* Session.swift */; };
 		81CD93E828A028BE009BC3B3 /* VKApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93E728A028BE009BC3B3 /* VKApi.swift */; };
 		81CD93EA28A032D9009BC3B3 /* LoginWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CD93E928A032D9009BC3B3 /* LoginWebViewController.swift */; };
@@ -162,6 +164,8 @@
 		81B29E4B29B51F68008F3B11 /* FindNewToRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNewToRealm.swift; sourceTree = "<group>"; };
 		81B29E4D29B51F97008F3B11 /* UpdateRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRealm.swift; sourceTree = "<group>"; };
 		81B29E4F29B534C4008F3B11 /* ReloadTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadTableController.swift; sourceTree = "<group>"; };
+		81B29E5129C4E1D8008F3B11 /* UIImageView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+extension.swift"; sourceTree = "<group>"; };
+		81B29E5429C4F6F8008F3B11 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		81CD93E52899CC2C009BC3B3 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		81CD93E728A028BE009BC3B3 /* VKApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKApi.swift; sourceTree = "<group>"; };
 		81CD93E928A032D9009BC3B3 /* LoginWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebViewController.swift; sourceTree = "<group>"; };
@@ -419,6 +423,7 @@
 		8179784A286A54FB00D14B27 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				81B29E5329C4F6E4008F3B11 /* PhotoService */,
 				8145B83128FB88D300B1DB58 /* BaseUITableViewController.swift */,
 				8145B82B28FB691700B1DB58 /* BaseUIViewController.swift */,
 				8145B82D28FB6E2A00B1DB58 /* BaseUICollectionViewController.swift */,
@@ -439,6 +444,7 @@
 			children = (
 				81DE030D286275FB009C1856 /* UiViewController+extension.swift */,
 				8117C06B286CF50F00649B1E /* UIView + IBInspectable extension.swift */,
+				81B29E5129C4E1D8008F3B11 /* UIImageView+extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -457,6 +463,14 @@
 				81B29E4F29B534C4008F3B11 /* ReloadTableController.swift */,
 			);
 			path = Operation;
+			sourceTree = "<group>";
+		};
+		81B29E5329C4F6E4008F3B11 /* PhotoService */ = {
+			isa = PBXGroup;
+			children = (
+				81B29E5429C4F6F8008F3B11 /* PhotoService.swift */,
+			);
+			path = PhotoService;
 			sourceTree = "<group>";
 		};
 		81CD93F328A43B25009BC3B3 /* VKModel */ = {
@@ -675,10 +689,12 @@
 				8107E498289337C200891999 /* ShareNewsControl.swift in Sources */,
 				816C713F292A85C700977D7D /* NewsTextV2Cell.swift in Sources */,
 				8146D66928F36AD100976BF0 /* RealmHelper.swift in Sources */,
+				81B29E5529C4F6F8008F3B11 /* PhotoService.swift in Sources */,
 				8117C07028731E9300649B1E /* LoginUIView.swift in Sources */,
 				81B29E5029B534C4008F3B11 /* ReloadTableController.swift in Sources */,
 				811697EC2887342C00CE1765 /* CustomSegue.swift in Sources */,
 				811697C82879079300CE1765 /* NewsXIBTableViewCell.swift in Sources */,
+				81B29E5229C4E1D8008F3B11 /* UIImageView+extension.swift in Sources */,
 				81DE03162868A755009C1856 /* FriendsViewController.swift in Sources */,
 				811697EA2887342C00CE1765 /* CustomMainNavigationController.swift in Sources */,
 				8117C062286B792A00649B1E /* GroupsViewController.swift in Sources */,

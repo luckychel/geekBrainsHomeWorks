@@ -36,12 +36,15 @@ class Utilities {
         // Start Data Task
         dataTask.resume()
     }
+    
     func UrlToData(url: String?, complection: @escaping (Data) -> ()) {
 
         guard let url = url else { return }
-
+        
+        guard let url =  URL(string: url) else { return }
+       
         // Create Data Task
-        let dataTask = URLSession.shared.dataTask(with: URL(string: url)!) { (data, _, _) in
+        let dataTask = URLSession.shared.dataTask(with: url) { (data, _, _) in
 
             if let data = data {
                 DispatchQueue.main.async {
@@ -54,6 +57,7 @@ class Utilities {
         // Start Data Task
         dataTask.resume()
     }
+    
 //    func UrlToImage(from url: String?, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
 //        guard let url = url else { return }
 //        URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: completion).resume()

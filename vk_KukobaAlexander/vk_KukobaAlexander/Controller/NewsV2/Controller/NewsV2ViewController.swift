@@ -17,12 +17,15 @@ class NewsV2ViewController: BaseUIViewController {
     var newsAll = [VKNews]()
     var news = [VKNewsItem]()
     
+    private var photoService: PhotoService?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         newsTable.dataSource = self
         newsTable.delegate = self
-      
+
+        photoService = PhotoService(container: newsTable)
         
         vkApi.getNews(token: session.token, id: session.userId) { res in
             
@@ -49,20 +52,22 @@ extension NewsV2ViewController: UITableViewDataSource, UITableViewDelegate {
         
         guard news.count > 0 else { return 0 }
         guard (news[section].attachments?.contains(where: { $0.type == .photo})) != nil
-                && news[section].text != "" else { return 2}
+                && news[section].text != "" else { return 2 }
         guard (news[section].attachments?.contains(where: { $0.type == .photo})) != nil
-                || news[section].text != "" else { return 3}
+                || news[section].text != "" else { return 3 }
         return 4
 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        print("Прорисовка секции новости \(indexPath.section)")
+        
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsAuthor", for: indexPath) as! NewsAuthorDataTableViewCell
             
-            cell.configure(index: indexPath.section, news: self.newsAll[0])
+            cell.configure(index: indexPath.section, news: self.newsAll[indexPath.row])
              
            return cell
             
@@ -79,7 +84,6 @@ extension NewsV2ViewController: UITableViewDataSource, UITableViewDelegate {
                         return cell
                 } else {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "NewsLikeCommentsCell", for: indexPath) as! NewsLikeCommentsTableViewCell
-                    print(indexPath.section)
 
                     let newsItem  = news[indexPath.section]
 
@@ -95,8 +99,7 @@ extension NewsV2ViewController: UITableViewDataSource, UITableViewDelegate {
                     return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "NewsLikeCommentsCell", for: indexPath) as! NewsLikeCommentsTableViewCell
-                print(indexPath.section)
-
+                
                 let newsItem  = news[indexPath.section]
 
                 cell.configure(newsItem: newsItem, cellIndex: indexPath.section)
@@ -160,9 +163,14 @@ extension NewsV2ViewController: UICollectionViewDelegate, UICollectionViewDataSo
             preconditionFailure("Error")
         }
 
-        Utilities().UrlToImage(url: url) { res in
-            cell.newsPhoto.image = res
-        }
+        //кеширование
+        let image = photoService?.photo(atIndexpath: indexPath, byUrl: url)
+        
+        cell.newsPhoto.image = image
+        
+//        Utilities().UrlToImage(url: url) { res in
+//            cell.newsPhoto.image = res
+//        }
       
         return cell
     }

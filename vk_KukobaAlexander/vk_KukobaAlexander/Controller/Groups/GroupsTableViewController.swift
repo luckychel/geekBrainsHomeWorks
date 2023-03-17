@@ -29,6 +29,8 @@ class GroupsTableViewController: BaseUITableViewController, GroupSavable {
     
     let refresh = UIRefreshControl()
     
+    private var photoService: PhotoService?
+    
     @IBOutlet var searchBarGroups: UISearchBar! {
         didSet {
             searchBarGroups.delegate = self
@@ -47,6 +49,8 @@ class GroupsTableViewController: BaseUITableViewController, GroupSavable {
         super.viewDidLoad()
 
         self.title = "Группы"
+        
+        photoService = PhotoService(container: tableView)
         
         tableView.register(UINib(nibName: "GroupXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "GroupXIB")
         
@@ -172,12 +176,16 @@ class GroupsTableViewController: BaseUITableViewController, GroupSavable {
         
         cell.groupNameXIB.text = filteredGroups[indexPath.row].name
         cell.groupDescriptionXIB.text = filteredGroups[indexPath.row].Description
-        let url = URL(string: filteredGroups[indexPath.row].photoGroup)
         
-        if let url = url, let data = try? Data(contentsOf: url) {
-            cell.groupImage.image = UIImage(data: data)
-        }
-
+        //кеширование
+        let image = photoService?.photo(atIndexpath: indexPath, byUrl: filteredGroups[indexPath.row].photoGroup)
+        
+        cell.groupImage.image = image
+        
+//        let url = URL(string: filteredGroups[indexPath.row].photoGroup)
+//        Utilities().UrlToImage(url: filteredGroups[indexPath.row].photoGroup) { res in
+//            cell.groupImage.image = res
+//        }
         return cell
     }
     

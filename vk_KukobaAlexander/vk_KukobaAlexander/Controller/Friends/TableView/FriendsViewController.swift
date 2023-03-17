@@ -18,6 +18,8 @@ class FriendsViewController: BaseUIViewController {
     
     let refresh = UIRefreshControl()
     
+    private var photoService: PhotoService?
+    
     @IBOutlet var myFriends: UITableView! {
         didSet {
             myFriends.dataSource = self
@@ -26,9 +28,12 @@ class FriendsViewController: BaseUIViewController {
     }
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         self.title = "Друзья"
+        
+        photoService = PhotoService(container: myFriends)
         
         myFriends.register(UINib(nibName: "FriendXIBTableViewCell", bundle: nil), forCellReuseIdentifier: "FriendXIB")
         
@@ -205,12 +210,19 @@ extension FriendsViewController: UITableViewDataSource {
         animation.repeatCount = 1
         animation.beginTime = CACurrentMediaTime()
         //animation.fillMode = CAMediaTimingFillMode.backwards
+        
+        cell.nameFriendXIB.text = friend.fullName
+        
         cell.imageFriendXIB.layer.add(animation, forKey: nil)
         
-        Utilities().UrlToImage(url: friend.photo_400_orig) { res in
-            cell.imageFriendXIB.image = res
-        }
-        cell.nameFriendXIB.text = friend.fullName
+        //кеширование
+        let image = photoService?.photo(atIndexpath: indexPath, byUrl: friend.photo_400_orig ?? "")
+        
+        cell.imageFriendXIB.image = image
+        
+//        Utilities().UrlToImage(url: friend.photo_400_orig) { res in
+//            cell.imageFriendXIB.image = res
+//        }
 
         return cell
     }
