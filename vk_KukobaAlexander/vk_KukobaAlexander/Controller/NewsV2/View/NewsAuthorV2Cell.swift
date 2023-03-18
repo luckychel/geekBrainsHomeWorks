@@ -37,14 +37,6 @@ class NewsAuthorDataTableViewCell: UITableViewCell {
 //            self.avatar.image = UIImage(data: res)
 //        }
 //
-//        let timeResult = Double(news.items?[index].date ?? 0)
-//            let date = Date(timeIntervalSince1970: timeResult)
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.timeStyle = DateFormatter.Style.medium
-//            dateFormatter.dateStyle = DateFormatter.Style.medium
-//            dateFormatter.timeZone = .current
-//            let localDate = dateFormatter.string(from: date)
-//
-//        self.date.text = localDate
+
     }
 }

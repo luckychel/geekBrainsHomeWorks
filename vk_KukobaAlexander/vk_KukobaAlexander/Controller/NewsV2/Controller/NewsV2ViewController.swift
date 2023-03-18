@@ -20,11 +20,18 @@ class NewsV2ViewController: BaseUIViewController {
     
     private var photoService: PhotoService?
     
+    private let dateFormatter = DateFormatter()
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         newsTable.dataSource = self
         newsTable.delegate = self
+
+        dateFormatter.timeStyle = DateFormatter.Style.medium
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeZone = .current
 
         photoService = PhotoService(container: newsTable)
         
@@ -74,18 +81,24 @@ extension NewsV2ViewController: UITableViewDataSource, UITableViewDelegate {
             cell.configure(index: indexPath.section)
             
             var url: String?
-
-            if ((self.news[indexPath.section].sourceID ?? 0) > 0) {
+            let index = indexPath.section
+            if ((self.news[index].sourceID ?? 0) > 0) {
                 //profile
-                let source = profiles.filter({ $0.id == (news[indexPath.section].sourceID)! });
+                let source = profiles.filter({ $0.id == (news[index].sourceID)! });
                 cell.author.text = !source.isEmpty ? (source[0].firstName ?? "") + " " + (source[0].lastName ?? "") : ""
                 url = !source.isEmpty ? source[0].photo100 : "https://vk.com/images/camera_100.png"
             } else {
                 //group
-                let source = groups.filter({ $0.id == (-1) * (news[indexPath.section].sourceID)!}) ;
+                let source = groups.filter({ $0.id == (-1) * (news[index].sourceID)!}) ;
                 cell.author.text = !source.isEmpty ? source[0].name: ""
                 url = !source.isEmpty ? source[0].photo100 : "https://vk.com/images/camera_100.png"
             }
+
+            let timeResult = Double(news[index].date ?? 0)
+            let date = Date(timeIntervalSince1970: timeResult)
+            let localDate = dateFormatter.string(from: date)
+    
+            cell.date.text = localDate
             
             //кеширование
             let image = photoService?.photo(atIndexpath: indexPath, byUrl: url ?? "")
@@ -158,9 +171,9 @@ extension NewsV2ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 80
+            return 100
         } else if indexPath.row == 2 && !(news[indexPath.section].attachments?.isEmpty ?? true) && news[indexPath.section].attachments?[0].photo != nil {
-            return 180
+            return 200
         } else {
             newsTable.estimatedRowHeight = 44.0
             newsTable.rowHeight = UITableView.automaticDimension
