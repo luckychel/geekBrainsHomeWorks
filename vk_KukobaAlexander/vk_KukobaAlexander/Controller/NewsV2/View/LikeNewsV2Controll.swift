@@ -9,12 +9,12 @@ import UIKit
 
 class LikeNewsThreadControl: UIControl{
     
-    var newsItem: VKNewsItem!
+    var newsItem: VkNewsItem!
     
     let likeButton = UIButton(frame: CGRect(x: 5, y: 0, width: 30, height: 30))
     let likeCount  = UILabel(frame: CGRect(x: 32, y: 0, width: 50, height: 30))
     
-    func setLikeNewsControl(item : VKNewsItem, cellIndex: Int) {
+    func setLikeNewsControl(item : VkNewsItem, cellIndex: Int) {
 
         newsItem = item
         

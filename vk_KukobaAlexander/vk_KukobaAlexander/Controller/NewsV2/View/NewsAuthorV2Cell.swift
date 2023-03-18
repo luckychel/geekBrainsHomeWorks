@@ -27,28 +27,16 @@ class NewsAuthorDataTableViewCell: UITableViewCell {
     }
     
     func configure(index: Int){
-        var url: String? = ""
-        
-//        if ((news.items?[index].sourceID ?? 0) > 0) {
-//            //profile
-////            let source = news.profiles?.filter({ $0.id == (-1) * (news.items?[index].sourceID)!});
-////            self.author.text = (source?.count ?? 0 > 0) ? source![0].screenName : ""
-////            url = (source?.count ?? 0 > 0) ? source![0].photo100 : "https://vk.com/images/camera_100.png"
-//
-//        } else {
-//            //group
-////            self.author.text = news.groups?.filter({ $0.id == (-1) * (news.items?[index].sourceID)!})[0].name
-////            url = news.groups?.filter({ $0.id == (-1) * (news.items?[index].sourceID)!})[0].photo100  ?? "https://vk.com/images/camera_100.png"
-//        }
-  
+        //var url: String? = ""
+
         self.avatar.layer.cornerRadius = self.avatar.frame.size.width / 2
         self.avatar.contentMode = .scaleAspectFill
         self.avatar.clipsToBounds = true
         
-        Utilities().UrlToData(url: url) { res in
-            self.avatar.image = UIImage(data: res)
-        }
-      
+//        Utilities().UrlToData(url: url) { res in
+//            self.avatar.image = UIImage(data: res)
+//        }
+//
 //        let timeResult = Double(news.items?[index].date ?? 0)
 //            let date = Date(timeIntervalSince1970: timeResult)
 //            let dateFormatter = DateFormatter()

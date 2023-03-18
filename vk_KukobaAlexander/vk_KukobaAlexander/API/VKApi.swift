@@ -246,10 +246,10 @@ class VKApi {
                 
                 let news = try? JSONDecoder().decode(VKNewsGet.self, from: data)
                 
-                guard let news11 = news?.response else { return }
+                guard let news = news?.response else { return }
                 
               //  self.saveData(news)
-                completion(news11)
+                completion(news)
             }
         }
     

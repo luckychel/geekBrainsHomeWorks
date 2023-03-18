@@ -75,7 +75,7 @@ func groupAnimation(){
     }
     
   
-    func configure(newsItem: VKNewsItem, cellIndex: Int) {
+    func configure(newsItem: VkNewsItem, cellIndex: Int) {
         
         setControl(control: likeNewsControl)
         self.likeNewsControl.setLikeNewsControl(item: newsItem, cellIndex: cellIndex)

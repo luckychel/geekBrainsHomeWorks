@@ -1,215 +1,263 @@
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
-//
-//   let vKNewsGet = try? JSONDecoder().decode(VKNewsGet.self, from: jsonData)
+
 
 import Foundation
-import RealmSwift
+import Alamofire
 
 // MARK: - VKNewsGet
-class VKNewsGet: Decodable {
-    let response: VKNews
+class VKNewsGet: Codable {
+    var response: VKNews?
+
+    init(response: VKNews?) {
+        self.response = response
+    }
 }
 
 // MARK: - Response
-class VKNews: Decodable {
-    let items: [VKNewsItem]
+class VKNews: Codable {
+    var items: [VkNewsItem]?
+    var profiles: [VkNewsProfile]?
+    var groups: [VkNewsGroup]?
+    var nextFrom: String?
+
+    enum CodingKeys: String, CodingKey {
+        case items, profiles, groups
+        case nextFrom = "next_from"
+    }
+
+    init(items: [VkNewsItem]?, profiles: [VkNewsProfile]?, groups: [VkNewsGroup]?, nextFrom: String?) {
+        self.items = items
+        self.profiles = profiles
+        self.groups = groups
+        self.nextFrom = nextFrom
+    }
+}
+
+// MARK: - Group
+class VkNewsGroup: Codable {
+    var id: Int?
+    var name, screenName: String?
+    var isClosed: Int?
+    var type: VkNewsGroupType?
+    var isAdmin, isMember, isAdvertiser: Int?
+    var photo50, photo100, photo200: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id, name
+        case screenName = "screen_name"
+        case isClosed = "is_closed"
+        case type
+        case isAdmin = "is_admin"
+        case isMember = "is_member"
+        case isAdvertiser = "is_advertiser"
+        case photo50 = "photo_50"
+        case photo100 = "photo_100"
+        case photo200 = "photo_200"
+    }
+
+    init(id: Int?, name: String?, screenName: String?, isClosed: Int?, type: VkNewsGroupType?, isAdmin: Int?, isMember: Int?, isAdvertiser: Int?, photo50: String?, photo100: String?, photo200: String?) {
+        self.id = id
+        self.name = name
+        self.screenName = screenName
+        self.isClosed = isClosed
+        self.type = type
+        self.isAdmin = isAdmin
+        self.isMember = isMember
+        self.isAdvertiser = isAdvertiser
+        self.photo50 = photo50
+        self.photo100 = photo100
+        self.photo200 = photo200
+    }
+}
+
+enum VkNewsGroupType: String, Codable {
+    case group = "group"
+    case page = "page"
 }
 
 // MARK: - Item
-class VKNewsItem: Object, Decodable {
-    @Persisted var id: Int = 0
-    @Persisted var type: String = ""
-    @Persisted var sourceID: Int = 0
-    @Persisted var date: Int = 0
-    @Persisted var comments: Comments? = Comments()
-    @Persisted var likes: Likes? = Likes()
-    @Persisted var text: String = ""
-    //@Persisted var attachments: [ItemAttachment]?
+class VkNewsItem: Codable {
+    var type: PostTypeEnum?
+    var sourceID, date: Int?
+    var shortTextRate: Double?
+    var donut: Donut?
+    var comments: Comments?
+    var markedAsAds: Int?
+    var canSetCategory, canDoubtCategory: Bool?
+    var attachments: [ItemAttachment]?
+    var id: Int?
+    var isFavorite: Bool?
+    var likes: Likes?
+    var ownerID, postID: Int?
+    var postSource: PostSource?
+    var postType: PostTypeEnum?
+    var reposts: Reposts?
+    var text: String?
+    var views: Views?
+    var carouselOffset: Int?
+    var copyHistory: [CopyHistory]?
+    var zoomText: Bool?
+    var topicID, signerID, edited: Int?
 
+    
     enum CodingKeys: String, CodingKey {
-        case id
         case type
         case sourceID = "source_id"
         case date
-        case comments
+        case shortTextRate = "short_text_rate"
+        case donut, comments
+        case markedAsAds = "marked_as_ads"
+        case canSetCategory = "can_set_category"
+        case canDoubtCategory = "can_doubt_category"
+        case attachments, id
+        case isFavorite = "is_favorite"
         case likes
-        case text
-        case attachments
+        case ownerID = "owner_id"
+        case postID = "post_id"
+        case postSource = "post_source"
+        case postType = "post_type"
+        case reposts, text, views
+        case carouselOffset = "carousel_offset"
+        case copyHistory = "copy_history"
+        case zoomText = "zoom_text"
+        case topicID = "topic_id"
+        case signerID = "signer_id"
+        case edited
     }
 
-    convenience required init(from decoder: Decoder) throws {
-        self.init()
+    init(type: PostTypeEnum?, sourceID: Int?, date: Int?, shortTextRate: Double?, donut: Donut?, comments: Comments?, markedAsAds: Int?, canSetCategory: Bool?, canDoubtCategory: Bool?, attachments: [ItemAttachment]?, id: Int?, isFavorite: Bool?, likes: Likes?, ownerID: Int?, postID: Int?, postSource: PostSource?, postType: PostTypeEnum?, reposts: Reposts?, text: String?, views: Views?, carouselOffset: Int?, copyHistory: [CopyHistory]?, zoomText: Bool?, topicID: Int?, signerID: Int?, edited: Int?) {
+        self.type = type
+        self.sourceID = sourceID
+        self.date = date
+        self.shortTextRate = shortTextRate
+        self.donut = donut
+        self.comments = comments
+        self.markedAsAds = markedAsAds
+        self.canSetCategory = canSetCategory
+        self.canDoubtCategory = canDoubtCategory
+        self.attachments = attachments
+        self.id = id
+        self.isFavorite = isFavorite
+        self.likes = likes
+        self.ownerID = ownerID
+        self.postID = postID
+        self.postSource = postSource
+        self.postType = postType
+        self.reposts = reposts
+        self.text = text
+        self.views = views
+        self.carouselOffset = carouselOffset
+        self.copyHistory = copyHistory
+        self.zoomText = zoomText
+        self.topicID = topicID
+        self.signerID = signerID
+        self.edited = edited
         
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.type =  try container.decode(String.self, forKey: .type)
-        self.sourceID =  try container.decode(Int.self, forKey: .sourceID)
-        self.date =  try container.decode(Int.self, forKey: .date)
-        self.comments =  try container.decode(Comments.self, forKey: .comments)
-        self.likes =  try container.decode(Likes.self, forKey: .likes)
-        self.text =  try container.decode(String.self, forKey: .text)
-        //self.attachments =  try container.decode(ItemAttachment.self, forKey: .attachments)
     }
-    
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-}
-
-// MARK: - Comments
-class Comments: Object, Decodable {
-    
-    @Persisted var canPost: Int?
-    @Persisted var count: Int?
-    @Persisted var groupsCanPost: Bool?
-
-    enum CodingKeys: String, CodingKey {
-        case canPost = "can_post"
-        case count
-        case groupsCanPost = "groups_can_post"
-    }
-
-    convenience required init(from decoder: Decoder) throws {
-        self.init()
-        
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.canPost = try container.decodeIfPresent(Int.self, forKey: .canPost)
-        self.count = try container.decodeIfPresent(Int.self, forKey: .count)
-        self.groupsCanPost = try container.decodeIfPresent(Bool.self, forKey: .groupsCanPost)
-    }
-}
-
-// MARK: - Likes
-class Likes: Object, Decodable {
-    
-    @Persisted var canLike: Int?
-    @Persisted var count: Int?
-    @Persisted var userLikes: Int?
-    @Persisted var canPublish: Int?
-    @Persisted var repostDisabled: Bool?
-
-    enum CodingKeys: String, CodingKey {
-        case canLike = "can_like"
-        case count
-        case userLikes = "user_likes"
-        case canPublish = "can_publish"
-        case repostDisabled = "repost_disabled"
-    }
-
-    convenience required init(from decoder: Decoder) throws {
-        self.init()
-        
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.canLike = try container.decodeIfPresent(Int.self, forKey: .canLike)
-        self.count = try container.decodeIfPresent(Int.self, forKey: .count)
-        self.userLikes = try container.decodeIfPresent(Int.self, forKey: .userLikes)
-        self.canPublish = try container.decodeIfPresent(Int.self, forKey: .canPublish)
-        self.repostDisabled = try container.decodeIfPresent(Bool.self, forKey: .repostDisabled)
-
-    }
-
 }
 
 // MARK: - ItemAttachment
 class ItemAttachment: Codable {
     var type: AttachmentType?
+    var photo: LinkPhoto?
+    var video: AttachmentVideo?
+    var doc: Doc?
     var link: Link?
-    var photo: Photo?
-    var video: Video?
 
-    init(type: AttachmentType?, link: Link?, photo: Photo?, video: Video?) {
+    init(type: AttachmentType?, photo: LinkPhoto?, video: AttachmentVideo?, doc: Doc?, link: Link?) {
         self.type = type
+        self.photo = photo
+        self.video = video
+        self.doc = doc
         self.link = link
+    }
+}
+
+// MARK: - Doc
+class Doc: Codable {
+    var id, ownerID: Int?
+    var title: String?
+    var size: Int?
+    var ext: String?
+    var date, type: Int?
+    var url: String?
+    var preview: Preview?
+    var isUnsafe: Int?
+    var accessKey: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case ownerID = "owner_id"
+        case title, size, ext, date, type, url, preview
+        case isUnsafe = "is_unsafe"
+        case accessKey = "access_key"
+    }
+
+    init(id: Int?, ownerID: Int?, title: String?, size: Int?, ext: String?, date: Int?, type: Int?, url: String?, preview: Preview?, isUnsafe: Int?, accessKey: String?) {
+        self.id = id
+        self.ownerID = ownerID
+        self.title = title
+        self.size = size
+        self.ext = ext
+        self.date = date
+        self.type = type
+        self.url = url
+        self.preview = preview
+        self.isUnsafe = isUnsafe
+        self.accessKey = accessKey
+    }
+}
+
+// MARK: - Preview
+class Preview: Codable {
+    var photo: PreviewPhoto?
+    var video: VideoElement?
+
+    init(photo: PreviewPhoto?, video: VideoElement?) {
         self.photo = photo
         self.video = video
     }
 }
 
-// MARK: - Link
-class Link: Codable {
-    var url: String?
-    var caption, description: String?
-    var photo: Photo?
-    var title, ref: String?
-    var isFavorite: Bool?
-    var target: String?
+// MARK: - PreviewPhoto
+class PreviewPhoto: Codable {
+    var sizes: [VideoElement]?
 
-    enum CodingKeys: String, CodingKey {
-        case url, caption, description, photo, title, ref
-        case isFavorite = "is_favorite"
-        case target
-    }
-
-    init(url: String?, caption: String?, description: String?, photo: Photo?, title: String?, ref: String?, isFavorite: Bool?, target: String?) {
-        self.url = url
-        self.caption = caption
-        self.description = description
-        self.photo = photo
-        self.title = title
-        self.ref = ref
-        self.isFavorite = isFavorite
-        self.target = target
-    }
-}
-
-// MARK: - Photo
-class Photo: Codable {
-    var albumID, date, id, ownerID: Int?
-    var sizes: [Size]?
-    var text: String?
-    var userID: Int?
-    var hasTags: Bool?
-    var accessKey: String?
-    var postID: Int?
-
-    enum CodingKeys: String, CodingKey {
-        case albumID = "album_id"
-        case date, id
-        case ownerID = "owner_id"
-        case sizes, text
-        case userID = "user_id"
-        case hasTags = "has_tags"
-        case accessKey = "access_key"
-        case postID = "post_id"
-    }
-
-    init(albumID: Int?, date: Int?, id: Int?, ownerID: Int?, sizes: [Size]?, text: String?, userID: Int?, hasTags: Bool?, accessKey: String?, postID: Int?) {
-        self.albumID = albumID
-        self.date = date
-        self.id = id
-        self.ownerID = ownerID
+    init(sizes: [VideoElement]?) {
         self.sizes = sizes
-        self.text = text
-        self.userID = userID
-        self.hasTags = hasTags
-        self.accessKey = accessKey
-        self.postID = postID
     }
 }
 
-// MARK: - Size
-class Size: Codable {
-    var height: Int?
+// MARK: - VideoElement
+class VideoElement: Codable {
+    var src: String?
+    var width, height: Int?
     var type: SizeType?
-    var width: Int?
+    var fileSize: Int?
     var url: String?
     var withPadding: Int?
 
     enum CodingKeys: String, CodingKey {
-        case height, type, width, url
+        case src, width, height, type
+        case fileSize = "file_size"
+        case url
         case withPadding = "with_padding"
     }
 
-    init(height: Int?, type: SizeType?, width: Int?, url: String?, withPadding: Int?) {
+    init(src: String?, width: Int?, height: Int?, type: SizeType?, fileSize: Int?, url: String?, withPadding: Int?) {
+        self.src = src
+        self.width = width
         self.height = height
         self.type = type
-        self.width = width
+        self.fileSize = fileSize
         self.url = url
         self.withPadding = withPadding
     }
 }
 
 enum SizeType: String, Codable {
+    case l = "l"
     case m = "m"
     case o = "o"
     case p = "p"
@@ -222,27 +270,91 @@ enum SizeType: String, Codable {
     case z = "z"
 }
 
+// MARK: - Link
+class Link: Codable {
+    var url: String?
+    var description: String?
+    var isFavorite: Bool?
+    var photo: LinkPhoto?
+    var title, target, caption: String?
+
+    enum CodingKeys: String, CodingKey {
+        case url, description
+        case isFavorite = "is_favorite"
+        case photo, title, target, caption
+    }
+
+    init(url: String?, description: String?, isFavorite: Bool?, photo: LinkPhoto?, title: String?, target: String?, caption: String?) {
+        self.url = url
+        self.description = description
+        self.isFavorite = isFavorite
+        self.photo = photo
+        self.title = title
+        self.target = target
+        self.caption = caption
+    }
+}
+
+// MARK: - LinkPhoto
+class LinkPhoto: Codable {
+    var albumID, date, id, ownerID: Int?
+    var sizes: [VideoElement]?
+    var text: String?
+    var userID: Int?
+    var hasTags: Bool?
+    var accessKey: String?
+    var postID: Int?
+    var squareCrop: String?
+
+    enum CodingKeys: String, CodingKey {
+        case albumID = "album_id"
+        case date, id
+        case ownerID = "owner_id"
+        case sizes, text
+        case userID = "user_id"
+        case hasTags = "has_tags"
+        case accessKey = "access_key"
+        case postID = "post_id"
+        case squareCrop = "square_crop"
+    }
+
+    init(albumID: Int?, date: Int?, id: Int?, ownerID: Int?, sizes: [VideoElement]?, text: String?, userID: Int?, hasTags: Bool?, accessKey: String?, postID: Int?, squareCrop: String?) {
+        self.albumID = albumID
+        self.date = date
+        self.id = id
+        self.ownerID = ownerID
+        self.sizes = sizes
+        self.text = text
+        self.userID = userID
+        self.hasTags = hasTags
+        self.accessKey = accessKey
+        self.postID = postID
+        self.squareCrop = squareCrop
+    }
+}
+
 enum AttachmentType: String, Codable {
+    case doc = "doc"
     case link = "link"
     case photo = "photo"
     case video = "video"
 }
 
-// MARK: - Video
-class Video: Codable {
+
+// MARK: - AttachmentVideo
+class AttachmentVideo: Codable {
     var accessKey: String?
     var canComment, canLike, canRepost, canSubscribe: Int?
     var canAddToFaves, canAdd, comments, date: Int?
     var description: String?
     var duration: Int?
-    var image, firstFrame: [Size]?
+    var image, firstFrame: [VideoElement]?
     var width, height, id, ownerID: Int?
     var title: String?
     var isFavorite: Bool?
     var trackCode: String?
-    var type: VideoType?
-    var views, videoRepeat: Int?
-    var ovID, liveStatus: String?
+    var type: PurpleType?
+    var views, canDislike, videoRepeat: Int?
 
     enum CodingKeys: String, CodingKey {
         case accessKey = "access_key"
@@ -260,12 +372,11 @@ class Video: Codable {
         case isFavorite = "is_favorite"
         case trackCode = "track_code"
         case type, views
+        case canDislike = "can_dislike"
         case videoRepeat = "repeat"
-        case ovID = "ov_id"
-        case liveStatus = "live_status"
     }
 
-    init(accessKey: String?, canComment: Int?, canLike: Int?, canRepost: Int?, canSubscribe: Int?, canAddToFaves: Int?, canAdd: Int?, comments: Int?, date: Int?, description: String?, duration: Int?, image: [Size]?, firstFrame: [Size]?, width: Int?, height: Int?, id: Int?, ownerID: Int?, title: String?, isFavorite: Bool?, trackCode: String?, type: VideoType?, views: Int?, videoRepeat: Int?, ovID: String?, liveStatus: String?) {
+    init(accessKey: String?, canComment: Int?, canLike: Int?, canRepost: Int?, canSubscribe: Int?, canAddToFaves: Int?, canAdd: Int?, comments: Int?, date: Int?, description: String?, duration: Int?, image: [VideoElement]?, firstFrame: [VideoElement]?, width: Int?, height: Int?, id: Int?, ownerID: Int?, title: String?, isFavorite: Bool?, trackCode: String?, type: PurpleType?, views: Int?, canDislike: Int?, videoRepeat: Int?) {
         self.accessKey = accessKey
         self.canComment = canComment
         self.canLike = canLike
@@ -288,25 +399,40 @@ class Video: Codable {
         self.trackCode = trackCode
         self.type = type
         self.views = views
+        self.canDislike = canDislike
         self.videoRepeat = videoRepeat
-        self.ovID = ovID
-        self.liveStatus = liveStatus
     }
 }
 
-enum VideoType: String, Codable {
+enum PurpleType: String, Codable {
     case shortVideo = "short_video"
     case video = "video"
 }
 
+// MARK: - Comments
+class Comments: Codable {
+    var canPost, count: Int?
+    var groupsCanPost: Bool?
 
+    enum CodingKeys: String, CodingKey {
+        case canPost = "can_post"
+        case count
+        case groupsCanPost = "groups_can_post"
+    }
+
+    init(canPost: Int?, count: Int?, groupsCanPost: Bool?) {
+        self.canPost = canPost
+        self.count = count
+        self.groupsCanPost = groupsCanPost
+    }
+}
 
 // MARK: - CopyHistory
 class CopyHistory: Codable {
     var type: PostTypeEnum?
     var attachments: [CopyHistoryAttachment]?
     var date, fromID, id, ownerID: Int?
-    var postSource: CopyHistoryPostSource?
+    var postSource: PostSource?
     var postType: PostTypeEnum?
     var text: String?
 
@@ -320,7 +446,7 @@ class CopyHistory: Codable {
         case text
     }
 
-    init(type: PostTypeEnum?, attachments: [CopyHistoryAttachment]?, date: Int?, fromID: Int?, id: Int?, ownerID: Int?, postSource: CopyHistoryPostSource?, postType: PostTypeEnum?, text: String?) {
+    init(type: PostTypeEnum?, attachments: [CopyHistoryAttachment]?, date: Int?, fromID: Int?, id: Int?, ownerID: Int?, postSource: PostSource?, postType: PostTypeEnum?, text: String?) {
         self.type = type
         self.attachments = attachments
         self.date = date
@@ -335,24 +461,89 @@ class CopyHistory: Codable {
 
 // MARK: - CopyHistoryAttachment
 class CopyHistoryAttachment: Codable {
-    var type: AttachmentType?
-    var photo: Photo?
-    var video: Video?
+    var type: String?
+    var marketAlbum: MarketAlbum?
+    var link: Link?
+    var photo: LinkPhoto?
+    var video: AttachmentVideo?
 
-    init(type: AttachmentType?, photo: Photo?, video: Video?) {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case marketAlbum = "market_album"
+        case link, photo, video
+    }
+
+    init(type: String?, marketAlbum: MarketAlbum?, link: Link?, photo: LinkPhoto?, video: AttachmentVideo?) {
         self.type = type
+        self.marketAlbum = marketAlbum
+        self.link = link
         self.photo = photo
         self.video = video
     }
 }
 
-// MARK: - CopyHistoryPostSource
-class CopyHistoryPostSource: Codable {
-    var type: PostSourceType?
+//
+// To parse values from Alamofire responses:
+//
+//   Alamofire.request(url).responseMarketAlbum { response in
+//     if let marketAlbum = response.result.value {
+//       ...
+//     }
+//   }
 
-    init(type: PostSourceType?) {
-        self.type = type
+// MARK: - MarketAlbum
+class MarketAlbum: Codable {
+    var id, ownerID: Int?
+    var title: String?
+    var count, updatedTime: Int?
+    var isMain, isHidden: Bool?
+    var photo: LinkPhoto?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case ownerID = "owner_id"
+        case title, count
+        case updatedTime = "updated_time"
+        case isMain = "is_main"
+        case isHidden = "is_hidden"
+        case photo
     }
+
+    init(id: Int?, ownerID: Int?, title: String?, count: Int?, updatedTime: Int?, isMain: Bool?, isHidden: Bool?, photo: LinkPhoto?) {
+        self.id = id
+        self.ownerID = ownerID
+        self.title = title
+        self.count = count
+        self.updatedTime = updatedTime
+        self.isMain = isMain
+        self.isHidden = isHidden
+        self.photo = photo
+    }
+}
+
+//
+// To parse values from Alamofire responses:
+//
+//   Alamofire.request(url).responsePostSource { response in
+//     if let postSource = response.result.value {
+//       ...
+//     }
+//   }
+
+// MARK: - PostSource
+class PostSource: Codable {
+    var type: PostSourceType?
+    var platform: Platform?
+
+    init(type: PostSourceType?, platform: Platform?) {
+        self.type = type
+        self.platform = platform
+    }
+}
+
+enum Platform: String, Codable {
+    case android = "android"
+    case iphone = "iphone"
 }
 
 enum PostSourceType: String, Codable {
@@ -363,6 +554,15 @@ enum PostSourceType: String, Codable {
 enum PostTypeEnum: String, Codable {
     case post = "post"
 }
+
+//
+// To parse values from Alamofire responses:
+//
+//   Alamofire.request(url).responseDonut { response in
+//     if let donut = response.result.value {
+//       ...
+//     }
+//   }
 
 // MARK: - Donut
 class Donut: Codable {
@@ -377,24 +577,45 @@ class Donut: Codable {
     }
 }
 
+//
+// To parse values from Alamofire responses:
+//
+//   Alamofire.request(url).responseLikes { response in
+//     if let likes = response.result.value {
+//       ...
+//     }
+//   }
 
+// MARK: - Likes
+class Likes: Codable {
+    var canLike, count, userLikes, canPublish: Int?
+    var repostDisabled: Bool?
 
-// MARK: - ItemPostSource
-class ItemPostSource: Codable {
-    var type: PostSourceType?
-    var platform: Platform?
+    enum CodingKeys: String, CodingKey {
+        case canLike = "can_like"
+        case count
+        case userLikes = "user_likes"
+        case canPublish = "can_publish"
+        case repostDisabled = "repost_disabled"
+    }
 
-    init(type: PostSourceType?, platform: Platform?) {
-        self.type = type
-        self.platform = platform
+    init(canLike: Int?, count: Int?, userLikes: Int?, canPublish: Int?, repostDisabled: Bool?) {
+        self.canLike = canLike
+        self.count = count
+        self.userLikes = userLikes
+        self.canPublish = canPublish
+        self.repostDisabled = repostDisabled
     }
 }
 
-enum Platform: String, Codable {
-    case adminApp = "admin_app"
-    case android = "android"
-    case iphone = "iphone"
-}
+//
+// To parse values from Alamofire responses:
+//
+//   Alamofire.request(url).responseReposts { response in
+//     if let reposts = response.result.value {
+//       ...
+//     }
+//   }
 
 // MARK: - Reposts
 class Reposts: Codable {
@@ -411,6 +632,15 @@ class Reposts: Codable {
     }
 }
 
+//
+// To parse values from Alamofire responses:
+//
+//   Alamofire.request(url).responseViews { response in
+//     if let views = response.result.value {
+//       ...
+//     }
+//   }
+
 // MARK: - Views
 class Views: Codable {
     var count: Int?
@@ -420,58 +650,26 @@ class Views: Codable {
     }
 }
 
-// MARK: - Group
-class VKNewsGroup: Codable {
-    var id: Int?
-    var name, screenName: String?
-    var isClosed: Int?
-    var type: GroupType?
-    var isAdmin, isMember, isAdvertiser: Int?
-    var photo50, photo100, photo200: String?
-
-    enum CodingKeys: String, CodingKey {
-        case id, name
-        case screenName = "screen_name"
-        case isClosed = "is_closed"
-        case type
-        case isAdmin = "is_admin"
-        case isMember = "is_member"
-        case isAdvertiser = "is_advertiser"
-        case photo50 = "photo_50"
-        case photo100 = "photo_100"
-        case photo200 = "photo_200"
-    }
-
-    init(id: Int?, name: String?, screenName: String?, isClosed: Int?, type: GroupType?, isAdmin: Int?, isMember: Int?, isAdvertiser: Int?, photo50: String?, photo100: String?, photo200: String?) {
-        self.id = id
-        self.name = name
-        self.screenName = screenName
-        self.isClosed = isClosed
-        self.type = type
-        self.isAdmin = isAdmin
-        self.isMember = isMember
-        self.isAdvertiser = isAdvertiser
-        self.photo50 = photo50
-        self.photo100 = photo100
-        self.photo200 = photo200
-    }
-}
-
-enum GroupType: String, Codable {
-    case group = "group"
-    case page = "page"
-}
-
+//
+// To parse values from Alamofire responses:
+//
+//   Alamofire.request(url).responseProfile { response in
+//     if let profile = response.result.value {
+//       ...
+//     }
+//   }
 
 // MARK: - Profile
-class Profile: Codable {
+class VkNewsProfile: Codable {
     var id, sex: Int?
     var screenName: String?
     var photo50, photo100: String?
     var onlineInfo: OnlineInfo?
     var online: Int?
-    var firstName, lastName: String?
+    var firstName: String?
+    var lastName: String?
     var canAccessClosed, isClosed: Bool?
+    var deactivated: String?
 
     enum CodingKeys: String, CodingKey {
         case id, sex
@@ -484,9 +682,10 @@ class Profile: Codable {
         case lastName = "last_name"
         case canAccessClosed = "can_access_closed"
         case isClosed = "is_closed"
+        case deactivated
     }
 
-    init(id: Int?, sex: Int?, screenName: String?, photo50: String?, photo100: String?, onlineInfo: OnlineInfo?, online: Int?, firstName: String?, lastName: String?, canAccessClosed: Bool?, isClosed: Bool?) {
+    init(id: Int?, sex: Int?, screenName: String?, photo50: String?, photo100: String?, onlineInfo: OnlineInfo?, online: Int?, firstName: String?, lastName: String?, canAccessClosed: Bool?, isClosed: Bool?, deactivated: String?) {
         self.id = id
         self.sex = sex
         self.screenName = screenName
@@ -498,29 +697,46 @@ class Profile: Codable {
         self.lastName = lastName
         self.canAccessClosed = canAccessClosed
         self.isClosed = isClosed
+        self.deactivated = deactivated
     }
 }
+
+//
+// To parse values from Alamofire responses:
+//
+//   Alamofire.request(url).responseOnlineInfo { response in
+//     if let onlineInfo = response.result.value {
+//       ...
+//     }
+//   }
 
 // MARK: - OnlineInfo
 class OnlineInfo: Codable {
-    var visible: Bool?
-    var lastSeen: Int?
-    var isOnline, isMobile: Bool?
-    var appID: Int?
+    var visible, isOnline, isMobile: Bool?
+    var lastSeen, appID: Int?
 
     enum CodingKeys: String, CodingKey {
         case visible
-        case lastSeen = "last_seen"
         case isOnline = "is_online"
         case isMobile = "is_mobile"
+        case lastSeen = "last_seen"
         case appID = "app_id"
     }
 
-    init(visible: Bool?, lastSeen: Int?, isOnline: Bool?, isMobile: Bool?, appID: Int?) {
+    init(visible: Bool?, isOnline: Bool?, isMobile: Bool?, lastSeen: Int?, appID: Int?) {
         self.visible = visible
-        self.lastSeen = lastSeen
         self.isOnline = isOnline
         self.isMobile = isMobile
+        self.lastSeen = lastSeen
         self.appID = appID
     }
 }
+
+enum ScreenName: String, Codable {
+    case id100 = "id100"
+    case id16000336 = "id16000336"
+    case id331543234 = "id331543234"
+    case marinaBkt = "marina_bkt"
+    case zolotinka777 = "zolotinka777"
+}
+

@@ -9,12 +9,12 @@ import UIKit
 
 class CommentCountControl: UIControl {
 
-    var newsItem: VKNewsItem!
+    var newsItem: VkNewsItem!
     
     let commentCount  = UILabel(frame: CGRect(x: 32, y: 0, width: 30, height: 30))
     let commentButton = UIButton(frame: CGRect(x: 5, y: 0, width: 30, height: 30))
     
-    func setCommentNewsControl(item : VKNewsItem, cellIndex: Int) {
+    func setCommentNewsControl(item : VkNewsItem, cellIndex: Int) {
         
         newsItem = item
         let text: String = String(newsItem.comments?.count ?? 0)
