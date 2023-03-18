@@ -28,7 +28,7 @@ class NewsLikeCommentsTableViewCell: UITableViewCell {
     
     @objc func handleTap(_: UITapGestureRecognizer){
 
-        if likeNewsControl.newsItem.likes?.userLikes == 1 {
+        if likeNewsControl.newsItem.likes?.userLikes ?? 0 == 1 {
             likeNewsControl.newsItem.likes?.userLikes = 0
             likeNewsControl.newsItem.likes?.count! -= 1
             likeNewsControl.likeCount.textColor = .lightGray
@@ -41,7 +41,7 @@ class NewsLikeCommentsTableViewCell: UITableViewCell {
             animateLikeCountAppear()
             groupAnimation()
         }
-        
+
         likeNewsControl.setLikeButton(isLike: likeNewsControl.newsItem.likes?.userLikes ?? 0)
 }
 

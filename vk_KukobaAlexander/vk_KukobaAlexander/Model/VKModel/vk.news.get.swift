@@ -4,153 +4,110 @@
 //   let vKNewsGet = try? JSONDecoder().decode(VKNewsGet.self, from: jsonData)
 
 import Foundation
+import RealmSwift
 
 // MARK: - VKNewsGet
-class VKNewsGet: Codable {
-    let response: VKNews?
-
-    init(response: VKNews?) {
-        self.response = response
-    }
+class VKNewsGet: Decodable {
+    let response: VKNews
 }
 
 // MARK: - Response
-class VKNews: Codable {
-    let items: [VKNewsItem]?
-    let profiles: [Profile]?
-    let groups: [VKNewsGroup]?
-    let nextFrom: String?
-
-    enum CodingKeys: String, CodingKey {
-        case items, profiles, groups
-        case nextFrom = "next_from"
-    }
-
-    init(items: [VKNewsItem]?, profiles: [Profile]?, groups: [VKNewsGroup]?, nextFrom: String?) {
-        self.items = items
-        self.profiles = profiles
-        self.groups = groups
-        self.nextFrom = nextFrom
-    }
-}
-// MARK: - Group
-class VKNewsGroup: Codable {
-    var id: Int?
-    var name, screenName: String?
-    var isClosed: Int?
-    var type: GroupType?
-    var isAdmin, isMember, isAdvertiser: Int?
-    var photo50, photo100, photo200: String?
-
-    enum CodingKeys: String, CodingKey {
-        case id, name
-        case screenName = "screen_name"
-        case isClosed = "is_closed"
-        case type
-        case isAdmin = "is_admin"
-        case isMember = "is_member"
-        case isAdvertiser = "is_advertiser"
-        case photo50 = "photo_50"
-        case photo100 = "photo_100"
-        case photo200 = "photo_200"
-    }
-
-    init(id: Int?, name: String?, screenName: String?, isClosed: Int?, type: GroupType?, isAdmin: Int?, isMember: Int?, isAdvertiser: Int?, photo50: String?, photo100: String?, photo200: String?) {
-        self.id = id
-        self.name = name
-        self.screenName = screenName
-        self.isClosed = isClosed
-        self.type = type
-        self.isAdmin = isAdmin
-        self.isMember = isMember
-        self.isAdvertiser = isAdvertiser
-        self.photo50 = photo50
-        self.photo100 = photo100
-        self.photo200 = photo200
-    }
-}
-
-enum GroupType: String, Codable {
-    case group = "group"
-    case page = "page"
+class VKNews: Decodable {
+    let items: [VKNewsItem]
 }
 
 // MARK: - Item
-class VKNewsItem: Codable {
-    var type: PostTypeEnum?
-    var sourceID, date: Int?
-    var shortTextRate: Double?
-    var donut: Donut?
-    var comments: Comments?
-    var markedAsAds: Int?
-    var canSetCategory, canDoubtCategory: Bool?
-    var attachments: [ItemAttachment]?
-    var id: Int?
-    var isFavorite: Bool?
-    var likes: Likes?
-    var ownerID, postID: Int?
-    var postSource: ItemPostSource?
-    var postType: PostTypeEnum?
-    var reposts: Reposts?
-    var text: String?
-    var views: Views?
-    var carouselOffset: Int?
-    var copyHistory: [CopyHistory]?
-    var topicID: Int?
-    var zoomText: Bool?
-    var signerID: Int?
+class VKNewsItem: Object, Decodable {
+    @Persisted var id: Int = 0
+    @Persisted var type: String = ""
+    @Persisted var sourceID: Int = 0
+    @Persisted var date: Int = 0
+    @Persisted var comments: Comments? = Comments()
+    @Persisted var likes: Likes? = Likes()
+    @Persisted var text: String = ""
+    //@Persisted var attachments: [ItemAttachment]?
 
     enum CodingKeys: String, CodingKey {
+        case id
         case type
         case sourceID = "source_id"
         case date
-        case shortTextRate = "short_text_rate"
-        case donut, comments
-        case markedAsAds = "marked_as_ads"
-        case canSetCategory = "can_set_category"
-        case canDoubtCategory = "can_doubt_category"
-        case attachments, id
-        case isFavorite = "is_favorite"
+        case comments
         case likes
-        case ownerID = "owner_id"
-        case postID = "post_id"
-        case postSource = "post_source"
-        case postType = "post_type"
-        case reposts, text, views
-        case carouselOffset = "carousel_offset"
-        case copyHistory = "copy_history"
-        case topicID = "topic_id"
-        case zoomText = "zoom_text"
-        case signerID = "signer_id"
+        case text
+        case attachments
     }
 
-    init(type: PostTypeEnum?, sourceID: Int?, date: Int?, shortTextRate: Double?, donut: Donut?, comments: Comments?, markedAsAds: Int?, canSetCategory: Bool?, canDoubtCategory: Bool?, attachments: [ItemAttachment]?, id: Int?, isFavorite: Bool?, likes: Likes?, ownerID: Int?, postID: Int?, postSource: ItemPostSource?, postType: PostTypeEnum?, reposts: Reposts?, text: String?, views: Views?, carouselOffset: Int?, copyHistory: [CopyHistory]?, topicID: Int?, zoomText: Bool?, signerID: Int?) {
-        self.type = type
-        self.sourceID = sourceID
-        self.date = date
-        self.shortTextRate = shortTextRate
-        self.donut = donut
-        self.comments = comments
-        self.markedAsAds = markedAsAds
-        self.canSetCategory = canSetCategory
-        self.canDoubtCategory = canDoubtCategory
-        self.attachments = attachments
-        self.id = id
-        self.isFavorite = isFavorite
-        self.likes = likes
-        self.ownerID = ownerID
-        self.postID = postID
-        self.postSource = postSource
-        self.postType = postType
-        self.reposts = reposts
-        self.text = text
-        self.views = views
-        self.carouselOffset = carouselOffset
-        self.copyHistory = copyHistory
-        self.topicID = topicID
-        self.zoomText = zoomText
-        self.signerID = signerID
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.type =  try container.decode(String.self, forKey: .type)
+        self.sourceID =  try container.decode(Int.self, forKey: .sourceID)
+        self.date =  try container.decode(Int.self, forKey: .date)
+        self.comments =  try container.decode(Comments.self, forKey: .comments)
+        self.likes =  try container.decode(Likes.self, forKey: .likes)
+        self.text =  try container.decode(String.self, forKey: .text)
+        //self.attachments =  try container.decode(ItemAttachment.self, forKey: .attachments)
     }
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+}
+
+// MARK: - Comments
+class Comments: Object, Decodable {
+    
+    @Persisted var canPost: Int?
+    @Persisted var count: Int?
+    @Persisted var groupsCanPost: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case canPost = "can_post"
+        case count
+        case groupsCanPost = "groups_can_post"
+    }
+
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.canPost = try container.decodeIfPresent(Int.self, forKey: .canPost)
+        self.count = try container.decodeIfPresent(Int.self, forKey: .count)
+        self.groupsCanPost = try container.decodeIfPresent(Bool.self, forKey: .groupsCanPost)
+    }
+}
+
+// MARK: - Likes
+class Likes: Object, Decodable {
+    
+    @Persisted var canLike: Int?
+    @Persisted var count: Int?
+    @Persisted var userLikes: Int?
+    @Persisted var canPublish: Int?
+    @Persisted var repostDisabled: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case canLike = "can_like"
+        case count
+        case userLikes = "user_likes"
+        case canPublish = "can_publish"
+        case repostDisabled = "repost_disabled"
+    }
+
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.canLike = try container.decodeIfPresent(Int.self, forKey: .canLike)
+        self.count = try container.decodeIfPresent(Int.self, forKey: .count)
+        self.userLikes = try container.decodeIfPresent(Int.self, forKey: .userLikes)
+        self.canPublish = try container.decodeIfPresent(Int.self, forKey: .canPublish)
+        self.repostDisabled = try container.decodeIfPresent(Bool.self, forKey: .repostDisabled)
+
+    }
+
 }
 
 // MARK: - ItemAttachment
@@ -342,23 +299,7 @@ enum VideoType: String, Codable {
     case video = "video"
 }
 
-// MARK: - Comments
-class Comments: Codable {
-    var canPost, count: Int?
-    var groupsCanPost: Bool?
 
-    enum CodingKeys: String, CodingKey {
-        case canPost = "can_post"
-        case count
-        case groupsCanPost = "groups_can_post"
-    }
-
-    init(canPost: Int?, count: Int?, groupsCanPost: Bool?) {
-        self.canPost = canPost
-        self.count = count
-        self.groupsCanPost = groupsCanPost
-    }
-}
 
 // MARK: - CopyHistory
 class CopyHistory: Codable {
@@ -436,27 +377,7 @@ class Donut: Codable {
     }
 }
 
-// MARK: - Likes
-class Likes: Codable {
-    var canLike, count, userLikes, canPublish: Int?
-    var repostDisabled: Bool?
 
-    enum CodingKeys: String, CodingKey {
-        case canLike = "can_like"
-        case count
-        case userLikes = "user_likes"
-        case canPublish = "can_publish"
-        case repostDisabled = "repost_disabled"
-    }
-
-    init(canLike: Int?, count: Int?, userLikes: Int?, canPublish: Int?, repostDisabled: Bool?) {
-        self.canLike = canLike
-        self.count = count
-        self.userLikes = userLikes
-        self.canPublish = canPublish
-        self.repostDisabled = repostDisabled
-    }
-}
 
 // MARK: - ItemPostSource
 class ItemPostSource: Codable {
@@ -498,6 +419,49 @@ class Views: Codable {
         self.count = count
     }
 }
+
+// MARK: - Group
+class VKNewsGroup: Codable {
+    var id: Int?
+    var name, screenName: String?
+    var isClosed: Int?
+    var type: GroupType?
+    var isAdmin, isMember, isAdvertiser: Int?
+    var photo50, photo100, photo200: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id, name
+        case screenName = "screen_name"
+        case isClosed = "is_closed"
+        case type
+        case isAdmin = "is_admin"
+        case isMember = "is_member"
+        case isAdvertiser = "is_advertiser"
+        case photo50 = "photo_50"
+        case photo100 = "photo_100"
+        case photo200 = "photo_200"
+    }
+
+    init(id: Int?, name: String?, screenName: String?, isClosed: Int?, type: GroupType?, isAdmin: Int?, isMember: Int?, isAdvertiser: Int?, photo50: String?, photo100: String?, photo200: String?) {
+        self.id = id
+        self.name = name
+        self.screenName = screenName
+        self.isClosed = isClosed
+        self.type = type
+        self.isAdmin = isAdmin
+        self.isMember = isMember
+        self.isAdvertiser = isAdvertiser
+        self.photo50 = photo50
+        self.photo100 = photo100
+        self.photo200 = photo200
+    }
+}
+
+enum GroupType: String, Codable {
+    case group = "group"
+    case page = "page"
+}
+
 
 // MARK: - Profile
 class Profile: Codable {

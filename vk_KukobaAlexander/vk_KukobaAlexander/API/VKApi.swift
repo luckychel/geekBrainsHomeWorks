@@ -225,7 +225,7 @@ class VKApi {
         }
     }
     
-    func getNews(token: String, id: Int, completion: @escaping (VKNewsGet) -> Void){
+    func getNews(token: String, id: Int, completion: @escaping (VKNews) -> Void){
 
             let path = "/method/newsfeed.get"
 
@@ -249,7 +249,7 @@ class VKApi {
                 guard let news11 = news?.response else { return }
                 
               //  self.saveData(news)
-                completion(news!)
+                completion(news11)
             }
         }
     

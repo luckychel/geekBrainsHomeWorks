@@ -26,20 +26,20 @@ class NewsAuthorDataTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(index: Int,  news: VKNews){
+    func configure(index: Int){
         var url: String? = ""
         
-        if ((news.items?[index].sourceID ?? 0) > 0) {
-            //profile
-            let source = news.profiles?.filter({ $0.id == (-1) * (news.items?[index].sourceID)!});
-            self.author.text = (source?.count ?? 0 > 0) ? source![0].screenName : ""
-            url = (source?.count ?? 0 > 0) ? source![0].photo100 : "https://vk.com/images/camera_100.png"
-            
-        } else {
-            //group
-            self.author.text = news.groups?.filter({ $0.id == (-1) * (news.items?[index].sourceID)!})[0].name
-            url = news.groups?.filter({ $0.id == (-1) * (news.items?[index].sourceID)!})[0].photo100  ?? "https://vk.com/images/camera_100.png"
-        }
+//        if ((news.items?[index].sourceID ?? 0) > 0) {
+//            //profile
+////            let source = news.profiles?.filter({ $0.id == (-1) * (news.items?[index].sourceID)!});
+////            self.author.text = (source?.count ?? 0 > 0) ? source![0].screenName : ""
+////            url = (source?.count ?? 0 > 0) ? source![0].photo100 : "https://vk.com/images/camera_100.png"
+//
+//        } else {
+//            //group
+////            self.author.text = news.groups?.filter({ $0.id == (-1) * (news.items?[index].sourceID)!})[0].name
+////            url = news.groups?.filter({ $0.id == (-1) * (news.items?[index].sourceID)!})[0].photo100  ?? "https://vk.com/images/camera_100.png"
+//        }
   
         self.avatar.layer.cornerRadius = self.avatar.frame.size.width / 2
         self.avatar.contentMode = .scaleAspectFill
@@ -49,14 +49,14 @@ class NewsAuthorDataTableViewCell: UITableViewCell {
             self.avatar.image = UIImage(data: res)
         }
       
-        let timeResult = Double(news.items?[index].date ?? 0)
-            let date = Date(timeIntervalSince1970: timeResult)
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeStyle = DateFormatter.Style.medium
-            dateFormatter.dateStyle = DateFormatter.Style.medium
-            dateFormatter.timeZone = .current
-            let localDate = dateFormatter.string(from: date)
-        
-        self.date.text = localDate
+//        let timeResult = Double(news.items?[index].date ?? 0)
+//            let date = Date(timeIntervalSince1970: timeResult)
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.timeStyle = DateFormatter.Style.medium
+//            dateFormatter.dateStyle = DateFormatter.Style.medium
+//            dateFormatter.timeZone = .current
+//            let localDate = dateFormatter.string(from: date)
+//
+//        self.date.text = localDate
     }
 }

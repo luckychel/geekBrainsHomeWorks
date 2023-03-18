@@ -14,7 +14,7 @@ class NewsV2ViewController: BaseUIViewController {
     
     @IBOutlet weak var newsTable: UITableView!
    
-    var newsAll = [VKNews]()
+    //var newsAll = [VKNews]()
     var news = [VKNewsItem]()
     
     private var photoService: PhotoService?
@@ -30,10 +30,10 @@ class NewsV2ViewController: BaseUIViewController {
         vkApi.getNews(token: session.token, id: session.userId) { res in
             
             //guard res.response?.items?.count ?? 0 > 0  else {return}
-            guard let response = res.response else { return }
+            //guard let response = res.response else { return }
             
-            self.newsAll.append(response)
-            self.news = response.items!
+            //self.newsAll.append(response)
+            self.news = res.items
             
             self.newsTable.reloadData()
         }
@@ -51,10 +51,10 @@ extension NewsV2ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard news.count > 0 else { return 0 }
-        guard (news[section].attachments?.contains(where: { $0.type == .photo})) != nil
-                && news[section].text != "" else { return 2 }
-        guard (news[section].attachments?.contains(where: { $0.type == .photo})) != nil
-                || news[section].text != "" else { return 3 }
+//        guard (news[section].attachments?.contains(where: { $0.type == .photo})) != nil
+//                && news[section].text != "" else { return 2 }
+//        guard (news[section].attachments?.contains(where: { $0.type == .photo})) != nil
+//                || news[section].text != "" else { return 3 }
         return 4
 
     }
@@ -67,7 +67,7 @@ extension NewsV2ViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsAuthor", for: indexPath) as! NewsAuthorDataTableViewCell
             
-            cell.configure(index: indexPath.section, news: self.newsAll[indexPath.row])
+            cell.configure(index: indexPath.section)
              
            return cell
             
@@ -78,11 +78,11 @@ extension NewsV2ViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.newsText.text = news[indexPath.section].text
                 return cell
             } else {
-                if news[indexPath.section].attachments != nil
-                    && news[indexPath.section].attachments?.contains(where: { $0.type == .photo}) != nil {
-                        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsPhotoTableViewCell", for: indexPath) as! NewsPhotoTableViewCell
-                        return cell
-                } else {
+//                if news[indexPath.section].attachments != nil
+//                    && news[indexPath.section].attachments?.contains(where: { $0.type == .photo}) != nil {
+//                        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsPhotoTableViewCell", for: indexPath) as! NewsPhotoTableViewCell
+//                        return cell
+//                } else {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "NewsLikeCommentsCell", for: indexPath) as! NewsLikeCommentsTableViewCell
 
                     let newsItem  = news[indexPath.section]
@@ -90,14 +90,14 @@ extension NewsV2ViewController: UITableViewDataSource, UITableViewDelegate {
                     cell.configure(newsItem: newsItem, cellIndex: indexPath.section)
 
                     return cell
-                }
+                //}
             }
         case 2:
-            if news[indexPath.section].attachments != nil
-                && news[indexPath.section].attachments?.contains(where: { $0.type == .photo}) != nil {
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "NewsPhotoTableViewCell", for: indexPath) as! NewsPhotoTableViewCell
-                    return cell
-            } else {
+//            if news[indexPath.section].attachments != nil
+//                && news[indexPath.section].attachments?.contains(where: { $0.type == .photo}) != nil {
+//                    let cell = tableView.dequeueReusableCell(withIdentifier: "NewsPhotoTableViewCell", for: indexPath) as! NewsPhotoTableViewCell
+//                    return cell
+//            } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "NewsLikeCommentsCell", for: indexPath) as! NewsLikeCommentsTableViewCell
                 
                 let newsItem  = news[indexPath.section]
@@ -105,7 +105,7 @@ extension NewsV2ViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.configure(newsItem: newsItem, cellIndex: indexPath.section)
 
                 return cell
-            }
+            //}
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsLikeCommentsCell", for: indexPath) as! NewsLikeCommentsTableViewCell
             print(indexPath.section)
@@ -122,7 +122,7 @@ extension NewsV2ViewController: UITableViewDataSource, UITableViewDelegate {
 
         if let cell = cell as? NewsPhotoTableViewCell  {
             
-            guard !(news[indexPath.section].attachments?.isEmpty ?? true) && news[indexPath.section].attachments?[0].photo?.sizes?[0].url != nil else {return}
+//            guard !(news[indexPath.section].attachments?.isEmpty ?? true) && news[indexPath.section].attachments?[0].photo?.sizes?[0].url != nil else {return}
 
             cell.photoNewsCollectionView.dataSource = self
             cell.photoNewsCollectionView.delegate = self
@@ -135,8 +135,8 @@ extension NewsV2ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 80
-        } else if indexPath.row == 2 && !(news[indexPath.section].attachments?.isEmpty ?? true) && news[indexPath.section].attachments?[0].photo != nil {
-            return 180
+//        } else if indexPath.row == 2 && !(news[indexPath.section].attachments?.isEmpty ?? true) && news[indexPath.section].attachments?[0].photo != nil {
+//            return 180
         } else {
             newsTable.estimatedRowHeight = 44.0
             newsTable.rowHeight = UITableView.automaticDimension
@@ -159,14 +159,14 @@ extension NewsV2ViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewsPhotoCollectionViewCell", for: indexPath) as! NewsPhotoCollectionViewCell
         
-        guard let url = news[collectionView.tag].attachments?[indexPath.row].photo?.sizes?[0].url else {
-            preconditionFailure("Error")
-        }
+//        guard let url = news[collectionView.tag].attachments?[indexPath.row].photo?.sizes?[0].url else {
+//            preconditionFailure("Error")
+//        }
 
         //кеширование
-        let image = photoService?.photo(atIndexpath: indexPath, byUrl: url)
+//        let image = photoService?.photo(atIndexpath: indexPath, byUrl: url)
         
-        cell.newsPhoto.image = image
+        //cell.newsPhoto.image = image
         
 //        Utilities().UrlToImage(url: url) { res in
 //            cell.newsPhoto.image = res

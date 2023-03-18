@@ -15,16 +15,16 @@ class LikeNewsThreadControl: UIControl{
     let likeCount  = UILabel(frame: CGRect(x: 32, y: 0, width: 50, height: 30))
     
     func setLikeNewsControl(item : VKNewsItem, cellIndex: Int) {
-        
+
         newsItem = item
         
-        let text: String = String((newsItem.likes?.count ?? 0))
+        let text: String = String(item.likes?.count ?? 0)
         
         likeCount.text = text
-        likeCount.textColor = newsItem.likes?.userLikes == 1 ? .systemRed : .lightGray
+        likeCount.textColor = item.likes?.userLikes ?? 0 == 1 ? .systemRed : .lightGray
         likeCount.isUserInteractionEnabled = true
         
-        setLikeButton(isLike: (newsItem.likes?.userLikes)!)
+        setLikeButton(isLike: item.likes?.userLikes ?? 0)
         likeButton.isUserInteractionEnabled = false
 
         addSubview(likeButton)
