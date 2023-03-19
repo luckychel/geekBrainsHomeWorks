@@ -12,4 +12,5 @@ target 'vk_KukobaAlexander' do
 pod 'SwiftyJSON'
 pod 'ReadMoreTextView'
 pod 'SDWebImage' 
+pod 'SwiftyJSON'
 end

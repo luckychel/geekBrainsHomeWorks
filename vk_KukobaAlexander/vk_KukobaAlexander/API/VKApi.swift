@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 import RealmSwift
 import PromiseKit
+import SwiftyJSON
 
 class VKApi {
 
@@ -225,7 +226,7 @@ class VKApi {
         }
     }
     
-    func getNews(token: String, id: Int, completion: @escaping (VKNews) -> Void){
+    func getNews(token: String, id: Int, completion: @escaping (UserItem) -> Void){
 
             let path = "/method/newsfeed.get"
 
@@ -240,17 +241,40 @@ class VKApi {
             let url = VKApi.baseUrl+path
         
             print(token)
-        
-            AF.request(url, method: .get, parameters: parameters).responseData { response in
-                guard let data = response.value  else { return }
-                
-                let news = try? JSONDecoder().decode(VKNewsGet.self, from: data)
-                
-                guard let news = news?.response else { return }
-                
-              //  self.saveData(news)
-                completion(news)
+
+            AF.request(url, method: .get, parameters: parameters).validate().responseJSON(queue: DispatchQueue.global(qos: .utility)) {  response in
+                switch response.result {
+                case .success(let value):
+ 
+                 
+                    let profiles = JSON(value)["response"]["profiles"].compactMap({ ProfileItem(json: $0.1, userId: String(id)) })
+                    let groups = JSON(value)["response"]["groups"].compactMap({ GroupItem(json: $0.1, userId: String(id)) })
+                    let newsFeed = JSON(value)["response"]["items"]
+                   
+                    print("done posts")
+                    
+                    let news = newsFeed.compactMap({ NewsItem(json: $0.1, userId: String(id), groups: groups, friends: profiles) })
+
+                    let user: UserItem = UserItem(friends: profiles, groups: groups, newsfeed: news)
+                    
+                    completion(user)
+                    
+                case .failure(let error):
+                    print(error)
+                }
             }
+        
+        
+//            AF.request(url, method: .get, parameters: parameters).responseData { response in
+//                guard let data = response.value  else { return }
+//
+//                let news = try? JSONDecoder().decode(VKNewsGet.self, from: data)
+//
+//                guard let news = news?.response else { return }
+//
+//              //  self.saveData(news)
+//                completion(news)
+//            }
         }
     
 }
