@@ -10,8 +10,8 @@ import UIKit
 class ViewsControl: UIControl {
     var newsItem: NewsItem!
     
-    let viewsButton = UIButton(frame: CGRect(x: 2, y: -1, width: 30, height: 30))
-    let viewsCount  = UILabel(frame: CGRect(x: 32, y: -1, width: 30, height: 30))
+    let viewsButton = UIButton(frame: CGRect(x: 2, y: -3, width: 30, height: 30))
+    let viewsCount  = UILabel(frame: CGRect(x: 32, y: -3, width: 30, height: 30))
 
     func setViewsNewsControl(item : NewsItem, cellIndex: Int) {
         

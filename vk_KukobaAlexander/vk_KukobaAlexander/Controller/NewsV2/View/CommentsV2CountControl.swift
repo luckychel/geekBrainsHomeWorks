@@ -11,8 +11,8 @@ class CommentCountControl: UIControl {
 
     var newsItem: NewsItem!
     
-    let commentButton = UIButton(frame: CGRect(x: 5, y: -1, width: 30, height: 30))
-    let commentCount  = UILabel(frame: CGRect(x: 32, y: -1, width: 30, height: 30))
+    let commentButton = UIButton(frame: CGRect(x: 5, y: -3, width: 30, height: 30))
+    let commentCount  = UILabel(frame: CGRect(x: 32, y: -3, width: 30, height: 30))
 
     func setCommentNewsControl(item : NewsItem, cellIndex: Int) {
         

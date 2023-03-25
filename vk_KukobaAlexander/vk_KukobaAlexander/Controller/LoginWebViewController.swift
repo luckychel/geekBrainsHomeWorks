@@ -86,6 +86,8 @@ extension LoginWebViewController: WKNavigationDelegate{
         session.token = token
         session.userId = userID
 
+        print("=======\(token)=======")
+        
         //vkApi.getFriendsList(token: session.token, id: session.userId)
         //vkApi.getUserPhotos(token: session.token, id: session.userId)
         //vkApi.getUserGroups(token: session.token, id: session.userId)

@@ -235,7 +235,8 @@ class VKApi {
                 "user_id": id,
                 "client_id": VKApi.clientId,
                 "filters": "post",
-                "v": "5.131"
+                "v": "5.131",
+                "count": "100"
             ]
         
             let url = VKApi.baseUrl+path
@@ -252,9 +253,10 @@ class VKApi {
                     let newsFeed = JSON(value)["response"]["items"]
                    
                     print("done posts")
-                    
-                    let news = newsFeed.compactMap({ NewsItem(json: $0.1, userId: String(id), groups: groups, friends: profiles) })
 
+                    var news = newsFeed.compactMap({ NewsItem(json: $0.1, userId: String(id), groups: groups, friends: profiles) })
+                    //var d = news.filter({$0.id == "1097344"})
+                    
                     let user: UserItem = UserItem(friends: profiles, groups: groups, newsfeed: news)
                     
                     completion(user)

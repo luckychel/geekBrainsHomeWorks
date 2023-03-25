@@ -11,8 +11,8 @@ class RepostsControl: UIControl {
     
     var newsItem: NewsItem!
     
-    let repostButton = UIButton(frame: CGRect(x: 5, y: -1, width: 30, height: 30))
-    let repostCount  = UILabel(frame: CGRect(x: 32, y: -1, width: 30, height: 30))
+    let repostButton = UIButton(frame: CGRect(x: 5, y: -3, width: 30, height: 30))
+    let repostCount  = UILabel(frame: CGRect(x: 32, y: -3, width: 30, height: 30))
 
     func setRepostNewsControl(item : NewsItem, cellIndex: Int) {
         

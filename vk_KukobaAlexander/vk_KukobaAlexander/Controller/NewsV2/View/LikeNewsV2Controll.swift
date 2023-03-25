@@ -11,8 +11,8 @@ class LikeNewsThreadControl: UIControl{
     
     var newsItem: NewsItem!
     
-    let likeButton = UIButton(frame: CGRect(x: 5, y: -1, width: 30, height: 30))
-    let likeCount  = UILabel(frame: CGRect(x: 32, y: -1, width: 30, height: 30))
+    let likeButton = UIButton(frame: CGRect(x: 5, y: -3, width: 30, height: 30))
+    let likeCount  = UILabel(frame: CGRect(x: 32, y: -3, width: 30, height: 30))
     
     func setLikeNewsControl(item : NewsItem, cellIndex: Int) {
 
