@@ -739,17 +739,16 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fJj-C6-GUB">
                                                     <rect key="frame" x="10" y="10" width="60" height="60"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="6tF-uA-MHK"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="ArL-0w-6Rg"/>
-                                                        <constraint firstAttribute="width" constant="60" id="gLe-hw-xoZ"/>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="qNX-p2-01O"/>
+                                                        <constraint firstAttribute="width" secondItem="fJj-C6-GUB" secondAttribute="height" multiplier="1:1" id="Eon-p2-nfB"/>
+                                                        <constraint firstAttribute="height" constant="60" id="Tv6-78-oTE"/>
+                                                        <constraint firstAttribute="width" constant="60" id="dmX-Kp-8re"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="35d-LQ-rCc">
-                                                    <rect key="frame" x="80" y="10" width="298" height="48"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="35d-LQ-rCc">
+                                                    <rect key="frame" x="81" y="18" width="200" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfj-wL-syH">
-                                                            <rect key="frame" x="0.0" y="0.0" width="298" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="200" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="Bej-SR-3zo"/>
                                                             </constraints>
@@ -758,7 +757,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qm-MC-0Ry">
-                                                            <rect key="frame" x="0.0" y="28" width="298" height="20"/>
+                                                            <rect key="frame" x="0.0" y="25" width="200" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="WTF-uV-Sj7"/>
                                                             </constraints>
@@ -769,6 +768,7 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="mfj-wL-syH" firstAttribute="leading" secondItem="35d-LQ-rCc" secondAttribute="leading" id="3Wn-hL-int"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Bx9-mV-QdT"/>
                                                         <constraint firstAttribute="bottom" secondItem="8qm-MC-0Ry" secondAttribute="bottom" id="D8i-eQ-6hz"/>
                                                         <constraint firstAttribute="trailing" secondItem="8qm-MC-0Ry" secondAttribute="trailing" id="Sff-HA-rvT"/>
                                                         <constraint firstItem="8qm-MC-0Ry" firstAttribute="leading" secondItem="35d-LQ-rCc" secondAttribute="leading" id="aGj-g2-0w3"/>
@@ -777,12 +777,11 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="35d-LQ-rCc" firstAttribute="leading" secondItem="fJj-C6-GUB" secondAttribute="trailing" constant="10" id="2dr-SO-XnI"/>
-                                                <constraint firstAttribute="trailing" secondItem="35d-LQ-rCc" secondAttribute="trailing" constant="10" id="9Mn-jo-ESh"/>
-                                                <constraint firstItem="35d-LQ-rCc" firstAttribute="leading" secondItem="fJj-C6-GUB" secondAttribute="trailing" constant="10" id="VPQ-qE-pEo"/>
+                                                <constraint firstItem="35d-LQ-rCc" firstAttribute="top" secondItem="GWc-Dy-L7a" secondAttribute="top" constant="18" id="ZNA-cm-kwg"/>
                                                 <constraint firstItem="fJj-C6-GUB" firstAttribute="top" secondItem="GWc-Dy-L7a" secondAttribute="top" constant="10" id="bHM-Ry-viB"/>
-                                                <constraint firstItem="35d-LQ-rCc" firstAttribute="top" secondItem="GWc-Dy-L7a" secondAttribute="top" constant="10" id="f65-8Y-4oF"/>
+                                                <constraint firstAttribute="bottom" secondItem="35d-LQ-rCc" secondAttribute="bottom" constant="17" id="e8o-xv-2aD"/>
                                                 <constraint firstItem="fJj-C6-GUB" firstAttribute="leading" secondItem="GWc-Dy-L7a" secondAttribute="leading" constant="10" id="hpC-QD-Uzf"/>
+                                                <constraint firstItem="35d-LQ-rCc" firstAttribute="leading" secondItem="fJj-C6-GUB" secondAttribute="trailing" constant="11" id="rTb-kg-AiM"/>
                                                 <constraint firstAttribute="bottom" secondItem="fJj-C6-GUB" secondAttribute="bottom" constant="10" id="xUz-Ke-sxv"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -818,38 +817,38 @@
                                             <outlet property="newsText" destination="Xf3-W2-Mvq" id="M7y-X7-Ic2"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsPhotoTableViewCell" rowHeight="128" id="LM1-vk-0pQ" customClass="NewsPhotoTableViewCell" customModule="vk_KukobaAlexander" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="171.66666412353516" width="388" height="128"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsPhotoTableViewCell" rowHeight="357" id="LM1-vk-0pQ" customClass="NewsPhotoTableViewCell" customModule="vk_KukobaAlexander" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="171.66666412353516" width="388" height="357"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LM1-vk-0pQ" id="n3A-jC-4Vj">
-                                            <rect key="frame" x="0.0" y="0.0" width="388" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="388" height="357"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2aq-5D-QM6">
-                                                    <rect key="frame" x="0.0" y="0.0" width="388" height="128"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="388" height="357"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="128" id="82I-2i-96g"/>
                                                     </constraints>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h2R-bz-pMn">
-                                                        <size key="itemSize" width="128" height="128"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="h2R-bz-pMn">
+                                                        <size key="itemSize" width="360" height="360"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewsPhotoCollectionViewCell" id="v2j-aw-BWN" customClass="NewsPhotoCollectionViewCell" customModule="vk_KukobaAlexander" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="160" height="170"/>
+                                                            <rect key="frame" x="0.66666666666666663" y="0.0" width="387" height="357"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LHt-Ro-bWJ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="160" height="170"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="387" height="357"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EJC-dC-SdX">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="160" height="170"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="387" height="357"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" constant="170" id="D8B-MB-gxq"/>
-                                                                            <constraint firstAttribute="width" constant="160" id="JDK-aG-9Ij"/>
+                                                                            <constraint firstAttribute="height" constant="500" id="D8B-MB-gxq"/>
+                                                                            <constraint firstAttribute="width" constant="500" id="JDK-aG-9Ij"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                 </subviews>
@@ -860,6 +859,7 @@
                                                                     <constraint firstItem="EJC-dC-SdX" firstAttribute="leading" secondItem="LHt-Ro-bWJ" secondAttribute="leading" id="zJO-mn-Fgh"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
+                                                            <size key="customSize" width="387" height="357"/>
                                                             <connections>
                                                                 <outlet property="newsPhoto" destination="EJC-dC-SdX" id="WeL-AK-0Pr"/>
                                                             </connections>
@@ -878,42 +878,67 @@
                                             <outlet property="photoNewsCollectionView" destination="2aq-5D-QM6" id="hci-Dp-PMB"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsLikeCommentsCell" rowHeight="102" id="Rwy-pA-pTo" customClass="NewsLikeCommentsTableViewCell" customModule="vk_KukobaAlexander" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="299.66666412353516" width="388" height="102"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsLikeCommentsCell" rowHeight="60" id="Rwy-pA-pTo" customClass="NewsLikeCommentsTableViewCell" customModule="vk_KukobaAlexander" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="528.66666412353516" width="388" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rwy-pA-pTo" id="KbG-Fp-edI">
-                                            <rect key="frame" x="0.0" y="0.0" width="388" height="102"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="388" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bEq-lz-aux" customClass="LikeNewsThreadControl" customModule="vk_KukobaAlexander" customModuleProvider="target">
-                                                    <rect key="frame" x="30" y="21" width="70" height="60"/>
+                                                    <rect key="frame" x="8" y="6" width="65" height="48"/>
                                                     <color key="backgroundColor" systemColor="systemPinkColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="70" id="1d7-ot-vUL"/>
-                                                        <constraint firstAttribute="height" constant="30" id="Qde-Nh-BHv"/>
+                                                        <constraint firstAttribute="width" constant="65" id="5ex-Rb-xLd"/>
+                                                        <constraint firstAttribute="height" constant="48" id="L5K-ha-Rvi"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KHC-dE-yFu" customClass="RepostsControl" customModule="vk_KukobaAlexander" customModuleProvider="target">
+                                                    <rect key="frame" x="149" y="6" width="65" height="48"/>
+                                                    <color key="backgroundColor" systemColor="systemMintColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="MZb-nh-oiV"/>
+                                                        <constraint firstAttribute="width" constant="65" id="tzV-US-feL"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2n-WU-fpb" customClass="ViewsControl" customModule="vk_KukobaAlexander" customModuleProvider="target">
+                                                    <rect key="frame" x="316" y="6" width="65" height="48"/>
+                                                    <color key="backgroundColor" systemColor="tintColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="QAc-Oe-MVB"/>
+                                                        <constraint firstAttribute="width" constant="65" id="dUX-xf-NcV"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Cd-hF-RVE" customClass="CommentCountControl" customModule="vk_KukobaAlexander" customModuleProvider="target">
-                                                    <rect key="frame" x="120" y="21" width="70" height="60"/>
+                                                    <rect key="frame" x="79" y="6" width="65" height="48"/>
                                                     <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="70" id="T1m-GZ-P31"/>
-                                                        <constraint firstAttribute="height" constant="30" id="c3W-N8-KO6"/>
+                                                        <constraint firstAttribute="height" constant="48" id="E7K-Xe-dwp"/>
+                                                        <constraint firstAttribute="width" constant="65" id="mCI-er-Ywz"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="1Cd-hF-RVE" firstAttribute="leading" secondItem="bEq-lz-aux" secondAttribute="trailing" constant="20" id="1aW-7y-eWk"/>
-                                                <constraint firstItem="1Cd-hF-RVE" firstAttribute="top" secondItem="KbG-Fp-edI" secondAttribute="topMargin" constant="10" id="VwV-xU-oeA"/>
-                                                <constraint firstItem="bEq-lz-aux" firstAttribute="leading" secondItem="KbG-Fp-edI" secondAttribute="leadingMargin" constant="10" id="ZCT-8n-wyX"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="bEq-lz-aux" secondAttribute="bottom" constant="10" id="ZUv-Io-4sB"/>
-                                                <constraint firstItem="bEq-lz-aux" firstAttribute="top" secondItem="KbG-Fp-edI" secondAttribute="topMargin" constant="10" id="aUq-Ve-nEk"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="1Cd-hF-RVE" secondAttribute="bottom" constant="10" id="d3V-C6-gtR"/>
+                                                <constraint firstAttribute="bottom" secondItem="bEq-lz-aux" secondAttribute="bottom" constant="6" id="28r-Ps-O6M"/>
+                                                <constraint firstItem="bEq-lz-aux" firstAttribute="leading" secondItem="KbG-Fp-edI" secondAttribute="leading" constant="8" id="2EU-bo-yVy"/>
+                                                <constraint firstItem="1Cd-hF-RVE" firstAttribute="leading" secondItem="bEq-lz-aux" secondAttribute="trailing" constant="6" id="2ha-vP-dUE"/>
+                                                <constraint firstItem="KHC-dE-yFu" firstAttribute="leading" secondItem="1Cd-hF-RVE" secondAttribute="trailing" constant="5" id="6TK-OA-cwg"/>
+                                                <constraint firstAttribute="bottom" secondItem="g2n-WU-fpb" secondAttribute="bottom" constant="6" id="7jC-si-82b"/>
+                                                <constraint firstAttribute="bottom" secondItem="KHC-dE-yFu" secondAttribute="bottom" constant="6" id="C3Q-I6-HlG"/>
+                                                <constraint firstItem="bEq-lz-aux" firstAttribute="top" secondItem="KbG-Fp-edI" secondAttribute="top" constant="6" id="JFe-Kj-Xzl"/>
+                                                <constraint firstAttribute="bottom" secondItem="1Cd-hF-RVE" secondAttribute="bottom" constant="6" id="MW9-8X-cCp"/>
+                                                <constraint firstItem="1Cd-hF-RVE" firstAttribute="top" secondItem="KbG-Fp-edI" secondAttribute="top" constant="6" id="TQg-Tx-Vga"/>
+                                                <constraint firstItem="g2n-WU-fpb" firstAttribute="top" secondItem="KbG-Fp-edI" secondAttribute="top" constant="6" id="VYd-GH-XIO"/>
+                                                <constraint firstAttribute="trailing" secondItem="g2n-WU-fpb" secondAttribute="trailing" constant="7" id="dp9-hb-ezf"/>
+                                                <constraint firstItem="g2n-WU-fpb" firstAttribute="leading" relation="lessThanOrEqual" secondItem="KHC-dE-yFu" secondAttribute="trailing" constant="131" id="eCm-Z1-mDe"/>
+                                                <constraint firstItem="KHC-dE-yFu" firstAttribute="top" secondItem="KbG-Fp-edI" secondAttribute="top" constant="6" id="rda-UW-t2a"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="commentsNewsControl" destination="1Cd-hF-RVE" id="cUU-hJ-bfU"/>
                                             <outlet property="likeNewsControl" destination="bEq-lz-aux" id="uxI-Ma-MiZ"/>
+                                            <outlet property="repostsNewsControl" destination="KHC-dE-yFu" id="Cbi-fQ-Upm"/>
+                                            <outlet property="viewsNewsControl" destination="g2n-WU-fpb" id="xPI-5V-6vE"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -936,7 +961,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="71n-Tr-ngq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1344" y="1226"/>
+            <point key="canvasLocation" x="1342.9906542056074" y="1225.2699784017279"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

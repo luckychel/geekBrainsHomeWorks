@@ -30,13 +30,13 @@ class NewsAuthorDataTableViewCell: UITableViewCell {
         //var url: String? = ""
 
         self.avatar.layer.cornerRadius = self.avatar.frame.size.width / 2
-        self.avatar.contentMode = .scaleAspectFill
+        self.avatar.contentMode = .scaleToFill
         self.avatar.clipsToBounds = true
         
 //        Utilities().UrlToData(url: url) { res in
 //            self.avatar.image = UIImage(data: res)
 //        }
-//
+
 
     }
 }

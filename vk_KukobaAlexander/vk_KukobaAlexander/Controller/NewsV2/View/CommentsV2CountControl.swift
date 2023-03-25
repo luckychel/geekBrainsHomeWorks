@@ -9,20 +9,21 @@ import UIKit
 
 class CommentCountControl: UIControl {
 
-    var newsItem: VkNewsItem!
+    var newsItem: NewsItem!
     
-    let commentCount  = UILabel(frame: CGRect(x: 32, y: 0, width: 30, height: 30))
-    let commentButton = UIButton(frame: CGRect(x: 5, y: 0, width: 30, height: 30))
-    
-    func setCommentNewsControl(item : VkNewsItem, cellIndex: Int) {
+    let commentButton = UIButton(frame: CGRect(x: 5, y: -1, width: 30, height: 30))
+    let commentCount  = UILabel(frame: CGRect(x: 32, y: -1, width: 30, height: 30))
+
+    func setCommentNewsControl(item : NewsItem, cellIndex: Int) {
         
         newsItem = item
-        let text: String = String(newsItem.comments?.count ?? 0)
         
-        commentCount.text = text
+        commentCount.text = String(newsItem.commentsCount)
+        commentCount.font = commentCount.font.withSize(12)
         commentCount.textColor = .lightGray
         
         commentButton.setImage(UIImage(systemName: "text.bubble"), for: .normal)
+      
         commentButton.tintColor = .lightGray
         
         addSubview(commentButton)

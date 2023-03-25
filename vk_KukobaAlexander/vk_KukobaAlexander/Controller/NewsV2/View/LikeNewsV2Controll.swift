@@ -9,22 +9,24 @@ import UIKit
 
 class LikeNewsThreadControl: UIControl{
     
-    var newsItem: VkNewsItem!
+    var newsItem: NewsItem!
     
-    let likeButton = UIButton(frame: CGRect(x: 5, y: 0, width: 30, height: 30))
-    let likeCount  = UILabel(frame: CGRect(x: 32, y: 0, width: 50, height: 30))
+    let likeButton = UIButton(frame: CGRect(x: 5, y: -1, width: 30, height: 30))
+    let likeCount  = UILabel(frame: CGRect(x: 32, y: -1, width: 30, height: 30))
     
-    func setLikeNewsControl(item : VkNewsItem, cellIndex: Int) {
+    func setLikeNewsControl(item : NewsItem, cellIndex: Int) {
 
         newsItem = item
         
-        let text: String = String(item.likes?.count ?? 0)
+        let text: String = String(item.likesCount)
         
         likeCount.text = text
-        likeCount.textColor = item.likes?.userLikes ?? 0 == 1 ? .systemRed : .lightGray
+        likeCount.font = likeCount.font.withSize(12)
+        
+        likeCount.textColor = item.viewsCount == 1 ? .systemRed : .lightGray
         likeCount.isUserInteractionEnabled = true
         
-        setLikeButton(isLike: item.likes?.userLikes ?? 0)
+        setLikeButton(isLike: item.viewsCount)
         likeButton.isUserInteractionEnabled = false
 
         addSubview(likeButton)

@@ -11,6 +11,9 @@ class NewsLikeCommentsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var likeNewsControl: LikeNewsThreadControl!
     @IBOutlet weak var commentsNewsControl: CommentCountControl!
+   
+    @IBOutlet var repostsNewsControl: RepostsControl!
+    @IBOutlet var viewsNewsControl: ViewsControl!
     
     var backgroundColorControlDeselect = UIColor(red: 57/255, green: 47/255, blue: 68/255, alpha: 0.05)
     var backgroundColorControlSelect = UIColor.systemRed.withAlphaComponent(0.3)
@@ -28,28 +31,28 @@ class NewsLikeCommentsTableViewCell: UITableViewCell {
     
     @objc func handleTap(_: UITapGestureRecognizer){
 
-        if likeNewsControl.newsItem.likes?.userLikes ?? 0 == 1 {
-            likeNewsControl.newsItem.likes?.userLikes = 0
-            likeNewsControl.newsItem.likes?.count! -= 1
+        if likeNewsControl.newsItem.viewsCount == 1 {
+            likeNewsControl.newsItem.viewsCount = 0
+            likeNewsControl.newsItem.likesCount -= 1
             likeNewsControl.likeCount.textColor = .lightGray
             animateLikeCountAppear()
         }
         else {
-            likeNewsControl.newsItem.likes?.userLikes = 1
-            likeNewsControl.newsItem.likes?.count! += 1
+            likeNewsControl.newsItem.viewsCount = 1
+            likeNewsControl.newsItem.likesCount += 1
             likeNewsControl.likeCount.textColor = .systemRed
             animateLikeCountAppear()
             groupAnimation()
         }
 
-        likeNewsControl.setLikeButton(isLike: likeNewsControl.newsItem.likes?.userLikes ?? 0)
+        likeNewsControl.setLikeButton(isLike: likeNewsControl.newsItem.viewsCount)
 }
 
 func animateLikeCountAppear(){
     UIView.transition(with: likeNewsControl.likeCount,
                       duration: 0.5,
                       options: .transitionFlipFromRight) { [self] in
-                                    self.likeNewsControl.likeCount.text = String(likeNewsControl.newsItem.likes?.count ?? 0)
+                                    self.likeNewsControl.likeCount.text = String(likeNewsControl.newsItem.likesCount)
                                 }
 }
 
@@ -73,16 +76,21 @@ func groupAnimation(){
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-  
-    func configure(newsItem: VkNewsItem, cellIndex: Int) {
+      
+    func configure(newsItem: NewsItem, cellIndex: Int) {
         
         setControl(control: likeNewsControl)
         self.likeNewsControl.setLikeNewsControl(item: newsItem, cellIndex: cellIndex)
         
         setControl(control: commentsNewsControl)
         self.commentsNewsControl.setCommentNewsControl(item: newsItem, cellIndex: cellIndex)
+        
+        setControl(control: repostsNewsControl)
+        self.repostsNewsControl.setRepostNewsControl(item: newsItem, cellIndex: cellIndex)
 
+        setControl(control: viewsNewsControl)
+        self.viewsNewsControl.setViewsNewsControl(item: newsItem, cellIndex: cellIndex)
+        
     }
     
     func setControl(control: UIControl){

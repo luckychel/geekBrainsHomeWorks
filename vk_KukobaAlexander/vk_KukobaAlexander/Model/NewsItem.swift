@@ -48,17 +48,14 @@ class NewsItem: Object {
             self.attachments = attachments
         }
         
-        
         if authorId > 0 {
-            let friend = friends.filter({ $0.idFriend == "\(authorId)"})
-            
-            self.author = friend[0].name
-            self.authorImageUrl = friend[0].photoUrl
+            let friend = friends.filter({ $0.idFriend == "\(authorId)"}).first
+            self.author = "\(friend?.firstName ?? "") \(friend?.lastName ?? "")"
+            self.authorImageUrl = friend?.photoUrl ?? "https://vk.com/images/camera_100.png"
         } else {
-            let group = groups.filter({$0.idGroup == "\(authorId.magnitude)"})
-            
-            self.author = group[0].nameGroup
-            self.authorImageUrl = group[0].photoGroupUrl
+            let group = groups.filter({$0.idGroup == "\(authorId.magnitude)"}).first
+            self.author = group?.nameGroup
+            self.authorImageUrl = group?.photoGroupUrl ?? "https://vk.com/images/camera_100.png"
         }
     }
 }
