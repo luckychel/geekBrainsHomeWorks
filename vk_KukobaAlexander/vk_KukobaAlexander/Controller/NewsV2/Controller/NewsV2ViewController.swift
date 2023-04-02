@@ -113,10 +113,10 @@ extension NewsV2ViewController: UITableViewDataSource, UITableViewDelegate {
             //кеширование
             let image = photoService?.photo(atIndexpath: indexPath, byUrl: url ?? "")
 
-            cell.avatar.image = image
+            
             
             DispatchQueue.main.async {
-                tableView.reloadRows(at: [indexPath], with: .automatic)
+                cell.avatar.image = image
             }
             
             return cell
@@ -237,10 +237,8 @@ extension NewsV2ViewController: UICollectionViewDelegate, UICollectionViewDataSo
         //кеширование
         let image = photoService?.photo(atIndexpath: indexPath, byUrl: url)
 
-        cell.newsPhoto.image = image
-        
         DispatchQueue.main.async {
-            collectionView.reloadItems(at: [indexPath])
+           cell.newsPhoto.image = image
         }
 
         return cell

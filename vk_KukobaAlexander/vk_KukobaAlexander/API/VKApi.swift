@@ -236,7 +236,7 @@ class VKApi {
                 "client_id": VKApi.clientId,
                 "filters": "post",
                 "v": "5.131",
-                "count": "100"
+                "count": "20"
             ]
         
             let url = VKApi.baseUrl+path
