@@ -582,6 +582,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
+				ORGANIZATIONNAME = "Кукоба Александр";
 				TargetAttributes = {
 					8116C4EF285A788300ECB796 = {
 						CreatedOnToolsVersion = 13.4.1;
