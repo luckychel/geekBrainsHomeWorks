@@ -27,7 +27,6 @@ class FriendsPhotoGalleryController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "PhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
@@ -45,6 +44,7 @@ class FriendsPhotoGalleryController: UIViewController {
     }
     
 }
+
 
 extension FriendsPhotoGalleryController:UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
